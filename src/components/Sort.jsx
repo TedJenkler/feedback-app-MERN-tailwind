@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { sort } from '../features/state/stateSlice'
+import AddNewFeedback from "../components/AddNewFeedback"
 
 function Sort() {
     const [sortBy, setSortBy] = useState("Most Upvotes")
+    const [toggleAdd, setToggleAdd] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(sort(sortBy))
     }, [sortBy])
+    console.log(toggleAdd)
   return (
     <div className='flex justify-between h-14 items-center text-white px-6 bg-dark-blue text-sm'>
         <div>
@@ -19,7 +22,8 @@ function Sort() {
                 <option value="Least Comments">Least Comments</option>
             </select>
         </div>
-        <button className='bg-purple rounded-xl px-4 py-2 font-bold'>+ Add Feedback</button>
+        <button onClick={(e) => {setToggleAdd(!toggleAdd)}} className='bg-purple rounded-xl px-4 py-2 font-bold'>+ Add Feedback</button>
+        {toggleAdd === true ? <AddNewFeedback setToggleAdd={setToggleAdd} toggleAdd={toggleAdd} /> : null}
     </div>
   )
 }
