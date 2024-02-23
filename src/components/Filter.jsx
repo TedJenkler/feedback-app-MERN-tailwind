@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { filter } from '../features/state/stateSlice'
+import { useDispatch } from 'react-redux'
 
 function Filter() {
-    const feedback = useSelector((state => state.state.data.productRequests))
     const [filterBy, setFilterBy] = useState("ALL")
-    console.log(feedback)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(filter(filterBy))
+    },[filterBy])
   return (
     <div>
         <button onClick={(e) => {setFilterBy("ALL")}} value={filterBy}>All</button>
