@@ -1,5 +1,5 @@
 import FeedbackDisplay from "./components/FeedbackDisplay"
-import Filter from "./components/Filter"
+import Sort from "./components/Sort"
 import Nav from "./components/Nav"
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
     <Nav />
-    <Filter />
+    <Sort />
     <FeedbackDisplay />
     </>
   )

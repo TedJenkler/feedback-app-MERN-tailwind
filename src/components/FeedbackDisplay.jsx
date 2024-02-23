@@ -1,14 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import arrowup from "../assets/arrowup.png"
 import comment from "../assets/comment.png"
 
 function FeedbackDisplay() {
     const feedback = useSelector((state) => state.state.data.productRequests)
+    const sortValue = useSelector((state) => state.state.sortBy)
+    const productRequestsCopy = [...feedback];
+    const [sortIt, setSortIt] = useState(productRequestsCopy.sort((a, b) => b.upvotes - a.upvotes))
     console.log(feedback)
+    useEffect(() => {
+        if(sortValue === "Most Upvotes"){
+            setSortIt(productRequestsCopy.sort((a, b) => b.upvotes - a.upvotes))
+        }
+        else if(sortValue === "Least Upvotes"){
+            setSortIt(productRequestsCopy.sort((a, b) => a.upvotes - b.upvotes))
+        }
+        else if(sortValue === "Most Comments"){
+            setSortIt(productRequestsCopy.sort((a, b) => {
+                const aCommentsLength = a.comments ? a.comments.length : 0;
+                const bCommentsLength = b.comments ? b.comments.length : 0;
+                return bCommentsLength - aCommentsLength;
+            }))
+        }
+        else if(sortValue === "Least Comments"){
+            setSortIt(productRequestsCopy.sort((a, b) => {
+                const aCommentsLength = a.comments ? a.comments.length : 0;
+                const bCommentsLength = b.comments ? b.comments.length : 0;
+                return aCommentsLength - bCommentsLength;
+            }))
+        }
+    },[sortValue])
+
   return (
     <main className='bg-grey-white py-8'>
-        {feedback.map((value) => {
+        {sortIt.map((value) => {
             return (
                 <div className='bg-white mx-6 mb-4 rounded-xl p-6' key={value.id}>
                 <p className='text-sm font-bold text-blue mb-2'>{value.title}</p>
