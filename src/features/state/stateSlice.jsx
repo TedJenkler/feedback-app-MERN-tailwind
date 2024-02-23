@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import data from "../../../data.json"
 
 const initialState = {
+    filterBy: 'Most Upvotes',
     data
 }
 
@@ -9,12 +10,12 @@ export const stateSlice = createSlice({
     name: 'state',
     initialState,
     reducers: {
-        test: (state) => {
-            state
+        filter: (state, action) => {
+            state.filterBy = action.payload
         }
     }
 })
 
-export const { test } = stateSlice.actions
+export const { filter } = stateSlice.actions
 
 export default stateSlice.reducer

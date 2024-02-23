@@ -15,6 +15,8 @@ export default {
         'blue': '#3A4374',
         'grey': '#647196',
         'strong-blue': '#4661E6',
+        'dark-blue': '#373F68',
+        'purple': '#AD1FEA',
       },
     },
   },

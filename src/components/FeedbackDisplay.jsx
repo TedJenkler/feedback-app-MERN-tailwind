@@ -5,7 +5,7 @@ import comment from "../assets/comment.png"
 
 function FeedbackDisplay() {
     const feedback = useSelector((state) => state.state.data.productRequests)
-    console.log(feedback) 
+    console.log(feedback)
   return (
     <main className='bg-grey-white py-8'>
         {feedback.map((value) => {

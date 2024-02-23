@@ -1,4 +1,5 @@
 import FeedbackDisplay from "./components/FeedbackDisplay"
+import Filter from "./components/Filter"
 import Nav from "./components/Nav"
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
     <Nav />
+    <Filter />
     <FeedbackDisplay />
     </>
   )
