@@ -12,6 +12,7 @@ export default {
         'gradient-red': '#E84D70',
         'white': '#FFFFFF',
         'grey-white': '#F2F4FF',
+        'grey-white2': '#F7F8FD',
         'blue': '#3A4374',
         'grey': '#647196',
         'strong-blue': '#4661E6',
