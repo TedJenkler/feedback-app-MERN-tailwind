@@ -6,9 +6,31 @@ import comment from "../assets/comment.png"
 function FeedbackDisplay() {
     const feedback = useSelector((state) => state.state.data.productRequests)
     const sortValue = useSelector((state) => state.state.sortBy)
+    const filterValue = useSelector((state) => state.state.filterBy)
     const productRequestsCopy = [...feedback];
     const [sortIt, setSortIt] = useState(productRequestsCopy.sort((a, b) => b.upvotes - a.upvotes))
+    const [filterIt, setFilterIt] = useState(productRequestsCopy.filter(request => request.category === "enhancement"))
     console.log(feedback)
+    useEffect(() => {
+        if(filterValue === "ALL"){
+            setFilterIt(feedback)
+        }
+        else if(filterValue === "UI"){
+            setFilterIt(productRequestsCopy.filter(request => request.category === "ui"))
+        }
+        else if(filterValue === "UX"){
+            setFilterIt(productRequestsCopy.filter(request => request.category === "ux"))
+        }
+        else if(filterValue === "Enhancement"){
+            setFilterIt(productRequestsCopy.filter(request => request.category === "enhancement"))
+        }
+        else if(filterValue === "Bug"){
+            setFilterIt(productRequestsCopy.filter(request => request.category === "bug"))
+        }
+        else if(filterValue === "Feature"){
+            setFilterIt(productRequestsCopy.filter(request => request.category === "feature"))
+        }
+    }, [filterValue])
     useEffect(() => {
         if(sortValue === "Most Upvotes"){
             setSortIt(productRequestsCopy.sort((a, b) => b.upvotes - a.upvotes))
@@ -34,7 +56,7 @@ function FeedbackDisplay() {
 
   return (
     <main className='bg-grey-white py-8'>
-        {sortIt.map((value) => {
+        {filterIt.map((value) => {
             return (
                 <div className='bg-white mx-6 mb-4 rounded-xl p-6' key={value.id}>
                 <p className='text-sm font-bold text-blue mb-2'>{value.title}</p>
