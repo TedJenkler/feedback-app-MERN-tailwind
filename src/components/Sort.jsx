@@ -3,9 +3,8 @@ import { useDispatch } from 'react-redux'
 import { sort } from '../features/state/stateSlice'
 import AddNewFeedback from "../components/AddNewFeedback"
 
-function Sort() {
+function Sort( {toggleAdd, setToggleAdd} ) {
     const [sortBy, setSortBy] = useState("Most Upvotes")
-    const [toggleAdd, setToggleAdd] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(sort(sortBy))

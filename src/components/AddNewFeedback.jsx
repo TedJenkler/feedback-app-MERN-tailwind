@@ -15,7 +15,7 @@ function AddNewFeedback( {setToggleAdd, toggleAdd} ) {
         setId(getId.length + 1)
     })
   return (
-    <main className='absolute h-full w-full bg-grey-white2 top-0 left-0 right-0 px-6 pt-10'>
+    <main className='absolute min-h-full w-full bg-grey-white2 top-0 left-0 right-0 px-6 pt-10 pb-20'>
     <button onClick={(e) => setToggleAdd(!toggleAdd)} className='flex items-center gap-1 mb-8'>
         <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
         <p className='text-grey text-sm font-bold'>Go Back</p>
