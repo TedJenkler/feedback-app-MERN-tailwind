@@ -38,7 +38,7 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
         <div className='bg-white rounded-xl p-6 mb-6'>
         <h2 className='text-lg text-blue font-bold mb-6'>{feedback.comments ? feedback.comments.length : 0} Comments</h2>
         {feedback.comments && feedback.comments.map((comment) => {
-            return (
+            return (<>
                     <div>
                         <div className='flex items-center justify-between'>
                             <div className='flex gap-4 mb-4 items-center'>
@@ -52,6 +52,27 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
                         </div>
                         <p className='border-b border-grey/25 pb-6 text-grey text-sm font-normal mb-6'>{comment.content}</p>
                     </div>
+                    {console.log(comment.replies[0])}
+                    {comment.replies ? <>{comment.replies.map((reply) => {
+                        return (
+                        <div className='ml-6'>
+                            <div className=''>
+                                <div className='flex items-center justify-between'>
+                                    <div className='flex items-center gap-4 mb-4'>
+                                        <img className='rounded-full h-10 w-10' src={reply.user.image} alt={reply.user.name} />
+                                        <div>
+                                            <p className='text-sm font-bold text-blue'>{reply.user.name}</p>
+                                            <p className='text-sm font-normal text-grey'>@{reply.user.username}</p>
+                                        </div>
+                                    </div>
+                                    <button className='text-strong-blue text-sm font-semibold'>Reply</button>
+                                </div>
+                            </div>
+                            <p className='pb-6 text-grey text-sm font-normal mb-6'><span className='text-purple font-bold'>@{reply.replyingTo}</span> {reply.content}</p>
+                        </div>
+                        )
+                    })}</> : null}
+                    </>
                     )
                 })}
         </div>
