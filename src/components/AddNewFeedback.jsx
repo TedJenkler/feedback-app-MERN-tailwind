@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import arrowleft from "../assets/arrowleft.png"
+import { useDispatch, useSelector } from 'react-redux'
+import { add } from '../features/state/stateSlice'
 
 function AddNewFeedback( {setToggleAdd, toggleAdd} ) {
     const [title, setTitle] = useState("")
     const [select, setSelect] = useState("Feature")
     const [detail, setDetail] = useState("")
-    console.log(title)
-    console.log(select)
-    console.log(detail)
+    const getId = useSelector((state) => state.state.data.productRequests)
+    const [id, setId] = useState(getId.length + 1)
+    const dispatch = useDispatch()
+    console.log(getId.length)
+    useEffect(() => {
+        setId(getId.length + 1)
+    })
   return (
     <main className='absolute h-full w-full bg-grey-white2 top-0 left-0 right-0 px-6 pt-10'>
     <button onClick={(e) => setToggleAdd(!toggleAdd)} className='flex items-center gap-1 mb-8'>
@@ -31,8 +37,8 @@ function AddNewFeedback( {setToggleAdd, toggleAdd} ) {
         <h2 className='text-sm text-blue font-bold mb-1'>Feedback Detail</h2>
         <p className='text-sm text-grey font-normal mb-4'>Include any specific comments on what should be improved, added, etc.</p>
         <textarea onChange={(e) => setDetail(e.target.value)} value={detail} className='bg-grey-white2 h-32 mb-10'></textarea>
-        <button className='bg-purple text-white mb-4 py-2 rounded-xl'>Add Feedback</button>
-        <button className='bg-blue text-white py-2 rounded-xl'>Cancel</button>
+        <button onClick={(e) => dispatch(add({id: id, title: title, category: select, description: detail}))} className='bg-purple text-white mb-4 py-2 rounded-xl'>Add Feedback</button>
+        <button onClick={(e) => setToggleAdd(!toggleAdd)} className='bg-blue text-white py-2 rounded-xl'>Cancel</button>
     </div>
     </main>
   )
