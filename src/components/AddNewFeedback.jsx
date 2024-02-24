@@ -20,7 +20,7 @@ function AddNewFeedback( {setToggleAdd, toggleAdd} ) {
         <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
         <p className='text-grey text-sm font-bold'>Go Back</p>
     </button>
-    <div className='flex flex-col text-black mt-5 py-11 px-6 bg-white'>
+    <div className='flex flex-col text-black mt-5 py-11 px-6 bg-white rounded-xl'>
         <h1 className='text-lg text-blue font-bold mb-6'>Create New Feedback</h1>
         <h2 className='text-sm text-blue font-bold mb-1'>Feedback Title</h2>
         <p className='text-sm text-grey font-normal mb-4'>Add a short, descriptive headline</p>

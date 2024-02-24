@@ -3,12 +3,16 @@ import { useSelector } from 'react-redux';
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
 
-function FeedbackDisplay() {
+function FeedbackDisplay( {toggleView, setToggleView, selectedFeedback, setSelectedFeedback} ) {
     const feedback = useSelector((state) => state.state.data.productRequests);
     const sortValue = useSelector((state) => state.state.sortBy);
     const filterValue = useSelector((state) => state.state.filterBy);
     const productRequestsCopy = [...feedback];
     const [filteredAndSortedRequests, setFilteredAndSortedRequests] = useState([]);
+    const handleListClick = (id) => {
+        setSelectedFeedback(id)
+        setToggleView(!toggleView)
+    }
 
     useEffect(() => {
         let filteredAndSortedRequestsCopy = [...productRequestsCopy];
@@ -33,7 +37,7 @@ function FeedbackDisplay() {
     return (
         <main className='bg-grey-white py-8'>
             {filteredAndSortedRequests.map((value) => (
-                <div className='bg-white mx-6 mb-4 rounded-xl p-6' key={value.id}>
+                <div onClick={(e) => handleListClick(value.id)} className='bg-white mx-6 mb-4 rounded-xl p-6' key={value.id}>
                     <p className='text-sm font-bold text-blue mb-2'>{value.title}</p>
                     <p className='text-grey text-sm font-normal mb-2'>{value.description}</p>
                     <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
