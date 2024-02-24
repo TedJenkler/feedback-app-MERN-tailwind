@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import arrowleft from "../assets/arrowleft.png"
 import { useDispatch, useSelector } from 'react-redux'
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
+import { addcomment } from '../features/state/stateSlice';
 
 function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
     const feedback = useSelector((state) => state.state.data.productRequests[selectedFeedback - 1])
-    console.log(feedback)
-    let map = [feedback]
+    const [commentField, setCommentField] = useState("")
+    const dispatch = useDispatch()
   return (
     <main className='absolute top-0 bg-grey-white left-0 right-0 min-h-full p-6 pb-24'>
         <div className='flex justify-between mb-6'>
@@ -56,10 +57,10 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
         </div>
         <div className='bg-white p-6 rounded-xl'>
             <h1 className='text-xl font-bold text-blue mb-6'>Add Comment</h1>
-            <textarea className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4'></textarea>
+            <textarea onChange={(e) => setCommentField(e.target.value)} value={commentField} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4'></textarea>
             <div className='flex items-center justify-between'>
                 <p className='text-sm text-grey font-normal'>250 Characters left</p>
-                <button className='bg-purple text-white text-sm py-2 px-4 rounded-xl'>Post Comment</button>
+                <button onClick={(e) => dispatch(addcomment({id: selectedFeedback - 1, content: commentField}))} className='bg-purple text-white text-sm py-2 px-4 rounded-xl'>Post Comment</button>
             </div>
         </div>
     </main>
