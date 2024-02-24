@@ -9,7 +9,7 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
     console.log(feedback)
     let map = [feedback]
   return (
-    <main className='absolute top-0 bg-grey-white left-0 right-0 min-h-full p-6'>
+    <main className='absolute top-0 bg-grey-white left-0 right-0 min-h-full p-6 pb-24'>
         <div className='flex justify-between mb-6'>
             <button onClick={(e) => setToggleView(!toggleView)} className='flex items-center gap-1'>
                 <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
@@ -34,7 +34,7 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
                 </button>
             </div>
         </div>
-        <div className='bg-white rounded-xl p-6'>
+        <div className='bg-white rounded-xl p-6 mb-6'>
         <h2 className='text-lg text-blue font-bold mb-6'>{feedback.comments ? feedback.comments.length : 0} Comments</h2>
         {feedback.comments && feedback.comments.map((comment) => {
             return (
@@ -53,6 +53,14 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
                     </div>
                     )
                 })}
+        </div>
+        <div className='bg-white p-6 rounded-xl'>
+            <h1 className='text-xl font-bold text-blue mb-6'>Add Comment</h1>
+            <textarea className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4'></textarea>
+            <div className='flex items-center justify-between'>
+                <p className='text-sm text-grey font-normal'>250 Characters left</p>
+                <button className='bg-purple text-white text-sm py-2 px-4 rounded-xl'>Post Comment</button>
+            </div>
         </div>
     </main>
   )
