@@ -57,10 +57,10 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
         </div>
         <div className='bg-white p-6 rounded-xl'>
             <h1 className='text-xl font-bold text-blue mb-6'>Add Comment</h1>
-            <textarea onChange={(e) => setCommentField(e.target.value)} value={commentField} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4'></textarea>
+            <textarea maxLength={250} onChange={(e) => setCommentField(e.target.value)} value={commentField} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4'></textarea>
             <div className='flex items-center justify-between'>
-                <p className='text-sm text-grey font-normal'>250 Characters left</p>
-                <button onClick={(e) => dispatch(addcomment({id: selectedFeedback - 1, content: commentField}))} className='bg-purple text-white text-sm py-2 px-4 rounded-xl'>Post Comment</button>
+                <p className='text-sm text-grey font-normal'>{250 - commentField.length} Characters left</p>
+                <button onClick={(e) => dispatch(addcomment({id: selectedFeedback - 1, content: commentField}, setCommentField("")))} className='bg-purple text-white text-sm py-2 px-4 rounded-xl'>Post Comment</button>
             </div>
         </div>
     </main>
