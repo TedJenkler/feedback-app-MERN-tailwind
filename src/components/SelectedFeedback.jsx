@@ -16,7 +16,7 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
                 <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                 <p className='text-grey text-sm font-bold'>Go Back</p>
             </button>
-            <button>Edit Feedback</button>
+            <button className='bg-strong-blue text-white rounded-xl py-2 px-4'>Edit Feedback</button>
         </div>
         <div className='bg-white mb-6 p-6 rounded-xl'>
             <h2 className='text-sm font-bold text-blue mb-2'>{feedback.title}</h2>
@@ -52,7 +52,6 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
                         </div>
                         <p className='border-b border-grey/25 pb-6 text-grey text-sm font-normal mb-6'>{comment.content}</p>
                     </div>
-                    {console.log(comment.replies[0])}
                     {comment.replies ? <>{comment.replies.map((reply) => {
                         return (
                         <div className='ml-6'>

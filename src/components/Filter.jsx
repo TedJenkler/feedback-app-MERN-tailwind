@@ -9,7 +9,7 @@ function Filter() {
         dispatch(filter(filterBy))
     },[filterBy])
   return (
-    <div className='bg-white mt-6 mx-6 p-6 flex flex-wrap gap-2 rounded-xl'>
+    <div className='bg-white mt-6 mx-6 p-6 flex flex-wrap gap-2 rounded-xl mb-6'>
         <button className={filterBy === "ALL" ? 'py-1 px-3 bg-strong-blue text-white rounded-xl text-sm font-semibold' : 'py-1 px-3 bg-grey-white rounded-xl text-sm font-semibold text-strong-blue'} onClick={(e) => {setFilterBy("ALL")}} value={filterBy}>All</button>
         <button className={filterBy === "UI" ? 'py-1 px-3 bg-strong-blue text-white rounded-xl text-sm font-semibold' : 'py-1 px-3 bg-grey-white rounded-xl text-sm font-semibold text-strong-blue'} onClick={(e) => {setFilterBy("UI")}} value={filterBy}>UI</button>
         <button className={filterBy === "UX" ? 'py-1 px-3 bg-strong-blue text-white rounded-xl text-sm font-semibold' : 'py-1 px-3 bg-grey-white rounded-xl text-sm font-semibold text-strong-blue'} onClick={(e) => {setFilterBy("UX")}} value={filterBy}>UX</button>
