@@ -3,6 +3,7 @@ import orange from "../assets/orange.png"
 import purple from "../assets/purple.png"
 import blue from "../assets/blue.png"
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function Roadmap() {
     const state = useSelector((state) => state.state.data.productRequests)
@@ -31,7 +32,7 @@ function Roadmap() {
     <div className='bg-white mx-6 p-6 rounded-xl'>
         <div className='flex items-center justify-between mb-6'>
             <h1 className='text-lg font-bold text-blue'>Roadmap</h1>
-            <button className='text-sm text-strong-blue font-semibold underline'>View</button>
+            <Link to="/roadmap" className='text-sm text-strong-blue font-semibold underline'>View</Link>
         </div>
         <div>
             <div className='flex justify-between'>
