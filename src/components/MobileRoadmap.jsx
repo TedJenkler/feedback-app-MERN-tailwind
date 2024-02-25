@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import whitearrow from "../assets/whitearrow.png"
+import LinkButton from './LinkButton'
+import DisplayRoadmapMobile from './DisplayRoadmapMobile'
+import { useState } from 'react'
 
 function MobileRoadmap() {
+  const [selectedRoadmap, setSelectedRoadmap] = useState("in-progress")
   return (
     <main>
         <nav className='flex justify-between bg-blue text-white p-6 items-center'>
@@ -15,6 +19,8 @@ function MobileRoadmap() {
             </div>
             <button className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4'>+ Add Feedback</button>
         </nav>
+        <LinkButton setSelectedRoadmap={setSelectedRoadmap} />
+        <DisplayRoadmapMobile selectedRoadmap={selectedRoadmap} />
     </main>
   )
 }
