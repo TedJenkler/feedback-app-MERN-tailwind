@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
 import { addcomment } from '../features/state/stateSlice';
+import { Link } from 'react-router-dom';
 
 function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
     const feedback = useSelector((state) => state.state.data.productRequests[selectedFeedback - 1])
@@ -16,7 +17,7 @@ function SelectedFeedback( {toggleView, setToggleView, selectedFeedback} ) {
                 <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                 <p className='text-grey text-sm font-bold'>Go Back</p>
             </button>
-            <button className='bg-strong-blue text-white rounded-xl py-2 px-4'>Edit Feedback</button>
+            <Link to={"editfeedback/:" + selectedFeedback} className='bg-strong-blue text-white rounded-xl py-2 px-4'>Edit Feedback</Link>
         </div>
         <div className='bg-white mb-6 p-6 rounded-xl'>
             <h2 className='text-sm font-bold text-blue mb-2'>{feedback.title}</h2>

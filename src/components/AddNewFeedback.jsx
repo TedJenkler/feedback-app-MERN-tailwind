@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import arrowleft from "../assets/arrowleft.png"
 import { useDispatch, useSelector } from 'react-redux'
 import { add } from '../features/state/stateSlice'
+import { Link } from 'react-router-dom'
 
-function AddNewFeedback( {setToggleAdd, toggleAdd} ) {
+function AddNewFeedback() {
     const [title, setTitle] = useState("")
     const [select, setSelect] = useState("Feature")
     const [detail, setDetail] = useState("")
@@ -16,10 +17,10 @@ function AddNewFeedback( {setToggleAdd, toggleAdd} ) {
     })
   return (
     <main className='absolute min-h-full w-full bg-grey-white2 top-0 left-0 right-0 px-6 pt-10 pb-20'>
-    <button onClick={(e) => setToggleAdd(!toggleAdd)} className='flex items-center gap-1 mb-8'>
+    <Link to="/" className='flex items-center gap-1 mb-8'>
         <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
         <p className='text-grey text-sm font-bold'>Go Back</p>
-    </button>
+    </Link>
     <div className='flex flex-col text-black mt-5 py-11 px-6 bg-white rounded-xl'>
         <h1 className='text-lg text-blue font-bold mb-6'>Create New Feedback</h1>
         <h2 className='text-sm text-blue font-bold mb-1'>Feedback Title</h2>
@@ -38,7 +39,7 @@ function AddNewFeedback( {setToggleAdd, toggleAdd} ) {
         <p className='text-sm text-grey font-normal mb-4'>Include any specific comments on what should be improved, added, etc.</p>
         <textarea onChange={(e) => setDetail(e.target.value)} value={detail} className='bg-grey-white2 h-32 mb-10'></textarea>
         <button onClick={(e) => dispatch(add({id: id, title: title, category: select, description: detail}))} className='bg-purple text-white mb-4 py-2 rounded-xl'>Add Feedback</button>
-        <button onClick={(e) => setToggleAdd(!toggleAdd)} className='bg-blue text-white py-2 rounded-xl'>Cancel</button>
+        <Link to="/" className='bg-blue text-white py-2 rounded-xl'>Cancel</Link>
     </div>
     </main>
   )

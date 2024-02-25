@@ -9,6 +9,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import RoadmapPage from './RoadmapPage.jsx'
+import AddNewFeedback from './components/AddNewFeedback.jsx'
+import EditFeedback from './components/EditFeedback.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
   {
     path: "/roadmap",
     element: <RoadmapPage />,
+  },
+  {
+    path: "/addfeedback",
+    element: <AddNewFeedback />,
+  },
+  {
+    path: "/editfeedback/:id",
+    element: <EditFeedback/>,
   },
 ]);
 
