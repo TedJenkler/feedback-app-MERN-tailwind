@@ -11,16 +11,16 @@ function Sort() {
     }, [sortBy])
   return (
     <div className='flex justify-between h-14 items-center text-white px-6 bg-dark-blue text-sm'>
-        <div>
-            <label className='font-normal'>Sort by : </label>
-            <select className='bg-dark-blue font-bold' onChange={(e) => {setSortBy(e.target.value)}}>
-                <option value="Most Upvotes">Most Upvotes</option>
-                <option value="Least Upvotes">Least Upvotes</option>
-                <option value="Most Comments">Most Comments</option>
-                <option value="Least Comments">Least Comments</option>
+        <div className='flex items-center'>
+            <label className='font-normal whitespace-nowrap'>Sort by : </label>
+            <select className='bg-dark-blue font-bold w-32 mr-4' onChange={(e) => {setSortBy(e.target.value)}}>
+                <option value="Most Upvotes"> Most Upvotes</option>
+                <option value="Least Upvotes"> Least Upvotes</option>
+                <option value="Most Comments"> Most Comments</option>
+                <option value="Least Comments"> Least Comments</option>
             </select>
         </div>
-        <Link to="/addfeedback" className='bg-purple rounded-xl px-4 py-2 font-bold'>+ Add Feedback</Link>
+        <Link to="/addfeedback" className='bg-purple rounded-xl px-4 py-2 font-bold whitespace-nowrap'>+ Add Feedback</Link>
     </div>
   )
 }

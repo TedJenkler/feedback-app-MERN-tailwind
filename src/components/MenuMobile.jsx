@@ -4,7 +4,7 @@ import Roadmap from './Roadmap'
 
 function MenuMobile( {toggleMenu} ) {
   return (
-    <div className={toggleMenu === true ? 'absolute w-3/4 h-full bg-grey-white2 top-20 right-0' : 'absolute hidden w-3/4 h-full bg-grey-white2 top-20 right-0'}>
+    <div className={toggleMenu === true ? 'absolute w-3/4 h-full bg-grey-white2 top-20 right-0 z-50' : 'absolute hidden w-3/4 h-full bg-grey-white2 top-20 right-0 z-50'}>
         <Filter />
         <Roadmap />
     </div>
