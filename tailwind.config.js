@@ -18,6 +18,7 @@ export default {
         'strong-blue': '#4661E6',
         'dark-blue': '#373F68',
         'purple': '#AD1FEA',
+        'red': '#D73737',
       },
     },
   },
