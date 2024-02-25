@@ -30,12 +30,15 @@ export const stateSlice = createSlice({
                 productRequest.comments.push({content: content, user: {"image": "./assets/user-images/admin.jpg" ,name: "admin", username:"admin"}});
             }
         },
+        edit: (state, action) => {
+            state.data.productRequests[action.payload.id] = {title: action.payload.title, category: action.payload.category, description: action.payload.description, status: action.payload.status, upvotes: state.data.productRequests[action.payload.id].upvotes, comments: state.data.productRequests[action.payload.id].upvotes}
+        },
         deletefeedback: (state, action) => {
             state.data.productRequests.splice(action.payload, 1)
         },
     }
 })
 
-export const { sort, filter, add, addcomment, deletefeedback } = stateSlice.actions
+export const { sort, filter, add, addcomment, deletefeedback, edit } = stateSlice.actions
 
 export default stateSlice.reducer

@@ -5,6 +5,7 @@ import comment from "../assets/comment.png";
 import orange from "../assets/orange.png"
 import purple from "../assets/purple.png"
 import blue from "../assets/blue.png"
+import { v4 as uuidv4 } from 'uuid';
 
 function DisplayRoadmapMobile( {selectedRoadmap} ) {
   const state = useSelector((state) => state.state.data.productRequests)
@@ -54,7 +55,7 @@ const liveCount = state.reduce((acc, currentValue) => {
       {selectedRoadmap === "live" ? <p className='mb-6 text-sm text-grey font-normal'>Released features</p>: null}
       {roadmap.map((feedback) => {
         return (
-          <div className='bg-white mb-6 p-6 rounded-xl border-t-8 border-purple'>
+          <div key={uuidv4()} className='bg-white mb-6 p-6 rounded-xl border-t-8 border-purple'>
 
             {selectedRoadmap === "planned" ? <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={orange} alt="orange oval" /><p>Planned</p></div> : null}
             {selectedRoadmap === "in-progress" ? <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={purple} alt="purple oval" /><p>Progress</p></div> : null}
@@ -71,7 +72,7 @@ const liveCount = state.reduce((acc, currentValue) => {
               </button>
               <button className='flex items-center gap-1'>
                 <img className='h-4 w-5' src={comment} alt='comments' />
-                <p>{feedback.comments ? feedback.comments.length : 0}</p>
+                <p className='text-sm text-blue font-bold'>{feedback.comments ? feedback.comments.length : 0}</p>
               </button>
             </div>
           </div>

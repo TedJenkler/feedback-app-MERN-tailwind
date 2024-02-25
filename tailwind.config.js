@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Jost', 'sans-serif'],
+      },
       colors: {
         'gradient-blue': '#28A7ED',
         'gradient-purple': '#A337F6',

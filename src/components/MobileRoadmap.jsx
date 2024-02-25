@@ -19,7 +19,7 @@ function MobileRoadmap() {
             </div>
             <Link to="/addfeedback" className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4'>+ Add Feedback</Link>
         </nav>
-        <LinkButton setSelectedRoadmap={setSelectedRoadmap} />
+        <LinkButton selectedRoadmap={selectedRoadmap} setSelectedRoadmap={setSelectedRoadmap} />
         <DisplayRoadmapMobile selectedRoadmap={selectedRoadmap} />
     </main>
   )
