@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
+import NoFeedback from './NoFeedback';
 
 function FeedbackDisplay( {toggleView, setToggleView, selectedFeedback, setSelectedFeedback} ) {
     const feedback = useSelector((state) => state.state.data.productRequests);
@@ -35,7 +36,7 @@ function FeedbackDisplay( {toggleView, setToggleView, selectedFeedback, setSelec
     }, [filterValue, sortValue]);
 
     return (
-        <main className='bg-grey-white py-8'>
+        <main className='bg-grey-white py-8 min-h-full'>
             {filteredAndSortedRequests.map((value) => (
                 <div onClick={(e) => handleListClick(value.id)} className='bg-white mx-6 mb-4 rounded-xl p-6' key={value.id}>
                     <p className='text-sm font-bold text-blue mb-2'>{value.title}</p>
@@ -55,6 +56,7 @@ function FeedbackDisplay( {toggleView, setToggleView, selectedFeedback, setSelec
                     </div>
                 </div>
             ))}
+            {filteredAndSortedRequests.length === 0 ? <main className='bg-grey-white pb-32 min-h-full'><NoFeedback /></main> : null}
         </main>
     );
 }
