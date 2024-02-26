@@ -22,6 +22,8 @@ export default {
         'dark-blue': '#373F68',
         'purple': '#AD1FEA',
         'red': '#D73737',
+        'orange': '#F49F85',
+        'light-blue': '#62BCFA',
       },
     },
   },
