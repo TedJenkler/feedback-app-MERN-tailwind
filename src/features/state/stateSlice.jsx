@@ -31,7 +31,14 @@ export const stateSlice = createSlice({
             }
         },
         edit: (state, action) => {
-            state.data.productRequests[action.payload.id] = {title: action.payload.title, category: action.payload.category, description: action.payload.description, status: action.payload.status, upvotes: state.data.productRequests[action.payload.id].upvotes, comments: state.data.productRequests[action.payload.id].upvotes}
+            const { id, title, category, description, status } = action.payload;
+            const productRequest = state.data.productRequests[id];
+            if (productRequest) {
+                productRequest.title = title;
+                productRequest.category = category;
+                productRequest.description = description;
+                productRequest.status = status;
+            }
         },
         deletefeedback: (state, action) => {
             state.data.productRequests.splice(action.payload, 1)
