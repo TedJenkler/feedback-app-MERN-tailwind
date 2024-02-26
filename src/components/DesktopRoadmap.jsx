@@ -17,7 +17,7 @@ function DesktopRoadmap() {
 
   return (
     <main className='bg-grey-white2 px-10 pt-14 pb-24'>
-      <nav className='flex justify-between bg-blue text-white p-6 items-center rounded-xl mb-8'>
+      <nav className='flex justify-between bg-blue text-white p-6 items-center rounded-xl mb-8 xl:mx-40'>
         <div>
           <Link className='mb-1 flex items-center gap-2' to="/">
             <img src={whiteArrow} alt='back btn' />
@@ -28,7 +28,7 @@ function DesktopRoadmap() {
         <Link to="/addfeedback" className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4'>+ Add Feedback</Link>
       </nav>
 
-      <div className='flex gap-3'>
+      <div className='flex gap-3 xl:mx-40'>
         <div className='w-1/3'>
           <h2 className='text-blue text-sm font-bold mb-1'>Planned ({plannedRequests.length})</h2>
           <p className='text-sm text-grey font-normal mb-6'>Ideas prioritized for research</p>

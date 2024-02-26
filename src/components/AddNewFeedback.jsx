@@ -17,8 +17,8 @@ function AddNewFeedback() {
         setId(getId.length + 1)
     })
   return (
-    <main className='absolute min-h-full w-full bg-grey-white2 top-0 left-0 right-0 px-6 pt-10 pb-20 md:px-28 md:pb-56 md:pt-14'>
-    <img className='absolute left-12 top-20 h-10 w-10 md:left-40 md:top-24 md:h-14 md:w-14' src={addicon} alt='addicon' />
+    <main className='absolute min-h-full w-full bg-grey-white2 top-0 left-0 right-0 px-6 pt-10 pb-20 md:px-28 md:pb-56 md:pt-14 xl:px-96 xl:pt-24 xl:pb-44'>
+    <img className='absolute left-12 top-20 h-10 w-10 md:left-40 md:top-24 md:h-14 md:w-14 xl:left-96 xl:ml-10 xl:top-32' src={addicon} alt='addicon' />
     <Link to="/" className='flex items-center gap-1 mb-8 md:mb-10'>
         <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
         <p className='text-grey text-sm font-bold'>Go Back</p>

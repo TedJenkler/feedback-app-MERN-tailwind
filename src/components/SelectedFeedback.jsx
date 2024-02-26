@@ -12,7 +12,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
     const dispatch = useDispatch();
 
     return (
-        <main className='absolute top-0 bg-grey-white left-0 right-0 min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32'>
+        <main className='absolute top-0 bg-grey-white left-0 right-0 min-w-screen min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32 xl:pt-20 xl:pb-32 xl:px-96'>
             <div className='flex justify-between mb-6'>
                 <button onClick={(e) => setToggleView(!toggleView)} className='flex items-center gap-1'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
@@ -45,7 +45,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                     </button>
                 </div>
             </div>
-            <div className='bg-white rounded-xl p-6 mb-6 md:px-8'>
+            <div className='bg-white rounded-xl p-6 mb-6 md:px-8 xl:ml-2'>
                 <h2 className='text-lg text-blue font-bold mb-6'>{feedback.comments ? feedback.comments.length : 0} Comments</h2>
                 {feedback.comments && feedback.comments.map((comment) => (
                     <div key={comment.id}>

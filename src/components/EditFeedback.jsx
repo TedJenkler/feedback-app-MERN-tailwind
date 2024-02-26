@@ -17,8 +17,8 @@ function EditFeedback() {
     console.log(select1)
     console.log(state)
   return (
-    <main className='bg-grey-white2 p-6 h-full pb-20 md:px-28 md:py-14'>
-      <img className='absolute left-12 top-20 md:left-40 md:top-28 md:w-14 md:h-14' src={editicon} alt='editicon' />
+    <main className='bg-grey-white2 p-6 h-full pb-20 md:px-28 md:py-14 xl:px-96 xl:pt-24 xl:pb-44'>
+      <img className='absolute left-12 top-20 md:left-40 md:top-28 md:w-14 md:h-14 xl:left-96 xl:ml-10 xl:top-36' src={editicon} alt='editicon' />
         <Link to="/" className='flex items-center gap-2 mb-14'>
                 <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                 <p className='text-grey text-sm font-bold'>Go Back</p>
