@@ -24,7 +24,7 @@ function EditFeedback() {
                 <p className='text-grey text-sm font-bold'>Go Back</p>
         </Link>
         <div className='bg-white flex flex-col rounded-xl p-6 pt-12 md:px-12 md:pt-14 md:pb-10'>
-          <h1 className='text-lg font-bold text-blue mb-6'>Editing '{state.title}'</h1>
+          <h1 className='text-lg font-bold text-blue mb-6 md:text-2xl'>Editing '{state.title}'</h1>
           <h2 className='text-sm text-blue font-bold mb-1'>Feedback Title</h2>
           <p className='text-grey text-sm font-normal mb-4'>Add a short, descriptive headline</p>
           <input onChange={(e) => setTitle(e.target.value)} value={title} className='h-12 bg-grey-white2 p-4 mb-6 rounded-xl text-blue text-sm'></input>

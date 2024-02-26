@@ -24,7 +24,7 @@ function AddNewFeedback() {
         <p className='text-grey text-sm font-bold'>Go Back</p>
     </Link>
     <div className='flex flex-col text-black mt-5 py-11 px-6 bg-white rounded-xl md:py-14 md:px-12'>
-        <h1 className='text-lg text-blue font-bold mb-6'>Create New Feedback</h1>
+        <h1 className='text-lg text-blue font-bold mb-6 md:text-2xl'>Create New Feedback</h1>
         <h2 className='text-sm text-blue font-bold mb-1'>Feedback Title</h2>
         <p className='text-sm text-grey font-normal mb-4'>Add a short, descriptive headline</p>
         <input onChange={(e) => setTitle(e.target.value)} value={title} className='bg-grey-white2 h-12 mb-6 p-4'></input>

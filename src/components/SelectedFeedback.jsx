@@ -27,25 +27,25 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                 </button>
                 <div className='md:flex md:flex-row-reverse md:gap-10'>
                     <div>
-                        <h2 className='text-sm font-bold text-blue mb-2'>{feedback.title}</h2>
-                        <p className='text-grey text-sm font-normal mb-2'>{feedback.description}</p>
-                        <div className='items-center justify-center bg-grey-white py-2 px-4 rounded-xl text-sm inline-block mb-4'>
+                        <h2 className='text-sm font-bold text-blue mb-2 md:text-lg'>{feedback.title}</h2>
+                        <p className='text-grey text-sm font-normal mb-2 md:text-base'>{feedback.description}</p>
+                        <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
                             <p className='text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
                         </div>
                     </div>
                     <div className='flex justify-between'>
-                        <button className='flex bg-grey-white items-center gap-2 py-1 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2'>
+                        <button className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2'>
                             <img className='w-2 h-1' src={arrowup} alt='arrowup' />
                             <p className='text-sm text-blue font-bold py-1 px-2'>{feedback.upvotes}</p>
                         </button>
                     </div>
                     <button className='flex items-center gap-1 md:hidden md:absolute'>
                         <img className='h-4 w-5' src={comment} alt='comments' />
-                        <p>{feedback.comments ? feedback.comments.length : 0}</p>
+                        <p className='font-bold md:text-base'>{feedback.comments ? feedback.comments.length : 0}</p>
                     </button>
                 </div>
             </div>
-            <div className='bg-white rounded-xl p-6 mb-6'>
+            <div className='bg-white rounded-xl p-6 mb-6 md:px-8'>
                 <h2 className='text-lg text-blue font-bold mb-6'>{feedback.comments ? feedback.comments.length : 0} Comments</h2>
                 {feedback.comments && feedback.comments.map((comment) => (
                     <div key={comment.id}>
@@ -59,7 +59,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                             </div>
                             <button className='text-strong-blue text-sm font-semibold'>Reply</button>
                         </div>
-                        <p className='border-b border-grey/25 pb-6 text-grey text-sm font-normal mb-6 whitespace-normal h-24 overflow-hidden'>{comment.content}</p>
+                        <p className='border-b border-grey/25 pb-6 text-grey text-sm font-normal mb-6 whitespace-normal h-24 overflow-hidden md:pl-16'>{comment.content}</p>
                         {comment.replies && comment.replies.map((reply) => (
                             <div key={reply.id} className='ml-6'>
                                 <div className=''>
@@ -80,9 +80,9 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                     </div>
                 ))}
             </div>
-            <div className='bg-white p-6 rounded-xl'>
+            <div className='bg-white p-6 rounded-xl md:px-8'>
                 <h1 className='text-xl font-bold text-blue mb-6'>Add Comment</h1>
-                <textarea placeholder='Type your comment here' maxLength={250} onChange={(e) => setCommentField(e.target.value)} value={commentField} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4'></textarea>
+                <textarea placeholder='Type your comment here' maxLength={250} onChange={(e) => setCommentField(e.target.value)} value={commentField} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4 rounded-xl'></textarea>
                 <div className='flex items-center justify-between'>
                     <p className='text-sm text-grey font-normal'>{250 - commentField.length} Characters left</p>
                     <button onClick={(e) => dispatch(addcomment({id: selectedFeedback - 1, content: commentField}, setCommentField("")))} className='bg-purple text-white text-sm py-2 px-4 rounded-xl'>Post Comment</button>
