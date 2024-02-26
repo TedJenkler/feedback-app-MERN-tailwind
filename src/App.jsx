@@ -12,14 +12,15 @@ function App() {
   console.log(toggleView)
   console.log(selectedFeedback)
   return (
-    <>
+    <div className="md:pt-14 bg-grey-white">
     <Nav toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
     <div className={toggleMenu === true ? "brightness-50" : null}>
     <Sort toggleAdd={toggleAdd} setToggleAdd={setToggleAdd} />
     {toggleAdd === true || toggleView === true ? null : <FeedbackDisplay toggleView={toggleView} setToggleView={setToggleView} selectedFeedback={selectedFeedback} setSelectedFeedback={setSelectedFeedback} />}
     {toggleView === true ? <SelectedFeedback toggleView={toggleView} setToggleView={setToggleView} selectedFeedback={selectedFeedback} /> : null}
+    {}
     </div>
-    </>
+    </div>
   )
 }
 
