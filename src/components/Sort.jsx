@@ -24,7 +24,7 @@ function Sort() {
         <div className='flex items-center'>
             <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                 <img src={lightbulb} alt='lightbulb' />
-                <p className='text-lg font-bold text-white xl:whitespace-nowrap'>{suggestionCount} Suggestions</p>
+                <p className='text-lg font-bold text-white xl:whitespace-nowrap lg:mr-10'>{suggestionCount} Suggestions</p>
             </div>
             <label className='font-normal whitespace-nowrap'>Sort by : </label>
             <select className='bg-dark-blue font-bold w-32 mr-4' onChange={(e) => {setSortBy(e.target.value)}}>
