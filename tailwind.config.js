@@ -24,6 +24,10 @@ export default {
         'red': '#D73737',
         'orange': '#F49F85',
         'light-blue': '#62BCFA',
+        'hover-purple': '#C75AF6',
+        'hover-blue': '#CFD7FF',
+        'hover-grey': '#656EA3',
+        'hover-red': '#E98888'
       },
     },
   },

@@ -54,7 +54,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
             </div>
             <div className='flex justify-between'>
               <div className='flex justify-between'>
-                <button className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2'>
+                <button className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'>
                   <img className='w-2 h-1' src={arrowup} alt='arrowup' />
                   <p className='text-sm text-blue font-bold'>{value.upvotes}</p>
                 </button>

@@ -55,7 +55,7 @@ const liveCount = state.reduce((acc, currentValue) => {
       {selectedRoadmap === "live" ? <p className='mb-6 text-sm text-grey font-normal'>Released features</p>: null}
       {roadmap.map((feedback) => {
         return (
-          <div key={uuidv4()} className='bg-white mb-6 p-6 rounded-xl border-t-8 border-purple'>
+          <div key={uuidv4()} className={selectedRoadmap === "planned" ? 'bg-white mb-6 p-6 rounded-xl border-t-8 border-orange' : selectedRoadmap === "in-progress" ? 'bg-white mb-6 p-6 rounded-xl border-t-8 border-purple' : 'bg-white mb-6 p-6 rounded-xl border-t-8 border-light-blue'} >
 
             {selectedRoadmap === "planned" ? <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={orange} alt="orange oval" /><p>Planned</p></div> : null}
             {selectedRoadmap === "in-progress" ? <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={purple} alt="purple oval" /><p>Progress</p></div> : null}

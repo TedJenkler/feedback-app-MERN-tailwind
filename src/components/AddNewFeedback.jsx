@@ -27,10 +27,10 @@ function AddNewFeedback() {
         <h1 className='text-lg text-blue font-bold mb-6 md:text-2xl'>Create New Feedback</h1>
         <h2 className='text-sm text-blue font-bold mb-1'>Feedback Title</h2>
         <p className='text-sm text-grey font-normal mb-4'>Add a short, descriptive headline</p>
-        <input onChange={(e) => setTitle(e.target.value)} value={title} className='bg-grey-white2 h-12 mb-6 p-4'></input>
+        <input onChange={(e) => setTitle(e.target.value)} value={title} className='bg-grey-white2 h-12 mb-6 p-4 focus:outline-strong-blue' placeholder='Add a title'></input>
         <h2 className='text-sm text-blue font-bold mb-1'>Category</h2>
         <p className='text-sm text-grey font-normal mb-4'>Choose a category for your feedback</p>
-        <select onChange={(e) => {setSelect(e.target.value)}} className='bg-grey-white2 h-12 mb-6 px-4'>
+        <select onChange={(e) => {setSelect(e.target.value)}} className='bg-grey-white2 h-12 mb-6 px-4 focus:outline-strong-blue'>
             <option value={"Feature"}>Feature</option>
             <option value={"UI"}>UI</option>
             <option value={"UX"}>UX</option>
@@ -39,10 +39,10 @@ function AddNewFeedback() {
         </select>
         <h2 className='text-sm text-blue font-bold mb-1'>Feedback Detail</h2>
         <p className='text-sm text-grey font-normal mb-4'>Include any specific comments on what should be improved, added, etc.</p>
-        <textarea onChange={(e) => setDetail(e.target.value)} value={detail} className='bg-grey-white2 h-32 mb-10 p-3'></textarea>
+        <textarea onChange={(e) => setDetail(e.target.value)} value={detail} className='bg-grey-white2 h-32 mb-10 p-3 focus:outline-strong-blue' placeholder='Add details'></textarea>
         <div className='flex flex-col md:flex-row-reverse md:gap-4 md:items-center'>
-            <Link to="/" onClick={(e) => dispatch(add({id: id, title: title, category: select, description: detail}))} className='bg-purple text-center text-white mb-4 py-2 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5'>Add Feedback</Link>
-            <Link to="/" className='bg-blue text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5'>Cancel</Link>
+            <Link to="/" onClick={(e) => dispatch(add({id: id, title: title, category: select, description: detail}))} className='bg-purple text-center text-white mb-4 py-2 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 hover:bg-hover-purple'>Add Feedback</Link>
+            <Link to="/" className='bg-blue text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey'>Cancel</Link>
         </div>
     </div>
     </main>

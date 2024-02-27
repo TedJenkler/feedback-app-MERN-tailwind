@@ -26,15 +26,17 @@ function Sort() {
                 <img src={lightbulb} alt='lightbulb' />
                 <p className='text-lg font-bold text-white xl:whitespace-nowrap lg:mr-10'>{suggestionCount} Suggestions</p>
             </div>
+            <div className='hover:opacity-75'>
             <label className='font-normal whitespace-nowrap'>Sort by : </label>
             <select className='bg-dark-blue font-bold w-32 mr-4' onChange={(e) => {setSortBy(e.target.value)}}>
-                <option value="Most Upvotes"> Most Upvotes</option>
-                <option value="Least Upvotes"> Least Upvotes</option>
-                <option value="Most Comments"> Most Comments</option>
-                <option value="Least Comments"> Least Comments</option>
+                <option className='hover:text-purple' value="Most Upvotes"> Most Upvotes</option>
+                <option className='hover:text-purple' value="Least Upvotes"> Least Upvotes</option>
+                <option className='hover:text-purple' value="Most Comments"> Most Comments</option>
+                <option className='hover:text-purple' value="Least Comments"> Least Comments</option>
             </select>
+            </div>
         </div>
-        <Link to="/addfeedback" className='bg-purple rounded-xl px-4 py-2 font-bold whitespace-nowrap'>+ Add Feedback</Link>
+        <Link to="/addfeedback" className='bg-purple rounded-xl px-4 py-2 font-bold whitespace-nowrap hover:bg-hover-purple'>+ Add Feedback</Link>
     </div>
   )
 }

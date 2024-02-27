@@ -16,9 +16,9 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
             <div className='flex justify-between mb-6'>
                 <button onClick={(e) => setToggleView(!toggleView)} className='flex items-center gap-1'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
-                    <p className='text-grey text-sm font-bold'>Go Back</p>
+                    <p className='text-grey text-sm font-bold hover:text-black'>Go Back</p>
                 </button>
-                <Link to={"editfeedback/:" + selectedFeedback} className='bg-strong-blue text-white rounded-xl py-2 px-4'>Edit Feedback</Link>
+                <Link to={"editfeedback/:" + selectedFeedback} className='bg-strong-blue text-white rounded-xl py-2 px-4 hover:bg-hover-blue'>Edit Feedback</Link>
             </div>
             <div className='bg-white mb-6 p-6 rounded-xl md:flex md:flex-row-reverse md:justify-between'>
                 <button className='hidden absolute items-center gap-1 md:flex md:relative'>
@@ -34,7 +34,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                         </div>
                     </div>
                     <div className='flex justify-between'>
-                        <button className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2'>
+                        <button className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'>
                             <img className='w-2 h-1' src={arrowup} alt='arrowup' />
                             <p className='text-sm text-blue font-bold py-1 px-2'>{feedback.upvotes}</p>
                         </button>
@@ -82,10 +82,10 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
             </div>
             <div className='bg-white p-6 rounded-xl md:px-8'>
                 <h1 className='text-xl font-bold text-blue mb-6'>Add Comment</h1>
-                <textarea placeholder='Type your comment here' maxLength={250} onChange={(e) => setCommentField(e.target.value)} value={commentField} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4 rounded-xl'></textarea>
+                <textarea placeholder='Type your comment here' maxLength={250} onChange={(e) => setCommentField(e.target.value)} value={commentField} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4 rounded-xl focus:outline-strong-blue'></textarea>
                 <div className='flex items-center justify-between'>
                     <p className='text-sm text-grey font-normal'>{250 - commentField.length} Characters left</p>
-                    <button onClick={(e) => dispatch(addcomment({id: selectedFeedback - 1, content: commentField}, setCommentField("")))} className='bg-purple text-white text-sm py-2 px-4 rounded-xl'>Post Comment</button>
+                    <button onClick={(e) => dispatch(addcomment({id: selectedFeedback - 1, content: commentField}, setCommentField("")))} className='bg-purple text-white text-sm py-2 px-4 rounded-xl hover:bg-hover-purple'>Post Comment</button>
                 </div>
             </div>
         </main>

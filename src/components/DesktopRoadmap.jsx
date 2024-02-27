@@ -25,7 +25,7 @@ function DesktopRoadmap() {
           </Link>
           <h1 className='text-lg font-bold md:text-2xl'>Roadmap</h1>
         </div>
-        <Link to="/addfeedback" className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4'>+ Add Feedback</Link>
+        <Link to="/addfeedback" className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4 hover:bg-hover-purple'>+ Add Feedback</Link>
       </nav>
 
       <div className='flex gap-3 xl:mx-40'>
@@ -35,13 +35,13 @@ function DesktopRoadmap() {
           {plannedRequests.map((feedback) => (
             <div key={uuidv4()} className='flex flex-col bg-white mb-6 p-6 rounded-xl border-t-8 border-orange h-72 justify-between items-start'>
                 <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={orange} alt="orange oval" /><p>Planned</p></div>
-              <h2 className='text-sm font-bold text-blue mb-2'>{feedback.title}</h2>
+              <h2 className='text-sm font-bold text-blue mb-2 hover:text-strong-blue cursor-pointer'>{feedback.title}</h2>
               <p className='text-grey text-sm font-normal mb-2'>{feedback.description}</p>
               <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
                 <p className='text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
               </div>
               <div className='flex justify-between w-full'>
-                <button className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl'>
+                <button className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'>
                   <img className='w-2 h-1' src={arrowUp} alt='arrowup' />
                   <p className='text-sm text-blue font-bold'>{feedback.upvotes}</p>
                 </button>
@@ -60,13 +60,13 @@ function DesktopRoadmap() {
           {inProgressRequests.map((feedback) => (
             <div key={uuidv4()} className='flex flex-col bg-white mb-6 p-6 rounded-xl border-t-8 border-purple h-72 justify-between items-start'>
                 <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={purple} alt="purple oval" /><p>Progress</p></div>
-              <h2 className='text-sm font-bold text-blue mb-2'>{feedback.title}</h2>
+              <h2 className='text-sm font-bold text-blue mb-2 hover:text-strong-blue cursor-pointer'>{feedback.title}</h2>
               <p className='text-grey text-sm font-normal mb-2'>{feedback.description}</p>
               <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
                 <p className='text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
               </div>
               <div className='flex justify-between w-full'>
-                <button className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl'>
+                <button className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'>
                   <img className='w-2 h-1' src={arrowUp} alt='arrowup' />
                   <p className='text-sm text-blue font-bold'>{feedback.upvotes}</p>
                 </button>
@@ -85,13 +85,13 @@ function DesktopRoadmap() {
           {liveRequests.map((feedback) => (
             <div key={uuidv4()} className='flex flex-col  items-start bg-white mb-6 p-6 rounded-xl border-t-8 border-light-blue h-72 justify-between'>
                 <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={blue} alt="blue oval" /><p>Live</p></div>
-              <h2 className='text-sm font-bold text-blue mb-2'>{feedback.title}</h2>
+              <h2 className='text-sm font-bold text-blue mb-2 hover:text-strong-blue cursor-pointer'>{feedback.title}</h2>
               <p className='text-grey text-sm font-normal mb-2'>{feedback.description}</p>
               <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
                 <p className='text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
               </div>
               <div className='flex justify-between w-full'>
-                <button className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl'>
+                <button className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'>
                   <img className='w-2 h-1' src={arrowUp} alt='arrowup' />
                   <p className='text-sm text-blue font-bold'>{feedback.upvotes}</p>
                 </button>
