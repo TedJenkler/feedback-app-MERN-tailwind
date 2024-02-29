@@ -3,6 +3,7 @@ import data from "../../../data.json"
 
 const initialState = {
     filterBy: 'All',
+    isUpvoted: [],
     sortBy: 'Most Upvotes',
     data
 }
@@ -43,9 +44,20 @@ export const stateSlice = createSlice({
         deletefeedback: (state, action) => {
             state.data.productRequests.splice(action.payload, 1)
         },
+        upvote: (state, action) => {
+            const { id } = action.payload;
+            const isAlreadyUpvoted = state.isUpvoted.includes(id);
+            if (!isAlreadyUpvoted) {
+                const productRequest = state.data.productRequests.find(request => request.id === id);
+                if (productRequest) {
+                    productRequest.upvotes = (productRequest.upvotes || 0) + 1;
+                    state.isUpvoted.push(id);
+                }
+            }
+        }
     }
 })
 
-export const { sort, filter, add, addcomment, deletefeedback, edit } = stateSlice.actions
+export const { sort, filter, add, addcomment, deletefeedback, edit, upvote } = stateSlice.actions
 
 export default stateSlice.reducer

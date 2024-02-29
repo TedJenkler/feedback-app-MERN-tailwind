@@ -5,11 +5,16 @@ import { addcomment } from '../features/state/stateSlice';
 import arrowleft from "../assets/arrowleft.png";
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
+import { upvote } from '../features/state/stateSlice';
 
 function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
     const feedback = useSelector((state) => state.state.data.productRequests[selectedFeedback - 1]);
     const [commentField, setCommentField] = useState("");
     const dispatch = useDispatch();
+
+    const handleUpvote = (id) => {
+        dispatch(upvote({ id }));
+      }
 
     return (
         <main className='absolute top-0 bg-grey-white left-0 right-0 min-w-screen min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32 xl:pt-20 xl:pb-32 xl:px-96'>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
 import NoFeedback from './NoFeedback';
+import { upvote } from '../features/state/stateSlice';
 
 function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelectedFeedback }) {
   const feedback = useSelector((state) => state.state.data.productRequests);
@@ -10,6 +11,11 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
   const filterValue = useSelector((state) => state.state.filterBy);
   const productRequestsCopy = [...feedback];
   const [filteredAndSortedRequests, setFilteredAndSortedRequests] = useState([]);
+  const dispatch = useDispatch()
+
+  const handleUpvote = (id) => {
+    dispatch(upvote({ id }));
+  }
 
   const handleListClick = (id) => {
     setSelectedFeedback(id);
@@ -39,7 +45,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
   return (
     <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-40'>
       {filteredAndSortedRequests.map((value) => (
-        <div onClick={(e) => handleListClick(value.id)} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mr-0 xl:ml-8' key={value.id}>
+        <div onClick={() => handleListClick(value.id)} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mr-0 xl:ml-8' key={value.id}>
           <button className='hidden absolute items-center gap-1 md:flex md:relative'>
             <img className='h-4 w-5' src={comment} alt='comments' />
             <p>{value.comments ? value.comments.length : 0}</p>
@@ -54,7 +60,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
             </div>
             <div className='flex justify-between'>
               <div className='flex justify-between'>
-                <button className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'>
+                <button onClick={() => handleUpvote(value.id)} className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'>
                   <img className='w-2 h-1' src={arrowup} alt='arrowup' />
                   <p className='text-sm text-blue font-bold'>{value.upvotes}</p>
                 </button>
