@@ -67,10 +67,12 @@ export const stateSlice = createSlice({
                     if (!comment.replies) {
                         comment.replies = [];
                     }
+                    const userBeingRepliedTo = comment.user.username;
                     const newReply = {
                         id: comment.replies.length + 1,
                         content,
-                        user: state.data.currentUser
+                        user: state.data.currentUser,
+                        replyingTo: userBeingRepliedTo
                     };
                     comment.replies.push(newReply);
                 } else {
