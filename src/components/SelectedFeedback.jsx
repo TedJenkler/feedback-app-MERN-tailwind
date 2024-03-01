@@ -69,7 +69,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                             </div>
                             <button onClick={(e) => setReplyToggle(comment.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
                         </div>
-                        <p className='text-grey text-sm font-normal whitespace-normal h-full overflow-hidden mb-6 md:pl-16'>{comment.content}</p>
+                        <p className='text-grey text-sm font-normal whitespace-normal h-full overflow-hidden mb-6 md:pl-16 break-words'>{comment.content}</p>
                         {replyToggle === comment.id ? <Reply replyToggle={replyToggle} selectedFeedback={selectedFeedback} /> : null}
                         {comment.replies && comment.replies.map((reply) => (
                             <div key={reply.id} className='ml-6'>
@@ -85,7 +85,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                                         <button onClick={(e) => setReplyToggle(reply.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
                                     </div>
                                 </div>
-                                <p className='text-grey text-sm font-normal mb-6'><span className='text-purple font-bold'>@{reply.replyingTo}</span> {reply.content}</p>
+                                <p className='text-grey text-sm font-normal mb-6 break-words'><span className='text-purple font-bold'>@{reply.replyingTo}</span> {reply.content}</p>
                                 {replyToggle === reply.id ? <Reply replyToggle={replyToggle} selectedFeedback={selectedFeedback} /> : null}
                             </div>
                         ))}
