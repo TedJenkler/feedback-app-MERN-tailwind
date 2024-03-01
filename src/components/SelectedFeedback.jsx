@@ -6,9 +6,11 @@ import arrowleft from "../assets/arrowleft.png";
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
 import { upvote } from '../features/state/stateSlice';
+import whitearrowup from "../assets/whitearrowup.png"
 
 function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
     const feedback = useSelector((state) => state.state.data.productRequests[selectedFeedback - 1]);
+    const upvotes = useSelector((state) => state.state.isUpvoted);
     const [commentField, setCommentField] = useState("");
     const dispatch = useDispatch();
 
@@ -39,10 +41,10 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                         </div>
                     </div>
                     <div className='flex justify-between'>
-                        <button className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'>
-                            <img className='w-2 h-1' src={arrowup} alt='arrowup' />
-                            <p className='text-sm text-blue font-bold py-1 px-2'>{feedback.upvotes}</p>
-                        </button>
+                    <button className={upvotes.includes(value.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
+  <img className='w-2 h-1' src={upvotes.includes(value.id) ? whitearrowup : arrowup} alt='arrowup' />
+  <p className={upvotes.includes(value.id) ? 'text-sm text-white font-bold' : 'text-sm text-blue font-bold'}>{value.upvotes}</p>
+</button>
                     </div>
                     <button className='flex items-center gap-1 md:hidden md:absolute'>
                         <img className='h-4 w-5' src={comment} alt='comments' />
