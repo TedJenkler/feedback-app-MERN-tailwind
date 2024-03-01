@@ -7,12 +7,15 @@ import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
 import { upvote } from '../features/state/stateSlice';
 import whitearrowup from "../assets/whitearrowup.png"
+import Reply from './Reply';
 
 function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
     const feedback = useSelector((state) => state.state.data.productRequests[selectedFeedback - 1]);
     const upvotes = useSelector((state) => state.state.isUpvoted);
     const [commentField, setCommentField] = useState("");
     const dispatch = useDispatch();
+    const [replyToggle, setReplyToggle] = useState(false)
+    console.log(replyToggle)
 
     const handleUpvote = (id) => {
         dispatch(upvote({ id }));
@@ -64,9 +67,10 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                                     <p className='text-sm font-normal text-grey'>@{comment.user.username}</p>
                                 </div>
                             </div>
-                            <button className='text-strong-blue text-sm font-semibold'>Reply</button>
+                            <button onClick={(e) => setReplyToggle(comment.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
                         </div>
-                        <p className='border-b border-grey/25 pb-6 text-grey text-sm font-normal mb-6 whitespace-normal h-24 overflow-hidden md:pl-16'>{comment.content}</p>
+                        <p className='text-grey text-sm font-normal whitespace-normal h-full overflow-hidden mb-6 md:pl-16'>{comment.content}</p>
+                        {replyToggle === comment.id ? <Reply /> : null}
                         {comment.replies && comment.replies.map((reply) => (
                             <div key={reply.id} className='ml-6'>
                                 <div className=''>
@@ -78,10 +82,11 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                                                 <p className='text-sm font-normal text-grey'>@{reply.user.username}</p>
                                             </div>
                                         </div>
-                                        <button className='text-strong-blue text-sm font-semibold'>Reply</button>
+                                        <button onClick={(e) => setReplyToggle(reply.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
                                     </div>
                                 </div>
-                                <p className='pb-6 text-grey text-sm font-normal mb-6'><span className='text-purple font-bold'>@{reply.replyingTo}</span> {reply.content}</p>
+                                <p className='text-grey text-sm font-normal mb-6'><span className='text-purple font-bold'>@{reply.replyingTo}</span> {reply.content}</p>
+                                {replyToggle === reply.id ? <Reply /> : null}
                             </div>
                         ))}
                     </div>
