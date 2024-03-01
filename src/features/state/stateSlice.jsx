@@ -28,7 +28,10 @@ export const stateSlice = createSlice({
                 if (!productRequest.comments) {
                     productRequest.comments = [];
                 }
-                productRequest.comments.push({content: content, user: {"image": "./assets/user-images/admin.jpg" ,name: "admin", username:"admin"}});
+                productRequest.comments.push({
+                    content: content,
+                    user: state.data.currentUser
+                });
             }
         },
         edit: (state, action) => {
@@ -54,10 +57,32 @@ export const stateSlice = createSlice({
                     state.isUpvoted.push(id);
                 }
             }
+        },
+        reply: (state, action) => {
+            const { id1, commentId, content } = action.payload;
+            const feedback = state.data.productRequests.find(feedback => feedback.id === id1);
+            if (feedback) {
+                const comment = feedback.comments.find(comment => comment.id === commentId);
+                if (comment) {
+                    if (!comment.replies) {
+                        comment.replies = [];
+                    }
+                    const newReply = {
+                        id: comment.replies.length + 1,
+                        content,
+                        user: state.data.currentUser
+                    };
+                    comment.replies.push(newReply);
+                } else {
+                    console.error("Comment not found");
+                }
+            } else {
+                console.error("Feedback not found");
+            }
         }
     }
 })
 
-export const { sort, filter, add, addcomment, deletefeedback, edit, upvote } = stateSlice.actions
+export const { sort, filter, add, addcomment, deletefeedback, edit, upvote, reply } = stateSlice.actions
 
 export default stateSlice.reducer
