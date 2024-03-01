@@ -75,10 +75,10 @@ function DesktopRoadmap() {
               <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
                 <p className='text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
               </div>
-              <div className='flex justify-between w-full'>
-                <button onClick={(e) => setActiveUpvote(feedback.id)} className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'>
-                  <img className='w-2 h-1' src={arrowUp} alt='arrowup' />
-                  <p className='text-sm text-blue font-bold'>{feedback.upvotes}</p>
+              <div onClick={() => setActiveUpvote(feedback.id)} className='flex justify-between w-full'>
+                <button className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
+                  <img className='w-2 h-1' src={upvotes.includes(feedback.id) ? whitearrowup : arrowUp} alt='arrowup' />
+                  <p className={upvotes.includes(feedback.id) ? 'text-sm text-white font-bold' : 'text-sm text-blue font-bold' }>{feedback.upvotes}</p>
                 </button>
                 <button className='flex items-center gap-1'>
                   <img className='h-4 w-5' src={commentIcon} alt='comments' />
@@ -100,10 +100,10 @@ function DesktopRoadmap() {
               <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
                 <p className='text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
               </div>
-              <div className='flex justify-between w-full'>
-                <button onClick={(e) => setActiveUpvote(feedback.id)} className='flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'>
-                  <img className='w-2 h-1' src={arrowUp} alt='arrowup' />
-                  <p className='text-sm text-blue font-bold'>{feedback.upvotes}</p>
+              <div onClick={() => setActiveUpvote(feedback.id)} className='flex justify-between w-full'>
+                <button className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
+                  <img className='w-2 h-1' src={upvotes.includes(feedback.id) ? whitearrowup : arrowUp} alt='arrowup' />
+                  <p className={upvotes.includes(feedback.id) ? 'text-sm text-white font-bold' : 'text-sm text-blue font-bold' }>{feedback.upvotes}</p>
                 </button>
                 <button className='flex items-center gap-1'>
                   <img className='h-4 w-5' src={commentIcon} alt='comments' />

@@ -7,15 +7,16 @@ import { upvote } from '../features/state/stateSlice';
 
 function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelectedFeedback }) {
   const feedback = useSelector((state) => state.state.data.productRequests);
+  const upvotes = useSelector((state) => state.state.isUpvoted); // Assuming you have a slice named "state" that contains "isUpvoted"
   const sortValue = useSelector((state) => state.state.sortBy);
   const filterValue = useSelector((state) => state.state.filterBy);
   const productRequestsCopy = [...feedback];
   const [filteredAndSortedRequests, setFilteredAndSortedRequests] = useState([]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleUpvote = (id) => {
     dispatch(upvote({ id }));
-  }
+  };
 
   const handleListClick = (id) => {
     setSelectedFeedback(id);
@@ -40,7 +41,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
     }
 
     setFilteredAndSortedRequests(filteredAndSortedRequestsCopy);
-  }, [filterValue, sortValue]);
+  }, [feedback, filterValue, sortValue]);
 
   return (
     <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-40'>
@@ -60,7 +61,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
             </div>
             <div className='flex justify-between'>
               <div className='flex justify-between'>
-                <button onClick={() => handleUpvote(value.id)} className='flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'>
+                <button onClick={(e) => { e.stopPropagation(); handleUpvote(value.id); }} className={upvotes.includes(value.id) ? 'flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
                   <img className='w-2 h-1' src={arrowup} alt='arrowup' />
                   <p className='text-sm text-blue font-bold'>{value.upvotes}</p>
                 </button>
