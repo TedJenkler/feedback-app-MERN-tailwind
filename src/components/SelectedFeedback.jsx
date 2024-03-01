@@ -16,7 +16,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
 
     const handleUpvote = (id) => {
         dispatch(upvote({ id }));
-      }
+    }
 
     return (
         <main className='absolute top-0 bg-grey-white left-0 right-0 min-w-screen min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32 xl:pt-20 xl:pb-32 xl:px-96'>
@@ -41,10 +41,10 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                         </div>
                     </div>
                     <div className='flex justify-between'>
-                    <button className={upvotes.includes(value.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
-  <img className='w-2 h-1' src={upvotes.includes(value.id) ? whitearrowup : arrowup} alt='arrowup' />
-  <p className={upvotes.includes(value.id) ? 'text-sm text-white font-bold' : 'text-sm text-blue font-bold'}>{value.upvotes}</p>
-</button>
+                        <button onClick={() => handleUpvote(feedback.id)} className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
+                            <img className='w-2 h-1' src={upvotes.includes(feedback.id) ? whitearrowup : arrowup} alt='arrowup' />
+                            <p className={upvotes.includes(feedback.id) ? 'text-sm text-white font-bold' : 'text-sm text-blue font-bold'}>{feedback.upvotes}</p>
+                        </button>
                     </div>
                     <button className='flex items-center gap-1 md:hidden md:absolute'>
                         <img className='h-4 w-5' src={comment} alt='comments' />
