@@ -59,24 +59,50 @@ export const stateSlice = createSlice({
             }
         },
         reply: (state, action) => {
-            const { id1, commentId, content } = action.payload;
+            const { id1, commentId, replyId, content } = action.payload;
             const feedback = state.data.productRequests.find(feedback => feedback.id === id1);
             if (feedback) {
-                const comment = feedback.comments.find(comment => comment.id === commentId);
-                if (comment) {
-                    if (!comment.replies) {
-                        comment.replies = [];
+                if (replyId) {
+                    // Replying to a reply
+                    const comment = feedback.comments.find(comment => comment.id === commentId);
+                    if (comment) {
+                        const reply = comment.replies.find(reply => reply.id === replyId);
+                        if (reply) {
+                            if (!reply.replies) {
+                                reply.replies = [];
+                            }
+                            const userBeingRepliedTo = reply.user.username;
+                            const newReply = {
+                                id: reply.replies.length + 1,
+                                content,
+                                user: state.data.currentUser,
+                                replyingTo: userBeingRepliedTo
+                            };
+                            reply.replies.push(newReply);
+                        } else {
+                            console.error("Reply not found");
+                        }
+                    } else {
+                        console.error("Comment not found");
                     }
-                    const userBeingRepliedTo = comment.user.username;
-                    const newReply = {
-                        id: comment.replies.length + 1,
-                        content,
-                        user: state.data.currentUser,
-                        replyingTo: userBeingRepliedTo
-                    };
-                    comment.replies.push(newReply);
                 } else {
-                    console.error("Comment not found");
+                    // Replying to a comment
+                    const comment = feedback.comments.find(comment => comment.id === commentId);
+                    if (comment) {
+                        if (!comment.replies) {
+                            comment.replies = [];
+                        }
+                        const userBeingRepliedTo = comment.user.username;
+                        const newReply = {
+                            id: comment.replies.length + 1,
+                            content,
+                            user: state.data.currentUser,
+                            replyingTo: userBeingRepliedTo
+                        };
+                        comment.replies.push(newReply);
+                    } else {
+                        console.error("Comment not found");
+                    }
                 }
             } else {
                 console.error("Feedback not found");

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addcomment } from '../features/state/stateSlice';
+import { addcomment, reply } from '../features/state/stateSlice';
 import arrowleft from "../assets/arrowleft.png";
 import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
@@ -14,11 +14,14 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
     const upvotes = useSelector((state) => state.state.isUpvoted);
     const [commentField, setCommentField] = useState("");
     const dispatch = useDispatch();
-    const [replyToggle, setReplyToggle] = useState(false)
-    console.log(replyToggle)
+    const [openReplyId, setOpenReplyId] = useState(null); // State to store the ID of the open reply
 
     const handleUpvote = (id) => {
         dispatch(upvote({ id }));
+    }
+
+    const handleToggleReply = (replyId) => {
+        setOpenReplyId(replyId === openReplyId ? null : replyId); // Toggle the open reply
     }
 
     return (
@@ -67,10 +70,10 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                                     <p className='text-sm font-normal text-grey'>@{comment.user.username}</p>
                                 </div>
                             </div>
-                            <button onClick={(e) => setReplyToggle(comment.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
+                            <button onClick={() => handleToggleReply(comment.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
                         </div>
                         <p className='text-grey text-sm font-normal whitespace-normal h-full overflow-hidden mb-6 md:pl-16 break-words'>{comment.content}</p>
-                        {replyToggle === comment.id ? <Reply replyToggle={replyToggle} selectedFeedback={selectedFeedback} /> : null}
+                        {openReplyId === comment.id && <Reply selectedFeedback={selectedFeedback} commentId={comment.id} />}
                         {comment.replies && comment.replies.map((reply) => (
                             <div key={reply.id} className='ml-6'>
                                 <div className=''>
@@ -82,11 +85,29 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                                                 <p className='text-sm font-normal text-grey'>@{reply.user.username}</p>
                                             </div>
                                         </div>
-                                        <button onClick={(e) => setReplyToggle(reply.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
+                                        <button onClick={() => handleToggleReply(reply.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
                                     </div>
                                 </div>
                                 <p className='text-grey text-sm font-normal mb-6 break-words'><span className='text-purple font-bold'>@{reply.replyingTo}</span> {reply.content}</p>
-                                {replyToggle === reply.id ? <Reply replyToggle={replyToggle} selectedFeedback={selectedFeedback} /> : null}
+                                {openReplyId === reply.id && <Reply selectedFeedback={selectedFeedback} commentId={comment.id} replyId={reply.id} />}
+                                {reply.replies && reply.replies.map((nestedReply) => (
+                                    <div key={nestedReply.id} className='ml-6'>
+                                        <div className=''>
+                                            <div className='flex items-center justify-between'>
+                                                <div className='flex items-center gap-4 mb-4'>
+                                                    <img className='rounded-full h-10 w-10' src={nestedReply.user.image} alt={nestedReply.user.name} />
+                                                    <div>
+                                                        <p className='text-sm font-bold text-blue'>{nestedReply.user.name}</p>
+                                                        <p className='text-sm font-normal text-grey'>@{nestedReply.user.username}</p>
+                                                    </div>
+                                                </div>
+                                                <button onClick={() => handleToggleReply(nestedReply.id)} className='text-strong-blue text-sm font-semibold hover:underline'>Reply</button>
+                                            </div>
+                                        </div>
+                                        <p className='text-grey text-sm font-normal mb-6 break-words'><span className='text-purple font-bold'>@{nestedReply.replyingTo}</span> {nestedReply.content}</p>
+                                        {openReplyId === nestedReply.id && <Reply selectedFeedback={selectedFeedback} commentId={comment.id} replyId={nestedReply.id} />}
+                                    </div>
+                                ))}
                             </div>
                         ))}
                     </div>
@@ -105,3 +126,5 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
 }
 
 export default SelectedFeedback;
+
+
