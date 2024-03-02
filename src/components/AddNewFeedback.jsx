@@ -18,27 +18,14 @@ function AddNewFeedback() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(title !== ""){
-            setErrorTitle(false)
-            if(detail !== ""){
-                dispatch(add({ id, title, category: select, description: detail }));
-                navigate('/');
-            }else {
-                setErrorDetail(true)
-            }
-        }else {
-            setErrorTitle(true)
-        }
-        if(detail !== ""){
-            setErrorDetail(false)
-            if(title !== ""){
-                dispatch(add({ id, title, category: select, description: detail }));
-                navigate('/');
-            }else {
-                setErrorTitle(true)
-            }
-        }else {
-            setErrorDetail(true)
+        if (title !== "" && detail !== "") {
+            setErrorTitle(false);
+            setErrorDetail(false);
+            dispatch(add({ id, title, category: select, description: detail }));
+            navigate('/');
+        } else {
+            setErrorTitle(title === "");
+            setErrorDetail(detail === "");
         }
     };
 
