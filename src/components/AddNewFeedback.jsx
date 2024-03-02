@@ -13,11 +13,33 @@ function AddNewFeedback() {
     const [id, setId] = useState(getId.length + 1);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [errorTitle, setErrorTitle] = useState(false)
+    const [errorDetail, setErrorDetail] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(add({ id, title, category: select, description: detail }));
-        navigate('/');
+        if(title !== ""){
+            setErrorTitle(false)
+            if(detail !== ""){
+                dispatch(add({ id, title, category: select, description: detail }));
+                navigate('/');
+            }else {
+                setErrorDetail(true)
+            }
+        }else {
+            setErrorTitle(true)
+        }
+        if(detail !== ""){
+            setErrorDetail(false)
+            if(title !== ""){
+                dispatch(add({ id, title, category: select, description: detail }));
+                navigate('/');
+            }else {
+                setErrorTitle(true)
+            }
+        }else {
+            setErrorDetail(true)
+        }
     };
 
     return (
@@ -37,10 +59,10 @@ function AddNewFeedback() {
                         type='text'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className='w-full bg-grey-white2 h-12 p-4 focus:outline-strong-blue'
+                        className={errorTitle === true ? 'w-full bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-xl' : 'w-full bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl'}
                         placeholder='Add a title'
-                        required
                     />
+                    {errorTitle === true ? <p className='text-red'>Can’t be empty</p> : null}
                 </div>
                 <div className='mb-6'>
                     <label htmlFor='category' className='text-sm text-blue font-bold mb-1'>Category</label>
@@ -49,7 +71,7 @@ function AddNewFeedback() {
                         id='category'
                         value={select}
                         onChange={(e) => setSelect(e.target.value)}
-                        className='w-full bg-grey-white2 h-12 px-4 focus:outline-strong-blue'
+                        className='w-full bg-grey-white2 h-12 px-4 focus:outline-strong-blue rounded-xl'
                     >
                         <option value='Feature'>Feature</option>
                         <option value='UI'>UI</option>
@@ -65,10 +87,10 @@ function AddNewFeedback() {
                         id='detail'
                         value={detail}
                         onChange={(e) => setDetail(e.target.value)}
-                        className='w-full bg-grey-white2 h-32 p-3 focus:outline-strong-blue'
+                        className={errorDetail === true ? 'w-full bg-grey-white2 h-32 p-3 focus:outline-strong-blue border-2 border-red rounded-xl' : 'w-full bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl' }
                         placeholder='Add details'
-                        required
                     ></textarea>
+                    {errorDetail === true ? <p className='text-red'>Can’t be empty</p> : null}
                 </div>
                 <div className='flex flex-col md:flex-row-reverse md:gap-4 md:items-center'>
                     <button type="submit" className='bg-purple text-center text-white mb-4 py-2 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 hover:bg-hover-purple'>Add Feedback</button>
