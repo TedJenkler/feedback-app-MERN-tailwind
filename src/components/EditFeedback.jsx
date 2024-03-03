@@ -34,7 +34,7 @@ const EditFeedback = () => {
                 // Dispatch edit action if no errors
                 dispatch(edit({ id: copyOfId, title: title, category: select1, description: details, status: select2 }));
                 // Navigate to home page after successful submission
-                navigate('/');
+                navigate('/feedback-app-tailwind-vite/');
             } else {
                 setErrorDetail(true);
             }
@@ -49,7 +49,7 @@ const EditFeedback = () => {
             <form onSubmit={handleSubmit}>
                 {/* Header and navigation */}
                 <img className='absolute left-12 top-20 md:left-40 md:top-28 md:w-14 md:h-14 xl:left-96 xl:ml-10 xl:top-36' src={editicon} alt='editicon' />
-                <Link to="/" className='flex items-center gap-2 mb-14'>
+                <Link to="/feedback-app-tailwind-vite/" className='flex items-center gap-2 mb-14'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                     <p className='text-grey text-sm font-bold'>Go Back</p>
                 </Link>
@@ -108,7 +108,7 @@ const EditFeedback = () => {
                     <div className='flex flex-col md:flex-row-reverse md:justify-between md:gap-4 md:items-center'>
                         <div className='flex flex-col md:flex-row-reverse md:gap-4'>
                         <button type="submit" className='bg-purple text-center text-white mb-4 py-2 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 hover:bg-hover-purple'>Save Changes</button>
-                        <Link to="/" className='bg-blue mb-4 text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey'>Cancel</Link>
+                        <Link to="/feedback-app-tailwind-vite/" className='bg-blue mb-4 text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey'>Cancel</Link>
                         </div>
                         <button className='bg-red text-white py-2 rounded-xl text-center text-sm font-bold md:mr-28 md:py-2 md:mb-0 md:px-5 hover:bg-hover-red' onClick={(e) => dispatch(deletefeedback(copyOfId))}>Delete</button>
                     </div>

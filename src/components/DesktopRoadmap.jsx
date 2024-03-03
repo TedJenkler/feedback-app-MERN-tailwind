@@ -42,7 +42,7 @@ function DesktopRoadmap() {
       <nav className='flex justify-between bg-blue text-white p-6 items-center rounded-xl mb-8 xl:mx-40'>
         <div>
           {/* Link to go back */}
-          <Link className='mb-1 flex items-center gap-2' to="/">
+          <Link className='mb-1 flex items-center gap-2' to="/feedback-app-tailwind-vite/">
             <img src={whiteArrow} alt='back btn' />
             <p className='text-sm font-bold'>Go Back</p>
           </Link>

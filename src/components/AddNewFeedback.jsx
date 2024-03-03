@@ -24,7 +24,7 @@ function AddNewFeedback() {
             setErrorTitle(false);
             setErrorDetail(false);
             dispatch(add({ id, title, category: select, description: detail }));
-            navigate('/');
+            navigate('/feedback-app-tailwind-vite/');
         } else {
             setErrorTitle(title === "");
             setErrorDetail(detail === "");
@@ -37,7 +37,7 @@ function AddNewFeedback() {
             {/* Icon for adding feedback */}
             <img className='absolute left-12 top-20 h-10 w-10 md:left-40 md:top-24 md:h-14 md:w-14 xl:left-96 xl:ml-10 xl:top-32' src={addicon} alt='addicon' />
             {/* Link to navigate back */}
-            <Link to="/" className='flex items-center gap-1 mb-8 md:mb-10'>
+            <Link to="/feedback-app-tailwind-vite/" className='flex items-center gap-1 mb-8 md:mb-10'>
                 <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                 <p className='text-grey text-sm font-bold'>Go Back</p>
             </Link>
@@ -96,7 +96,7 @@ function AddNewFeedback() {
                 {/* Buttons for submitting and canceling */}
                 <div className='flex flex-col md:flex-row-reverse md:gap-4 md:items-center'>
                     <button type="submit" className='bg-purple text-center text-white mb-4 py-2 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 hover:bg-hover-purple'>Add Feedback</button>
-                    <Link to="/" className='bg-blue text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey'>Cancel</Link>
+                    <Link to="/feedback-app-tailwind-vite/" className='bg-blue text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey'>Cancel</Link>
                 </div>
             </form>
         </main>
