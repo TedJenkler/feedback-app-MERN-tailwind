@@ -14,7 +14,7 @@ import SelectedFeedback from './components/SelectedFeedback.jsx'; // Importing S
 // Creating router configuration
 const router = createBrowserRouter([
   {
-    path: "/", // Route for the main page
+    path: "/feedback-app-tailwind-vite/", // Route for the main page
     element: <App />, // Render App component
   },
   {
