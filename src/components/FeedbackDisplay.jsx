@@ -7,7 +7,7 @@ import { upvote } from '../features/state/stateSlice';
 import whitearrowup from "../assets/whitearrowup.png";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
-function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelectedFeedback }) {
+function FeedbackDisplay({ setSelectedFeedback }) {
   const feedback = useSelector((state) => state.state.data.productRequests);
   const upvotes = useSelector((state) => state.state.isUpvoted);
   const sortValue = useSelector((state) => state.state.sortBy);
@@ -51,7 +51,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
   }, [feedback, filterValue, sortValue]);
 
   return (
-    <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-40'>
+    <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-0'>
       {filteredAndSortedRequests.map((value) => (
         <div onClick={() => handleListClick(value.id)} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mr-0 xl:ml-8' key={value.id}>
           <button className='hidden absolute items-center gap-1 md:flex md:relative'>

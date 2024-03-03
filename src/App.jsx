@@ -18,9 +18,11 @@ function App() {
   return (
     <div className="md:pt-14 md:w-screen bg-grey-white xl:flex xl:w-full overflow-hidden xl:h-full">
       {/* Navigation component */}
+      <div className="xl:w-1/3">
       <Nav toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
+      </div>
       {/* If toggleMenu is true, apply brightness-50 class */}
-      <div className={toggleMenu === true ? "brightness-50" : null}>
+      <div className={toggleMenu === true ? "brightness-50 xl:w-2/3" : null}>
         {/* Sort component */}
         <Sort />
         {/* FeedbackDisplay component */}
