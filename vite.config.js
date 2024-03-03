@@ -7,5 +7,6 @@ export default defineConfig({
     host: 'localhost', // Specify the host
     port: 3000, // Specify the port
   },
+  base: "/feedback-app-tailwind-vite/",
   plugins: [react()],
 })
