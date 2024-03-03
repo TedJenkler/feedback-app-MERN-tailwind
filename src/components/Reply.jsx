@@ -6,6 +6,7 @@ function Reply({ replyToggle, selectedFeedback, commentId, replyId }) {
     const dispatch = useDispatch();
     const [replyText, setReplyText] = useState("");
 
+    // Function to handle posting a reply
     const handleReply = () => {
         if (replyId) {
             // If replying to a reply
@@ -19,10 +20,12 @@ function Reply({ replyToggle, selectedFeedback, commentId, replyId }) {
 
     return (
         <div className='flex w-full gap-4 items-start mb-6'>
+            {/* Text area for entering reply */}
             <textarea onChange={(e) => { setReplyText(e.target.value) }} value={replyText} className='bg-grey-white2 w-full h-20 rounded-xl p-4 focus:outline-strong-blue'></textarea>
+            {/* Button to post the reply */}
             <button onClick={handleReply} className='bg-purple text-white text-sm py-2 px-4 rounded-xl hover:bg-hover-purple whitespace-nowrap'>Post Reply</button>
         </div>
-    )
+    );
 }
 
 export default Reply;

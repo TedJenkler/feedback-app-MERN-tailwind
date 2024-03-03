@@ -17,10 +17,12 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Use the navigate function from useNavigate
 
+  // Function to handle upvoting
   const handleUpvote = (id) => {
     dispatch(upvote({ id }));
   };
 
+  // Function to handle click on a feedback item
   const handleListClick = (id) => {
     setSelectedFeedback(id);
     navigate(`/feedback/${id}`); // Navigate to the selected feedback item
@@ -29,10 +31,12 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
   useEffect(() => {
     let filteredAndSortedRequestsCopy = [...productRequestsCopy];
 
+    // Filter requests based on the selected category
     if (filterValue !== "ALL") {
       filteredAndSortedRequestsCopy = filteredAndSortedRequestsCopy.filter(request => request.category.toLowerCase() === filterValue.toLowerCase());
     }
 
+    // Sort requests based on the selected sorting option
     if (sortValue === "Most Upvotes") {
       filteredAndSortedRequestsCopy.sort((a, b) => b.upvotes - a.upvotes);
     } else if (sortValue === "Least Upvotes") {
