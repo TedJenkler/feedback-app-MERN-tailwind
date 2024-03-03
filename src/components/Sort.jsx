@@ -24,7 +24,7 @@ function Sort() {
         <div className='flex items-center'>
             <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                 <img src={lightbulb} alt='lightbulb' />
-                <p className='text-lg font-bold text-white xl:whitespace-nowrap lg:mr-10'>{suggestionCount} Suggestions</p>
+                <p className='text-lg font-bold text-white xl:whitespace-nowrap md:mr-10'>{suggestionCount} Suggestions</p>
             </div>
             <div className='hover:opacity-75'>
             <label className='font-normal whitespace-nowrap'>Sort by : </label>

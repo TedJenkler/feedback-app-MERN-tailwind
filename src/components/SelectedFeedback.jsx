@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addcomment, reply } from '../features/state/stateSlice';
 import arrowleft from "../assets/arrowleft.png";
@@ -9,25 +9,28 @@ import { upvote } from '../features/state/stateSlice';
 import whitearrowup from "../assets/whitearrowup.png"
 import Reply from './Reply';
 
-function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
+function SelectedFeedback({ toggleView, setToggleView }) {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const selectedFeedback = parseInt(id);
     const feedback = useSelector((state) => state.state.data.productRequests[selectedFeedback - 1]);
     const upvotes = useSelector((state) => state.state.isUpvoted);
     const [commentField, setCommentField] = useState("");
     const dispatch = useDispatch();
-    const [openReplyId, setOpenReplyId] = useState(null); // State to store the ID of the open reply
+    const [openReplyId, setOpenReplyId] = useState(null);
 
     const handleUpvote = (id) => {
         dispatch(upvote({ id }));
     }
 
     const handleToggleReply = (replyId) => {
-        setOpenReplyId(replyId === openReplyId ? null : replyId); // Toggle the open reply
+        setOpenReplyId(replyId === openReplyId ? null : replyId);
     }
 
     return (
         <main className='absolute top-0 bg-grey-white left-0 right-0 min-w-screen min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32 xl:pt-20 xl:pb-32 xl:px-96'>
             <div className='flex justify-between mb-6'>
-                <button onClick={(e) => setToggleView(!toggleView)} className='flex items-center gap-1'>
+                <button onClick={() => navigate(-1)} className='flex items-center gap-1'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                     <p className='text-grey text-sm font-bold hover:text-black'>Go Back</p>
                 </button>
@@ -47,7 +50,8 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                         </div>
                     </div>
                     <div className='flex justify-between'>
-                        <button onClick={() => handleUpvote(feedback.id)} className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
+                    <div className='flex justify-between'>
+                        <button onClick={() => handleUpvote(feedback.id)} className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-1 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-2 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
                             <img className='w-2 h-1' src={upvotes.includes(feedback.id) ? whitearrowup : arrowup} alt='arrowup' />
                             <p className={upvotes.includes(feedback.id) ? 'text-sm text-white font-bold' : 'text-sm text-blue font-bold'}>{feedback.upvotes}</p>
                         </button>
@@ -56,6 +60,7 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
                         <img className='h-4 w-5' src={comment} alt='comments' />
                         <p className='font-bold md:text-base'>{feedback.comments ? feedback.comments.length : 0}</p>
                     </button>
+                    </div>
                 </div>
             </div>
             <div className='bg-white rounded-xl p-6 mb-6 md:px-8 xl:ml-2'>
@@ -126,5 +131,3 @@ function SelectedFeedback({ toggleView, setToggleView, selectedFeedback }) {
 }
 
 export default SelectedFeedback;
-
-

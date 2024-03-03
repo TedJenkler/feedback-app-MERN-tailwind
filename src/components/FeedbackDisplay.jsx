@@ -4,7 +4,8 @@ import arrowup from "../assets/arrowup.png";
 import comment from "../assets/comment.png";
 import NoFeedback from './NoFeedback';
 import { upvote } from '../features/state/stateSlice';
-import whitearrowup from "../assets/whitearrowup.png"
+import whitearrowup from "../assets/whitearrowup.png";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelectedFeedback }) {
   const feedback = useSelector((state) => state.state.data.productRequests);
@@ -14,6 +15,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
   const productRequestsCopy = [...feedback];
   const [filteredAndSortedRequests, setFilteredAndSortedRequests] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Use the navigate function from useNavigate
 
   const handleUpvote = (id) => {
     dispatch(upvote({ id }));
@@ -21,7 +23,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
 
   const handleListClick = (id) => {
     setSelectedFeedback(id);
-    setToggleView(!toggleView);
+    navigate(`/feedback/${id}`); // Navigate to the selected feedback item
   };
 
   useEffect(() => {
@@ -62,7 +64,7 @@ function FeedbackDisplay({ toggleView, setToggleView, selectedFeedback, setSelec
             </div>
             <div className='flex justify-between'>
               <div className='flex justify-between'>
-                <button onClick={(e) => { e.stopPropagation(); handleUpvote(value.id); }} className={upvotes.includes(value.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-4 px-2 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
+                <button onClick={(e) => { e.stopPropagation(); handleUpvote(value.id); }} className={upvotes.includes(value.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-2 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
                   <img className='w-2 h-1' src={upvotes.includes(value.id) ? whitearrowup : arrowup} alt='arrowup' />
                   <p className={upvotes.includes(value.id) ? 'text-sm text-white font-bold' : 'text-sm text-blue font-bold'}>{value.upvotes}</p>
                 </button>
