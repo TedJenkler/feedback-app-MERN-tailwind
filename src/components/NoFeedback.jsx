@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function NoFeedback() {
     return (
-        <div className='flex flex-col bg-white px-6 py-20 mx-6 rounded-xl items-center md:mx-10 md:py-28 xl:mr-0'>
+        <div className='flex flex-col bg-white px-6 py-20 mx-6 rounded-xl items-center md:mx-10 md:py-28 xl:w-3/4 xl:mr-0'>
             {/* Display an empty illustration */}
             <img className='mb-10' src={empty} alt='empty' />
             {/* Display a message indicating no feedback */}
