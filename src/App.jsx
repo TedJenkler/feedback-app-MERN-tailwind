@@ -16,7 +16,7 @@ function App() {
 
   // App UI
   return (
-    <div className="md:pt-14 md:w-screen bg-grey-white xl:flex xl:w-full overflow-hidden xl:h-full">
+    <div className="md:pt-14 md:w-screen bg-grey-white xl:flex xl:w-full overflow-hidden xl:h-screen">
       {/* Navigation component */}
       <div className="xl:w-1/3">
       <Nav toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
