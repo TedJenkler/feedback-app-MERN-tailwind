@@ -39,7 +39,7 @@ function AddNewFeedback() {
             {/* Link to navigate back */}
             <Link to="/feedback-app-tailwind-vite/" className='flex items-center gap-1 mb-8 md:mb-10'>
                 <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
-                <p className='text-grey px13 font-bold md:text-sm'>Go Back</p>
+                <p className='text-grey px13 font-bold md:text-sm hover:text-black'>Go Back</p>
             </Link>
             {/* Form for adding new feedback */}
             <form onSubmit={handleSubmit} className='flex flex-col text-black mt-5 py-11 px-6 bg-white rounded-xl md:py-14 md:px-12'>
@@ -91,7 +91,7 @@ function AddNewFeedback() {
                         placeholder='Add details'
                     ></textarea>
                     {/* Error message for feedback detail */}
-                    {errorDetail && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
+                    {errorDetail && <p className='text-red px13 md:text-sm '>Can’t be empty</p>}
                 </div>
                 {/* Buttons for submitting and canceling */}
                 <div className='flex flex-col md:flex-row-reverse md:gap-4 md:items-center'>

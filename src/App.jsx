@@ -16,13 +16,13 @@ function App() {
 
   // App UI
   return (
-    <div className="md:pt-14 md:w-screen bg-grey-white xl:flex xl:w-full overflow-hidden xl:h-screen">
+    <div className="md:pt-14 md:w-screen bg-grey-white xl:flex xl:w-full overflow-scroll xl:h-screen xl:justify-center">
       {/* Navigation component */}
       <div className="xl:w-1/3">
       <Nav toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
       </div>
       {/* If toggleMenu is true, apply brightness-50 class */}
-      <div className={toggleMenu === true ? "brightness-50 xl:w-2/3" : null}>
+      <div className={toggleMenu === true ? "brightness-50 xl:w-2/3" : "xl:w-2/3 xl:mr-40"}>
         {/* Sort component */}
         <Sort />
         {/* FeedbackDisplay component */}

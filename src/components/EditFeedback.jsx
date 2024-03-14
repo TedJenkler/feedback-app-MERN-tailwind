@@ -51,7 +51,7 @@ const EditFeedback = () => {
                 <img className='absolute left-12 top-20 md:left-40 md:top-28 md:w-14 md:h-14 xl:left-96 xl:ml-10 xl:top-36' src={editicon} alt='editicon' />
                 <Link to="/feedback-app-tailwind-vite/" className='flex items-center gap-2 mb-14'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
-                    <p className='text-grey px13 font-bold md:text-sm'>Go Back</p>
+                    <p className='text-grey px13 font-bold md:text-sm hover:text-black'>Go Back</p>
                 </Link>
                 {/* Form fields */}
                 <div className='bg-white flex flex-col rounded-xl p-6 pt-12 md:px-12 md:pt-14 md:pb-10'>

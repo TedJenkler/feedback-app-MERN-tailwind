@@ -51,9 +51,9 @@ function FeedbackDisplay({ setSelectedFeedback }) {
   }, [feedback, filterValue, sortValue]);
 
   return (
-    <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-0'>
+    <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-0 xl:pt-6'>
       {filteredAndSortedRequests.map((value) => (
-        <div onClick={() => handleListClick(value.id)} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mr-40 xl:w-3/4 xl:ml-8' key={value.id}>
+        <div onClick={() => handleListClick(value.id)} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mx-0 xl:ml-8' key={value.id}>
           <button className='hidden absolute items-center gap-1 md:flex md:relative'>
             <img className='h-4 w-5' src={comment} alt='comments' />
             <p>{value.comments ? value.comments.length : 0}</p>

@@ -29,7 +29,7 @@ function SelectedFeedback({ toggleView, setToggleView }) {
 
     return (
         // Main component UI
-        <main className='absolute top-0 bg-grey-white left-0 right-0 min-w-screen min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32 xl:pt-20 xl:pb-32 xl:px-96'>
+        <main className='absolute top-0 bg-grey-white left-0 right-0 min-w-screen min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32 xl:pt-20 xl:pb-32 xl:px-80'>
             <div className='flex justify-between mb-6'>
                 {/* Button to go back */}
                 <button onClick={() => navigate(-1)} className='flex items-center gap-1'>

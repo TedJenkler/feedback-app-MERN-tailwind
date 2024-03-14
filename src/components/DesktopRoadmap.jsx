@@ -44,7 +44,7 @@ function DesktopRoadmap() {
           {/* Link to go back */}
           <Link className='mb-1 flex items-center gap-2' to="/feedback-app-tailwind-vite/">
             <img src={whiteArrow} alt='back btn' />
-            <p className='text-sm font-bold'>Go Back</p>
+            <p className='text-sm font-bold hover:underline'>Go Back</p>
           </Link>
           {/* Roadmap title */}
           <h1 className='text-lg font-bold md:text-2xl tracking-[-0.33px]'>Roadmap</h1>
@@ -53,7 +53,7 @@ function DesktopRoadmap() {
         <Link to="/addfeedback" className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4 hover:bg-hover-purple'>+ Add Feedback</Link>
       </nav>
 
-      <div className='flex gap-3 xl:mx-40'>
+      <div className='flex gap-3 xl:mx-40 xl:gap-8'>
         {/* Render Planned Requests */}
         <div className='w-1/3'>
           <h2 className='text-blue text-sm font-bold mb-1 tracking-[-0.19px]'>Planned ({productRequests.filter(request => request.status === "planned").length})</h2>

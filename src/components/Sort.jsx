@@ -24,7 +24,7 @@ function Sort() {
 
     return (
         // Sort component UI
-        <div className='flex justify-between h-14 items-center text-white px-6 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-20 xl:w-3/4 xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
+        <div className='flex justify-between h-14 items-center text-white px-6 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-20 xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
             <div className='flex items-center'>
                 <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                     <img src={lightbulb} alt='lightbulb' /> {/* Displaying lightbulb image */}
