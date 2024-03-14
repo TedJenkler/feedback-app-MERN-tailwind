@@ -28,12 +28,12 @@ function Sort() {
             <div className='flex items-center'>
                 <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                     <img src={lightbulb} alt='lightbulb' /> {/* Displaying lightbulb image */}
-                    <p className='text-lg font-bold text-white xl:whitespace-nowrap md:mr-10'>{suggestionCount} Suggestions</p> {/* Displaying suggestion count */}
+                    <p className='text-lg tracking-[-0.25px] font-bold text-white xl:whitespace-nowrap md:mr-10'>{suggestionCount} Suggestions</p> {/* Displaying suggestion count */}
                 </div>
                 <div className='hover:opacity-75'>
-                    <label className='font-normal whitespace-nowrap'>Sort by : </label>
+                    <label className='px13 text-white2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>
                     {/* Dropdown to select sorting option */}
-                    <select className='bg-dark-blue font-bold w-32 mr-4' onChange={(e) => {setSortBy(e.target.value)}}>
+                    <select className='bg-dark-blue px13 text-white2 font-bold w-32 mr-4 md:text-sm' onChange={(e) => {setSortBy(e.target.value)}}>
                         <option className='hover:text-purple' value="Most Upvotes"> Most Upvotes</option>
                         <option className='hover:text-purple' value="Least Upvotes"> Least Upvotes</option>
                         <option className='hover:text-purple' value="Most Comments"> Most Comments</option>
@@ -42,7 +42,7 @@ function Sort() {
                 </div>
             </div>
             {/* Link to add feedback */}
-            <Link to="/addfeedback" className='bg-purple rounded-xl px-4 py-2 font-bold whitespace-nowrap hover:bg-hover-purple'>+ Add Feedback</Link>
+            <Link to="/addfeedback" className='px13 bg-purple rounded-xl px-4 py-2 font-bold whitespace-nowrap hover:bg-hover-purple md:text-sm'>+ Add Feedback</Link>
         </div>
     );
 }

@@ -15,12 +15,12 @@ function MobileRoadmap() {
                     {/* Link to go back */}
                     <Link className='mb-1 flex items-center gap-2' to="/feedback-app-tailwind-vite/">
                         <img src={whitearrow} alt='back btn' />
-                        <p className='text-sm font-bold'>Go Back</p>
+                        <p className='px13 font-bold'>Go Back</p>
                     </Link>
-                    <h1 className='text-lg font-bold'>Roadmap</h1>
+                    <h1 className='text-lg tracking-[-0.25px] font-bold'>Roadmap</h1>
                 </div>
                 {/* Link to add feedback */}
-                <Link to="/addfeedback" className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4'>+ Add Feedback</Link>
+                <Link to="/addfeedback" className='bg-purple px13 font-bold text-white rounded-xl py-2 px-4'>+ Add Feedback</Link>
             </nav>
             {/* Render the LinkButton component */}
             <LinkButton selectedRoadmap={selectedRoadmap} setSelectedRoadmap={setSelectedRoadmap} />

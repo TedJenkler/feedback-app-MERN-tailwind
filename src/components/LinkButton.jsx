@@ -32,21 +32,21 @@ function LinkButton({ selectedRoadmap, setSelectedRoadmap }) {
             {/* Button for Planned roadmap */}
             <button
                 onClick={(e) => setSelectedRoadmap("planned")}
-                className={selectedRoadmap === "planned" ? 'py-4 w-1/3 border-b-4 border-orange' : 'py-4 w-1/3 border-b border-grey/25' }
+                className={selectedRoadmap === "planned" ? 'text-blue px13 tracking-[-0.18px] font-bold py-4 w-1/3 border-b-4 border-orange' : 'text-blue/75 px13 tracking-[-0.18px] font-bold py-4 w-1/3 border-b border-grey/25' }
             >
                 Planned ({plannedCount})
             </button>
             {/* Button for In-Progress roadmap */}
             <button
                 onClick={(e) => setSelectedRoadmap("in-progress")}
-                className={selectedRoadmap === "in-progress" ? 'py-4 w-1/3 border-b-4 border-purple' : 'py-4 w-1/3 border-b border-grey/25' }
+                className={selectedRoadmap === "in-progress" ? 'text-blue px13 tracking-[-0.18px] font-bold py-4 w-1/3 border-b-4 border-purple' : 'text-blue/75 px13 tracking-[-0.18px] font-bold py-4 w-1/3 border-b border-grey/25' }
             >
                 In-Progress ({inProgressCount})
             </button>
             {/* Button for Live roadmap */}
             <button
                 onClick={(e) => setSelectedRoadmap("live")}
-                className={selectedRoadmap === "live" ? 'py-4 w-1/3 border-b-4 border-light-blue' : 'py-4 w-1/3 border-b border-grey/25' }
+                className={selectedRoadmap === "live" ? 'text-blue px13 tracking-[-0.18px] font-bold py-4 w-1/3 border-b-4 border-light-blue' : 'text-blue/75 px13 tracking-[-0.18px] font-bold py-4 w-1/3 border-b border-grey/25' }
             >
                 Live ({liveCount})
             </button>

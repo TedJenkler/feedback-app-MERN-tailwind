@@ -39,37 +39,37 @@ function AddNewFeedback() {
             {/* Link to navigate back */}
             <Link to="/feedback-app-tailwind-vite/" className='flex items-center gap-1 mb-8 md:mb-10'>
                 <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
-                <p className='text-grey text-sm font-bold'>Go Back</p>
+                <p className='text-grey px13 font-bold md:text-sm'>Go Back</p>
             </Link>
             {/* Form for adding new feedback */}
             <form onSubmit={handleSubmit} className='flex flex-col text-black mt-5 py-11 px-6 bg-white rounded-xl md:py-14 md:px-12'>
                 {/* Title */}
-                <h1 className='text-lg text-blue font-bold mb-6 md:text-2xl'>Create New Feedback</h1>
+                <h1 className='text-lg tracking-[-0.25px] text-blue font-bold mb-6 md:text-2xl md:tracking-[-0.33px]'>Create New Feedback</h1>
                 <div className='mb-6'>
-                    <label htmlFor='title' className='text-sm text-blue font-bold mb-1'>Feedback Title</label>
-                    <p className='text-sm text-grey font-normal mb-4'>Add a short, descriptive headline</p>
+                    <label htmlFor='title' className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>Feedback Title</label>
+                    <p className='px13 text-grey font-normal mb-4 md:text-sm'>Add a short, descriptive headline</p>
                     {/* Input for title */}
                     <input
                         id='title'
                         type='text'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className={errorTitle ? 'w-full bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-xl' : 'w-full bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl'}
+                        className={errorTitle ? 'w-full px13 bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-xl md:px15' : 'w-full px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl md:px15'}
                         placeholder='Add a title'
                     />
                     {/* Error message for title */}
-                    {errorTitle && <p className='text-red'>Can’t be empty</p>}
+                    {errorTitle && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
                 </div>
                 {/* Category selection */}
                 <div className='mb-6'>
-                    <label htmlFor='category' className='text-sm text-blue font-bold mb-1'>Category</label>
-                    <p className='text-sm text-grey font-normal mb-4'>Choose a category for your feedback</p>
+                    <label htmlFor='category' className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>Category</label>
+                    <p className='px13 text-grey font-normal mb-4 md:text-sm'>Choose a category for your feedback</p>
                     {/* Dropdown for category selection */}
                     <select
                         id='category'
                         value={select}
                         onChange={(e) => setSelect(e.target.value)}
-                        className='w-full bg-grey-white2 h-12 px-4 focus:outline-strong-blue rounded-xl'
+                        className='w-full px13 bg-grey-white2 h-12 px-4 focus:outline-strong-blue rounded-xl md:px15'
                     >
                         <option value='Feature'>Feature</option>
                         <option value='UI'>UI</option>
@@ -80,23 +80,23 @@ function AddNewFeedback() {
                 </div>
                 {/* Feedback detail */}
                 <div className='mb-6'>
-                    <label htmlFor='detail' className='text-sm text-blue font-bold mb-1'>Feedback Detail</label>
-                    <p className='text-sm text-grey font-normal mb-4'>Include any specific comments on what should be improved, added, etc.</p>
+                    <label htmlFor='detail' className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>Feedback Detail</label>
+                    <p className='px13 text-grey font-normal mb-4 md:text-sm'>Include any specific comments on what should be improved, added, etc.</p>
                     {/* Textarea for feedback detail */}
                     <textarea
                         id='detail'
                         value={detail}
                         onChange={(e) => setDetail(e.target.value)}
-                        className={errorDetail ? 'w-full bg-grey-white2 h-32 p-3 focus:outline-strong-blue border-2 border-red rounded-xl' : 'w-full bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl' }
+                        className={errorDetail ? 'w-full px13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue border-2 border-red rounded-xl md:px15' : 'w-full px13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl md:px15' }
                         placeholder='Add details'
                     ></textarea>
                     {/* Error message for feedback detail */}
-                    {errorDetail && <p className='text-red'>Can’t be empty</p>}
+                    {errorDetail && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
                 </div>
                 {/* Buttons for submitting and canceling */}
                 <div className='flex flex-col md:flex-row-reverse md:gap-4 md:items-center'>
-                    <button type="submit" className='bg-purple text-center text-white mb-4 py-2 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 hover:bg-hover-purple'>Add Feedback</button>
-                    <Link to="/feedback-app-tailwind-vite/" className='bg-blue text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey'>Cancel</Link>
+                    <button type="submit" className='px13 bg-purple text-center text-white mb-4 py-2 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 md:text-sm hover:bg-hover-purple'>Add Feedback</button>
+                    <Link to="/feedback-app-tailwind-vite/" className='px13 bg-blue text-white py-2 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 md:text-sm hover:bg-hover-grey'>Cancel</Link>
                 </div>
             </form>
         </main>

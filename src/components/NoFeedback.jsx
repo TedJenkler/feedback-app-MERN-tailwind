@@ -8,11 +8,11 @@ function NoFeedback() {
             {/* Display an empty illustration */}
             <img className='mb-10' src={empty} alt='empty' />
             {/* Display a message indicating no feedback */}
-            <h1 className='mb-4 text-blue font-bold text-lg md:text-2xl'>There is no feedback yet.</h1>
+            <h1 className='mb-4 text-blue font-bold tracking-[-0.25px] text-lg md:text-2xl md:tracking-[-0.33px]'>There is no feedback yet.</h1>
             {/* Provide guidance for users to submit feedback */}
-            <p className='mb-6 text-grey text-sm font-normal text-center md:mx-32 md:text-base'>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+            <p className='mb-6 text-grey px13 font-normal text-center md:mx-32 md:text-base'>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
             {/* Link to the add feedback page */}
-            <Link to="/addfeedback" className='bg-purple rounded-xl px-4 py-2 font-bold whitespace-nowrap text-white hover:bg-hover-purple'>+ Add Feedback</Link>
+            <Link to="/addfeedback" className='bg-purple px13 rounded-xl px-4 py-2 font-bold whitespace-nowrap text-white hover:bg-hover-purple md:text-sm'>+ Add Feedback</Link>
         </div>
     );
 }

@@ -27,7 +27,8 @@ export default {
         'hover-purple': '#C75AF6',
         'hover-blue': '#CFD7FF',
         'hover-grey': '#656EA3',
-        'hover-red': '#E98888'
+        'hover-red': '#E98888',
+        'white2': '#F2F4FE',
       },
     },
   },

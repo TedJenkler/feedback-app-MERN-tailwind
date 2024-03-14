@@ -34,7 +34,7 @@ function Roadmap() {
         <div className='bg-white mx-6 p-6 rounded-xl md:w-1/3 md:m-0 lg:w-1/3 lg:mx-2 xl:w-full xl:h-48 xl:min-w-64 xl:m-0'>
             <div className='flex items-center justify-between mb-6'>
                 <h1 className='text-lg font-bold text-blue'>Roadmap</h1>
-                <Link to="/roadmap" className='text-sm text-strong-blue font-semibold underline hover:text-hover-blue'>View</Link>
+                <Link to="/roadmap" className='px13 text-strong-blue font-semibold underline hover:text-hover-blue'>View</Link>
             </div>
             <div>
                 {/* Display the count of requests in each status */}
