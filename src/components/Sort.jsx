@@ -24,7 +24,7 @@ function Sort() {
 
     return (
         // Sort component UI
-        <div className='flex justify-between h-14 items-center text-white px-6 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-20 xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
+        <div className='sort flex justify-between h-14 items-center text-white px-6 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-20 xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
             <div className='flex items-center'>
                 <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                     <img src={lightbulb} alt='lightbulb' /> {/* Displaying lightbulb image */}
@@ -33,7 +33,7 @@ function Sort() {
                 <div className='hover:opacity-75'>
                     <label className='px13 text-white2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>
                     {/* Dropdown to select sorting option */}
-                    <select className='bg-dark-blue px13 text-white2 font-bold w-32 mr-4 md:text-sm' onChange={(e) => {setSortBy(e.target.value)}}>
+                    <select className='sort bg-dark-blue px13 text-white2 font-bold w-32 mr-4 md:text-sm' onChange={(e) => {setSortBy(e.target.value)}}>
                         <option className='hover:text-purple' value="Most Upvotes"> Most Upvotes</option>
                         <option className='hover:text-purple' value="Least Upvotes"> Least Upvotes</option>
                         <option className='hover:text-purple' value="Most Comments"> Most Comments</option>

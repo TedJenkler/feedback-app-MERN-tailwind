@@ -4,11 +4,18 @@
 
 @layer utilities {
     .px15 {
-        font-size: 15px;
+        font-size: 0.938rem;
         line-height: auto;
     }
     .px13 {
-        font-size: 13px;
+        font-size: 0.813rem;
         line-height: auto;
     }
 }
+
+@media (max-width: 375px) {
+    .sort {
+        padding: 0px 0.625rem 0 0.625rem;
+        margin: 0;
+    }
+  }
