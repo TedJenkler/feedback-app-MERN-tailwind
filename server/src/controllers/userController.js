@@ -92,3 +92,47 @@ exports.registerUser = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error'});
     }
 };
+
+exports.updateUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { firstname, lastname, username, password, email } = req.body;
+
+        let user = await User.findById(id);
+        if (!user) {
+            res.status(404).json({ message: 'User not found' });
+        };
+
+        if(firstname) user.firstname = firstname;
+        if(lastname) user.lastname = lastname;
+        if(username) user.username = username;
+        if(password) {
+            const hashedPassword = await bcrypt.hash(password, 10)
+            user.password = hashedPassword
+        }
+        if(email) user.email = email;
+
+        await user.save();
+
+        res.status(200).json({ message: 'User updated successfully', user });
+    }catch (error) {
+        console.error('Error updating User by id', error);
+        res.status(200).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.deleteUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const user = await User.findByIdAndDelete(id);
+        if(!user) {
+            res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User deleted successfully', user })
+    }catch (error) {
+        console.error('Error deleting User by id');
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
