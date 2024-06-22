@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 const postRoutes = require('./routes/post');
+const commentRoutes = require('./routes/comment');
 const { default: mongoose } = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -27,6 +28,7 @@ mongoose.connect(MONGODB_URI, {
 app.use('/users', userRoutes);
 app.use('/category', categoryRoutes);
 app.use('/post', postRoutes);
+app.use('/comment', commentRoutes);
 
 app.use((error, req, res, next) => {
     console.error(error.stack);

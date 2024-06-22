@@ -53,7 +53,7 @@ exports.addPost = async (req, res) => {
             user: checkUser,
             upvotes: 0,
             date: new Date(),
-            status: "new"
+            status: "Planned"
         });
 
         await newPost.save();

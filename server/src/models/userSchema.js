@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
     firstname: {
@@ -31,7 +32,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    posts: []
+    posts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Post'
+    }],
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 });
 
 const User = mongoose.model('User', userSchema);

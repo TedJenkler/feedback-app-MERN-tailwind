@@ -1,5 +1,4 @@
 const Category = require('../models/categorySchema');
-const { findByIdAndDelete } = require('../models/userSchema');
 
 exports.getAllCategories = async (req, res) => {
     try{
