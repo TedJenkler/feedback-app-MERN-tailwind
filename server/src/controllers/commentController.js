@@ -2,6 +2,36 @@ const Comment = require('../models/commentSchema');
 const User = require('../models/userSchema');
 const Post = require('../models/postSchema');
 
+exports.getAll = async (req, res) => {
+    try {
+        const comments = await Comment.find();
+        if (comments.length === 0) {
+            return res.status(404).json({ message: 'Comments not found' });
+        }
+
+        res.status(200).json({ message: 'Comments fetched successfully', comments });
+    } catch (error) {
+        console.error('Error fetching comments:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.getCommentById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const comment = await Comment.findById(id);
+        if(!comment) {
+            res.status(404).json({ message: 'Comment not found' });
+        }
+
+        res.status(200).json({ message: 'Comment fetched successfully', comment })
+    }catch (error) {
+        console.error('Error fetching comment:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
 exports.addComment = async (req, res) => {
     try {
         const { content, user, postId } = req.body;
