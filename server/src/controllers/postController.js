@@ -70,3 +70,41 @@ exports.addPost = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+exports.updatePostByID = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, description, status, category } = req.body;
+
+        const post = await Post.findById(id);
+        if(!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        const checkCategory = await Category.findOne({ name: category });
+        if(!checkCategory) {
+            return res.status(404).json({ message: 'Category not found' });
+        }
+
+        if(title) post.title = title;
+        if(description) post.description = description;
+        if(status) post.status = status;
+        if (category) post.category = checkCategory._id
+
+        await post.save();
+
+        const oldCategory = await Category.findOne({ posts: post._id });
+        if (oldCategory && oldCategory._id.toString() !== checkCategory._id.toString()) {
+            oldCategory.posts = oldCategory.posts.filter(p => p.toString() !== post._id.toString());
+            await oldCategory.save()
+        }
+
+        checkCategory.posts.push(post._id);
+        await checkCategory.save();
+
+        res.status(200).json({ message: 'Post updated successfully', post })
+    }catch (error) {
+        console.error('Error updating post', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    } 
+};
