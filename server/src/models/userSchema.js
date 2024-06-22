@@ -30,7 +30,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    posts: []
 });
 
 const User = mongoose.model('User', userSchema);
