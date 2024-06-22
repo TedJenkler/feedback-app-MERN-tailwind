@@ -1,4 +1,5 @@
 const Category = require('../models/categorySchema');
+const { findByIdAndDelete } = require('../models/userSchema');
 
 exports.getAllCategories = async (req, res) => {
     try{
@@ -65,6 +66,58 @@ exports.addCategory = async (req, res) => {
         res.status(200).json({ message: 'Category added successfully', category });
     }catch (error) {
         console.error('Error adding category', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.updateCategoryById = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const { name } = req.body;
+
+        const category = await Category.findById(id);
+        if(!category) {
+            return res.status(404).json({ message: 'Category not found' });
+        }
+
+        const checkName = await Category.findOne({ name: name });
+        if(checkName) {
+            res.status(400).json({ message: 'Category name already exsist' });
+        }
+
+        if(name) category.name = name;
+
+        await category.save();
+
+        res.status(200).json({ message: 'Category updated successfully', category })
+    }catch (error) {
+        console.error('Error updating category', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.deleteCategoryById = async (req, res) => {
+    try{
+        const { id } = req.params;
+
+        const category = await Category.findByIdAndDelete(id);
+        if (!category) {
+            return res.status(404).json({ message: 'Category not found' });
+        }
+
+        res.status(200).json({ message: 'Category deleted successfully', category })
+    }catch (error) {
+        console.error('Error deleting category', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.deleteAllCategories = async (req, res) => {
+    try {
+        const result = await Category.deleteMany({});
+        res.status(200).json({ message: 'Categories deleted successfully', result });
+    } catch (error) {
+        console.error('Error deleting all categories', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
