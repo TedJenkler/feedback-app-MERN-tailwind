@@ -108,3 +108,35 @@ exports.updatePostByID = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     } 
 };
+
+exports.deletePostById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const post = await Post.findByIdAndDelete(id);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        const user = await User.findById(post.user);
+        if (user) {
+            user.posts = user.posts.filter(p => p.toString() !== post._id.toString());
+            await user.save();
+        }
+
+        const oldCategory = await Category.findOne({ posts: post._id });
+        if (oldCategory && oldCategory._id.toString() !== post.category.toString()) {
+            oldCategory.posts = oldCategory.posts.filter(p => p.toString() !== post._id.toString());
+            await oldCategory.save();
+        } else if (oldCategory) {
+            // Remove the post ID from the old category's posts array
+            oldCategory.posts = oldCategory.posts.filter(p => p.toString() !== post._id.toString());
+            await oldCategory.save();
+        }
+
+        res.status(200).json({ message: 'Post deleted successfully', post });
+    } catch (error) {
+        console.error('Error deleting post', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
