@@ -77,36 +77,46 @@ exports.updatePostByID = async (req, res) => {
         const { title, description, status, category } = req.body;
 
         const post = await Post.findById(id);
-        if(!post) {
+        if (!post) {
             return res.status(404).json({ message: 'Post not found' });
         }
 
-        const checkCategory = await Category.findOne({ name: category });
-        if(!checkCategory) {
-            return res.status(404).json({ message: 'Category not found' });
+        if (category && category.trim() !== '') {
+            const checkCategory = await Category.findOne({ name: category });
+            if (!checkCategory) {
+                return res.status(404).json({ message: 'Category not found' });
+            }
+
+            if (title) post.title = title;
+            if (description) post.description = description;
+            if (status) post.status = status;
+            post.category = checkCategory._id;
+
+            await post.save();
+
+            if (post.category.toString() !== checkCategory._id.toString()) {
+                await Category.updateOne(
+                    { _id: post.category },
+                    { $pull: { posts: post._id } }
+                );
+            }
+
+            checkCategory.posts.push(post._id);
+            await checkCategory.save();
+        } else {
+        
+            if (title) post.title = title;
+            if (description) post.description = description;
+            if (status) post.status = status;
+
+            await post.save();
         }
 
-        if(title) post.title = title;
-        if(description) post.description = description;
-        if(status) post.status = status;
-        if (category) post.category = checkCategory._id
-
-        await post.save();
-
-        const oldCategory = await Category.findOne({ posts: post._id });
-        if (oldCategory && oldCategory._id.toString() !== checkCategory._id.toString()) {
-            oldCategory.posts = oldCategory.posts.filter(p => p.toString() !== post._id.toString());
-            await oldCategory.save()
-        }
-
-        checkCategory.posts.push(post._id);
-        await checkCategory.save();
-
-        res.status(200).json({ message: 'Post updated successfully', post })
-    }catch (error) {
+        res.status(200).json({ message: 'Post updated successfully', post });
+    } catch (error) {
         console.error('Error updating post', error);
         res.status(500).json({ message: 'Internal Server Error' });
-    } 
+    }
 };
 
 exports.deletePostById = async (req, res) => {
@@ -118,21 +128,15 @@ exports.deletePostById = async (req, res) => {
             return res.status(404).json({ message: 'Post not found' });
         }
 
-        const user = await User.findById(post.user);
-        if (user) {
-            user.posts = user.posts.filter(p => p.toString() !== post._id.toString());
-            await user.save();
-        }
+        await User.updateOne(
+            { _id: post.user },
+            { $pull: { posts: post._id } }
+        );
 
-        const oldCategory = await Category.findOne({ posts: post._id });
-        if (oldCategory && oldCategory._id.toString() !== post.category.toString()) {
-            oldCategory.posts = oldCategory.posts.filter(p => p.toString() !== post._id.toString());
-            await oldCategory.save();
-        } else if (oldCategory) {
-            // Remove the post ID from the old category's posts array
-            oldCategory.posts = oldCategory.posts.filter(p => p.toString() !== post._id.toString());
-            await oldCategory.save();
-        }
+        await Category.updateOne(
+            { _id: post.category },
+            { $pull: { posts: post._id } }
+        );
 
         res.status(200).json({ message: 'Post deleted successfully', post });
     } catch (error) {

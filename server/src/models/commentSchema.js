@@ -16,7 +16,8 @@ const commentSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Reply'
     }],
-    date: String
+    date: String,
+    post: String
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
