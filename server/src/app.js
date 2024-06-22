@@ -4,11 +4,23 @@ require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
 const userRoutes = require('../src/routes/index');
+const { default: mongoose } = require('mongoose');
+const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+mongoose.connect(MONGODB_URI, {
+    useUnifiedTopology: true
+})
+.then(() => {
+    console.log('Connected to MongoDB')
+})
+.catch((error) => {
+    console.error('Error connecting to MongoDB:', error.message);
+});
 
 app.use('/users', userRoutes);
 
