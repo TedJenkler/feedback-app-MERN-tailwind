@@ -7,6 +7,7 @@ const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 const postRoutes = require('./routes/post');
 const commentRoutes = require('./routes/comment');
+const replyRoutes = require('./routes/reply');
 const { default: mongoose } = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -29,6 +30,7 @@ app.use('/users', userRoutes);
 app.use('/category', categoryRoutes);
 app.use('/post', postRoutes);
 app.use('/comment', commentRoutes);
+app.use('/reply', replyRoutes);
 
 app.use((error, req, res, next) => {
     console.error(error.stack);

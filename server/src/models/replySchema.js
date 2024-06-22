@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const replySchema = new mongoose.Schema({
+const replySchema = new Schema({
     content: {
         type: String,
         required: true,
@@ -12,7 +12,14 @@ const replySchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    date: String
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    replies: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Reply'
+    }]
 });
 
 const Reply = mongoose.model('Reply', replySchema);
