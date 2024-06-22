@@ -3,7 +3,8 @@ const app = express();
 require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
-const userRoutes = require('../src/routes/index');
+const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 const { default: mongoose } = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -23,6 +24,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 app.use('/users', userRoutes);
+app.use('/category', categoryRoutes);
 
 app.use((error, req, res, next) => {
     console.error(error.stack);
