@@ -34,12 +34,12 @@ exports.getReplyById = async (req, res) => {
 
 exports.addReply = async (req, res) => {
     try {
-        const { content, user, replyId } = req.body;
+        const { content, user, replyType } = req.body;
         const { id } = req.params;
 
         let parentDocument;
 
-        if (replyId === "comment") {
+        if (replyType === "comment") {
             parentDocument = await Comment.findById(id);
         } else {
             parentDocument = await Reply.findById(id);
@@ -57,7 +57,8 @@ exports.addReply = async (req, res) => {
 
         const newReply = new Reply({
             content,
-            user: userToUpdate._id
+            user: userToUpdate._id,
+            replyTo: {replyType, id}
         });
 
         await newReply.save();
@@ -75,3 +76,54 @@ exports.addReply = async (req, res) => {
     }
 };
 
+exports.updateReplyByID = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const { content } = req.body;
+
+        const reply = await Reply.findById(id);
+        if(!reply) {
+            return res.status(404).json({ message: 'No reply found' })
+        }
+
+        if(content) reply.content = content;
+
+        await reply.save();
+
+        res.status(200).json({ message: 'Updated reply successfully', reply });
+    }catch (error) {
+        console.error('Error updating reply', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.deleteReplyById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const reply = await Reply.findById(id);
+        if (!reply) {
+            return res.status(404).json({ message: 'No reply found' });
+        }
+
+        await Reply.findByIdAndDelete(id);
+
+        if (reply.replyTo.replyType === 'comment') {
+            await Comment.updateOne({ _id: reply.replyTo.id }, { $pull: { replies: id } });
+        } else if (reply.replyTo === 'reply') {
+            await Reply.updateOne({ _id: reply._id }, { $pull: { replies: id } });
+        }
+
+        const userToUpdate = await User.findById(reply.user);
+        if (userToUpdate) {
+            await User.updateOne({ _id: userToUpdate._id }, { $pull: { replies: id } });
+        } else {
+            console.error(`User not found with ID: ${reply.user}`);
+        }
+
+        res.status(200).json({ message: 'Deleted reply successfully' });
+    } catch (error) {
+        console.error('Error deleting reply', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};

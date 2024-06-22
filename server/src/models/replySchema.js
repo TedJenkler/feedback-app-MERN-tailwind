@@ -19,7 +19,10 @@ const replySchema = new Schema({
     replies: [{
         type: Schema.Types.ObjectId,
         ref: 'Reply'
-    }]
+    }],
+    replyTo: {
+
+    }
 });
 
 const Reply = mongoose.model('Reply', replySchema);
