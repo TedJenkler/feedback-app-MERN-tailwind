@@ -144,3 +144,43 @@ exports.deletePostById = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+exports.upvotePostById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { username, toggle } = req.body;
+
+        const post = await Post.findById(id);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        if (toggle) {
+            if (!post.upvotes.users.includes(user._id)) {
+                post.upvotes.users.push(user._id);
+                post.upvotes.totalUpvotes++;
+            } else {
+                return res.status(400).json({ message: 'User has already upvoted this post' });
+            }
+        } else {
+            if (post.upvotes.users.includes(user._id)) {
+                post.upvotes.users = post.upvotes.users.filter(userId => userId.toString() !== user._id.toString());
+                post.upvotes.totalUpvotes--;
+            } else {
+                return res.status(400).json({ message: 'User has not upvoted this post' });
+            }
+        }
+
+        await post.save();
+
+        res.status(200).json({ message: 'Upvote toggled successfully', post });
+    }catch(error) {
+        console.error('Error upvoting post', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};

@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cors = require('cors');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 const postRoutes = require('./routes/post');
@@ -11,6 +12,7 @@ const replyRoutes = require('./routes/reply');
 const { default: mongoose } = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI;
 
+app.use(cors());
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(express.json());

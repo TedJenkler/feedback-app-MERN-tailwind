@@ -13,8 +13,14 @@ const postSchema = new mongoose.Schema({
         trim: true
     },
     upvotes: {
-        type: Number,
-        default: 0
+        totalUpvotes: {
+            type: Number,
+            default: 0
+        },
+        users: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     },
     category: { 
         type: Schema.Types.ObjectId, 

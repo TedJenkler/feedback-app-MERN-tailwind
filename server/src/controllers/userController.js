@@ -1,5 +1,6 @@
 const User = require("../models/userSchema");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 exports.getAllUsers = async (req, res) => {
     try{
@@ -56,6 +57,33 @@ exports.getOneUserByUsername = async (req, res) => {
         res.status(200).json({ message: 'User fetched succesfully', user});
     }catch (error) {
         console.error('Failed fetching User by username', error);
+        res.status(500).json({ message: 'Internal Server Error'});
+    }
+};
+
+exports.loginUser = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const user = await User.findOne({ username: username });
+        if(!user) {
+            return res.status(404).json({ message: 'User dosent exsist' })
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if(!isPasswordValid) {
+            return res.status(401).json({ message: 'Incorrect password' });
+        }
+
+        const token = jwt.sign(
+            { userId: user._id, username: user.username},
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        res.status(200).json({ message: 'Login successful', token, user });
+    }catch (error) {
+        console.error('Failed login in', error);
         res.status(500).json({ message: 'Internal Server Error'});
     }
 };

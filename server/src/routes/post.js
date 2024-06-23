@@ -8,4 +8,6 @@ router.post('/add', postController.addPost);
 router.put('/update/:id', postController.updatePostByID);
 router.delete('/delete/:id', postController.deletePostById);
 
+router.put('/upvote/:id', postController.upvotePostById);
+
 module.exports = router
