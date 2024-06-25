@@ -25,26 +25,28 @@ function FeedbackDisplay() {
   }, []);
 
   useEffect(() => {
-    let filteredAndSortedRequestsCopy = [...posts];
+    if (posts) {
+        let filteredAndSortedRequestsCopy = [...posts];
 
-    // Filter by category if not "ALL"
-    if (filterValue !== "ALL") {
-      filteredAndSortedRequestsCopy = filteredAndSortedRequestsCopy.filter(request => request.category?._id === filterValue);
+        if (filterValue !== "ALL") {
+          filteredAndSortedRequestsCopy = filteredAndSortedRequestsCopy.filter(request => {
+              return getCategoryNameById(request.category) === filterValue;
+          });
+      }
+
+        if (sortValue === "Most Upvotes") {
+            filteredAndSortedRequestsCopy.sort((a, b) => parseInt(b.upvotes?.totalUpvotes?.$numberInt || b.upvotes?.totalUpvotes || 0) - parseInt(a.upvotes?.totalUpvotes?.$numberInt || a.upvotes?.totalUpvotes || 0));
+        } else if (sortValue === "Least Upvotes") {
+            filteredAndSortedRequestsCopy.sort((a, b) => parseInt(a.upvotes?.totalUpvotes?.$numberInt || a.upvotes?.totalUpvotes || 0) - parseInt(b.upvotes?.totalUpvotes?.$numberInt || b.upvotes?.totalUpvotes || 0));
+        } else if (sortValue === "Most Comments") {
+            filteredAndSortedRequestsCopy.sort((a, b) => b.comments.length - a.comments.length);
+        } else if (sortValue === "Least Comments") {
+            filteredAndSortedRequestsCopy.sort((a, b) => a.comments.length - b.comments.length);
+        }
+
+        setFilteredAndSortedRequests(filteredAndSortedRequestsCopy);
     }
-
-    // Sort based on sortValue
-    if (sortValue === "Most Upvotes") {
-      filteredAndSortedRequestsCopy.sort((a, b) => b.social.totalUpvotes - a.social.totalUpvotes);
-    } else if (sortValue === "Least Upvotes") {
-      filteredAndSortedRequestsCopy.sort((a, b) => a.social.totalUpvotes - b.social.totalUpvotes);
-    } else if (sortValue === "Most Comments") {
-      filteredAndSortedRequestsCopy.sort((a, b) => b.comments.length - a.comments.length);
-    } else if (sortValue === "Least Comments") {
-      filteredAndSortedRequestsCopy.sort((a, b) => a.comments.length - b.comments.length);
-    }
-
-    setFilteredAndSortedRequests(filteredAndSortedRequestsCopy);
-  }, [posts, filterValue, sortValue]);
+}, [posts, filterValue, sortValue]);
 
   const handleUpvote = (value) => {
     if (value.upvotes.users.includes(user)) {
