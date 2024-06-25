@@ -16,6 +16,7 @@ function FeedbackDisplay() {
   const dispatch = useDispatch();
 
   const user = localStorage.getItem('user')
+  const username = localStorage.getItem('username')
 
   const [filteredAndSortedRequests, setFilteredAndSortedRequests] = useState([]);
 
@@ -50,11 +51,11 @@ function FeedbackDisplay() {
 
   const handleUpvote = (value) => {
     if (value.upvotes.users.includes(user)) {
-      dispatch(upvoteToggle({ toggle: false, id: value._id, username: "Jenkler" })).then(() => {
+      dispatch(upvoteToggle({ toggle: false, id: value._id, username: username })).then(() => {
         dispatch(getAllPosts());
       });
     } else {
-      dispatch(upvoteToggle({ toggle: true, id: value._id, username: "Jenkler" })).then(() => {
+      dispatch(upvoteToggle({ toggle: true, id: value._id, username: username })).then(() => {
         dispatch(getAllPosts());
       });
     }
@@ -68,11 +69,12 @@ function FeedbackDisplay() {
   return (
     <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-0 xl:pt-6'>
       {filteredAndSortedRequests.map((value) => (
-        <div key={value._id} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mx-0 xl:ml-8'>
+        <div key={value._id} onClick={() => {navigate("/feedback/" + value._id)}} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mx-0 xl:ml-8'>
           <button className='hidden absolute items-center gap-1 md:flex md:relative'>
             <img className='h-4 w-5' src={comment} alt='comments' />
             <p>{value.comments.length}</p>
           </button>
+          {console.log(value)}
           <div className='md:flex md:flex-row-reverse md:gap-10'>
             <div>
               <p className='px13 font-bold tracking-[-0.18px] text-blue mb-2 md:text-lg'>{value.title}</p>
