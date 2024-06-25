@@ -3,13 +3,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.getAllUsers = async (req, res) => {
-    try{
-        const users = await User.find();
+    try {
+        const users = await User.find().select('-email -password');
 
-        res.status(200).json({ message: 'Users fetched succesfully', users});
-    }catch (error) {
+        res.status(200).json({ message: 'Users fetched successfully', users });
+    } catch (error) {
         console.error('Failed to get Users', error);
-        res.status(500).json({ message: 'Internal Server Error'});
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 };
 

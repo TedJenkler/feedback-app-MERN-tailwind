@@ -19,8 +19,6 @@ function SelectedFeedback() {
     const user = localStorage.getItem('user')
     const username = localStorage.getItem('username')
 
-    console.log(post)
-
     useEffect(() => {
         dispatch(getAllCategories())
         dispatch(getAllPosts());
@@ -80,7 +78,7 @@ function SelectedFeedback() {
                     </div>
                 </div>
             </div>
-            <div className='bg-white rounded-xl p-6 mb-6 md:px-8 xl:ml-2'>
+            <div className='bg-white rounded-xl p-6 mb-6 md:px-8'>
                 <h2 className='text-lg tracking-[-0.25px] text-blue font-bold mb-6'>{post ? post.comments.length : 0} Comments</h2>
                 <CommentMap id={id}/>
             </div>
