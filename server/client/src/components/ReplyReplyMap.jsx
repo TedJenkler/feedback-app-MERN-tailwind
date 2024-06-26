@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { getAllReplies, replyUser } from '../features/social/socialSlice';
+import React, { useState } from 'react';
+import { replyUser } from '../features/social/socialSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import ReplyReplyMap from './ReplyReplyMap';
 
-function ReplyMap({ replies }) {
+function ReplyReplyMap({ replies }) {
     const [replyingTo, setReplyingTo] = useState(null);
     const [replyContent, setReplyContent] = useState('');
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getAllReplies());
-    }, [dispatch]);
-
     const replyState = useSelector((state) => state.social.replies);
     const users = useSelector((state) => state.social.users);
     const username = localStorage.getItem('username');
-
-    const findCommonValues = (replyState, replies) => {
-        const set2 = new Set(replies);
-        const commonValues = replyState.filter(reply => set2.has(reply._id));
-        return commonValues;
-    };
-
-    const commonReplies = findCommonValues(replyState, replies);
 
     const handleToggleReply = (replyId) => {
         if (replyingTo === replyId) {
@@ -33,6 +19,12 @@ function ReplyMap({ replies }) {
         }
     };
 
+    const findCommonValues = (replyState, replies) => {
+        const set2 = new Set(replies);
+        const commonValues = replyState.filter(reply => set2.has(reply._id));
+        return commonValues;
+    };
+
     const handlePostReply = (e) => {
         e.preventDefault();
         dispatch(replyUser({ id: replyingTo, content: replyContent, user: username, replyType: "reply" }));
@@ -40,8 +32,10 @@ function ReplyMap({ replies }) {
         setReplyContent('');
     };
 
+    const commonReplies = findCommonValues(replyState, replies);
+
     return (
-        <div className='ml-8'>
+        <div>
             {commonReplies.map(reply => {
                 const user = users.find(item => item._id === reply.user);
 
@@ -89,4 +83,4 @@ function ReplyMap({ replies }) {
     );
 }
 
-export default ReplyMap;
+export default ReplyReplyMap;

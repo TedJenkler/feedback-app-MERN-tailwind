@@ -77,7 +77,7 @@ function CommentMap({ id }) {
                                 </button>
                             </div>
                         )}
-                        <ReplyMap />
+                        <ReplyMap replies={comment.replies} />
                     </div>
                 );
             })}
