@@ -50,7 +50,7 @@ function SelectedFeedback() {
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                     <p className='text-grey px-3 font-bold hover:text-black md:text-sm'>Go Back</p>
                 </button>
-                <Link to={"editfeedback/:" + id} className='bg-strong-blue px-3 font-bold text-white rounded-xl py-2 hover:bg-hover-blue md:text-sm'>Edit Feedback</Link>
+                <Link to={"/editfeedback/" + id} className='bg-strong-blue px-3 font-bold text-white rounded-xl py-2 hover:bg-hover-blue md:text-sm'>Edit Feedback</Link>
             </div>
             <div className='bg-white mb-6 p-6 rounded-xl md:flex md:flex-row-reverse md:justify-between'>
                 <button className='hidden absolute items-center gap-1 md:flex md:relative'>

@@ -13,6 +13,18 @@ export const getAllPosts = createAsyncThunk(
   }
 );
 
+export const getPostById = createAsyncThunk(
+  'post/getById',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`http://localhost:2000/post/${id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const getAllCategories = createAsyncThunk(
   'category/getAll',
   async (_, { rejectWithValue }) => {
@@ -101,6 +113,30 @@ export const addComment = createAsyncThunk(
     }
 );
 
+export const editPost = createAsyncThunk(
+  'post/edit',
+  async ({ formData, id }, { rejectWithValue }) => {
+    try {
+      console.log(formData, id)
+      const response = await axios.put(`http://localhost:2000/post/update/${id}`, formData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  'post/delete',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`http://localhost:2000/post/delete/${id}`)
+    }catch(error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const socialSlice = createSlice({
   name: 'social',
   initialState: {
@@ -109,6 +145,7 @@ const socialSlice = createSlice({
     comments: [],
     replies: [],
     users: [],
+    selectedPost: [],
     status: 'idle',
     error: null
   },
@@ -215,7 +252,45 @@ const socialSlice = createSlice({
       .addCase(addComment.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(getPostById.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.selectedPost = action.payload.post;
+        state.error = null;
+      })
+      .addCase(getPostById.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(editPost.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(editPost.fulfilled, (state) => {
+        state.status = 'succeeded';
+        state.error = null;
+      })
+      .addCase(editPost.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(deletePost.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(deletePost.fulfilled, (state) => {
+        state.status = 'succeeded';
+        state.error = null;
+      })
+      .addCase(deletePost.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
+      
   }
 });
 

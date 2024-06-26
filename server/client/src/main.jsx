@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     element: <AddNewFeedback />,
   },
   {
-    path: "/feedback/:id/editfeedback/:id",
+    path: "/editfeedback/:id",
     element: <EditFeedback/>,
   },
   {

@@ -82,7 +82,7 @@ exports.updatePostByID = async (req, res) => {
         }
 
         if (category && category.trim() !== '') {
-            const checkCategory = await Category.findOne({ name: category });
+            const checkCategory = await Category.findById(category);
             if (!checkCategory) {
                 return res.status(404).json({ message: 'Category not found' });
             }
