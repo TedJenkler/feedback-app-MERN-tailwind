@@ -7,13 +7,14 @@ import whitearrowup from "../assets/whitearrowup.png";
 import { useSelector, useDispatch } from 'react-redux';
 import CommentMap from './CommentMap';
 import { getAllPosts, getAllCategories, upvoteToggle } from '../features/social/socialSlice';
+import AddComment from './AddComment';
 
 function SelectedFeedback() {
     const { id } = useParams();
     const navigate = useNavigate();
     const posts = useSelector((state) => state.social.posts);
     const categories = useSelector((state) => state.social.categories);
-    const post = posts.find(item => item._id === id);
+    const post = posts.find(item => item._id === id)
     const dispatch = useDispatch()
 
     const user = localStorage.getItem('user')
@@ -82,14 +83,7 @@ function SelectedFeedback() {
                 <h2 className='text-lg tracking-[-0.25px] text-blue font-bold mb-6'>{post ? post.comments.length : 0} Comments</h2>
                 <CommentMap id={id}/>
             </div>
-            <div className='bg-white p-6 rounded-xl md:px-8'>
-                <h1 className='text-lg tracking-[-0.25px] font-bold text-blue mb-6'>Add Comment</h1>
-                <textarea placeholder='Type your comment here' maxLength={250} className='bg-grey-white2 w-full h-20 mb-4 text-grey p-4 rounded-xl px-3 focus:outline-strong-blue md:px-15'></textarea>
-                <div className='flex items-center justify-between'>
-                    <p className='px-3 text-grey font-normal md:px-15'>{/* Character count */} Characters left</p>
-                    <button className='bg-purple text-white py-2 px-4 rounded-xl hover:bg-hover-purple md:text-sm'>Post Comment</button>
-                </div>
-            </div>
+            <AddComment postId={post ? post._id : null} />
         </main>
     );
 }
