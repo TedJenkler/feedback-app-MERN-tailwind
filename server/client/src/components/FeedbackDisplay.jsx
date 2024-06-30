@@ -67,7 +67,7 @@ function FeedbackDisplay() {
   };
 
   return (
-    <main className='bg-grey-white py-8 min-h-full pb-28 xl:pr-0 xl:pt-6'>
+    <main className='bg-grey-white min-h-screen py-8 pb-28 xl:pr-0 xl:pt-6'>
       {filteredAndSortedRequests.map((value) => (
         <div key={value._id} onClick={() => {navigate("/feedback/" + value._id)}} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mx-0 xl:ml-8'>
           <button className='hidden absolute items-center gap-1 md:flex md:relative'>

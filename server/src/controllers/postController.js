@@ -1,6 +1,8 @@
 const Post = require('../models/postSchema');
+const Reply = require('../models/replySchema');
 const User = require('../models/userSchema');
 const Category = require('../models/categorySchema');
+const Comment = require('../models/commentSchema');
 
 exports.getAllPost = async (req, res) => {
     try {
@@ -181,6 +183,36 @@ exports.upvotePostById = async (req, res) => {
         res.status(200).json({ message: 'Upvote toggled successfully', post });
     }catch(error) {
         console.error('Error upvoting post', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.deleteAll = async (req, res) => {
+    try {
+        const deleteResult = await Post.deleteMany();
+        
+        if (deleteResult.deletedCount === 0) {
+            console.log('No posts found')
+        }
+
+        const categoryResult = await Comment.deleteMany();
+
+        if (categoryResult.deletedCount === 0) {
+            console.log('No comments found')
+        }
+
+        const replyResult = await Reply.deleteMany();
+
+        if (replyResult.deletedCount === 0) {
+            console.log('No replies found');
+        }
+
+        const updateUsersResult = await User.updateMany({}, { posts: [], comments: [], replies: [] });
+        console.log('Updated users:', updateUsersResult);
+
+        res.status(200).json({ message: 'Deleted all successfully' });
+    } catch (error) {
+        console.error('Error deleting all documents', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
