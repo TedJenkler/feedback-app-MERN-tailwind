@@ -20,13 +20,13 @@ function Nav({ toggleMenu, setToggleMenu }) {
                 <Roadmap />
             </nav>
             {/* Mobile navigation */}
-            <nav className='flex justify-between px-6 h-20 items-center bg-gradient-to-tr from-gradient-blue via-gradient-purple to-gradient-red md:hidden md:absolute'>
+            <nav className='flex justify-between px-6 h-[4.5rem] items-center bg-gradient-to-tr from-gradient-blue via-gradient-purple to-gradient-red md:hidden md:absolute'>
                 <div className='flex flex-col text-white'>
-                    <p className='px15 font-bold tracking-[-0.25px]'>Frontend Mentor</p>
-                    <p className='px13 opacity-75'>Feedback Board</p>
+                    <p className='px15 font-bold tracking-[-0.19px]'>Frontend Mentor</p>
+                    <p className='px13 font-medium opacity-75'>Feedback Board</p>
                 </div>
                 {/* Toggle button for mobile menu */}
-                <img onClick={(e) => { setToggleMenu(!toggleMenu) }} className='h-4 w-5 cursor-pointer md:hidden' src={toggleMenu === false ? hamburger : x} alt='mobilemenu' />
+                <img onClick={(e) => { setToggleMenu(!toggleMenu) }} className='h-4 w-4 cursor-pointer md:hidden' src={toggleMenu === false ? hamburger : x} alt='mobilemenu' />
                 {/* Render the MenuMobile component */}
                 <MenuMobile toggleMenu={toggleMenu} />
             </nav>

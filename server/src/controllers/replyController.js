@@ -10,7 +10,7 @@ exports.getAllReplies = async (req, res) => {
         }
 
         res.status(200).json({ message: 'Replies fetched successfully', replies });
-    }catch (error) {
+    } catch (error) {
         console.error('Error fetching replies', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
@@ -21,12 +21,12 @@ exports.getReplyById = async (req, res) => {
         const { id } = req.params;
 
         const reply = await Reply.findById(id);
-        if(!reply) {
-            return res.status(404).json({ message: 'No reply found' })
+        if (!reply) {
+            return res.status(404).json({ message: 'No reply found' });
         }
 
         res.status(200).json({ message: 'Reply fetched successfully', reply });
-    }catch (error) {
+    } catch (error) {
         console.error('Error fetching reply', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
@@ -58,7 +58,7 @@ exports.addReply = async (req, res) => {
         const newReply = new Reply({
             content,
             user: userToUpdate._id,
-            replyTo: {replyType, id}
+            replyTo: { replyType, id }
         });
 
         await newReply.save();
@@ -77,21 +77,21 @@ exports.addReply = async (req, res) => {
 };
 
 exports.updateReplyByID = async (req, res) => {
-    try{
+    try {
         const { id } = req.params;
         const { content } = req.body;
 
         const reply = await Reply.findById(id);
-        if(!reply) {
-            return res.status(404).json({ message: 'No reply found' })
+        if (!reply) {
+            return res.status(404).json({ message: 'No reply found' });
         }
 
-        if(content) reply.content = content;
+        if (content) reply.content = content;
 
         await reply.save();
 
         res.status(200).json({ message: 'Updated reply successfully', reply });
-    }catch (error) {
+    } catch (error) {
         console.error('Error updating reply', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }

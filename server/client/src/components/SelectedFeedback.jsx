@@ -46,11 +46,11 @@ function SelectedFeedback() {
     return (
         <main className='absolute top-0 bg-grey-white left-0 right-0 min-w-screen min-h-full p-6 pb-24 md:px-10 md:pt-14 md:pb-32 xl:pt-20 xl:pb-32 xl:px-80'>
             <div className='flex justify-between mb-6'>
-                <button onClick={() => navigate(-1)} className='flex items-center gap-1'>
+                <button onClick={() => navigate(-1)} className='flex items-center gap-4'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
-                    <p className='text-grey px-3 font-bold hover:text-black md:text-sm'>Go Back</p>
+                    <p className='text-grey px13 font-bold hover:text-black md:text-sm'>Go Back</p>
                 </button>
-                <Link to={"/editfeedback/" + id} className='bg-strong-blue px-3 font-bold text-white rounded-xl py-2 hover:bg-hover-blue md:text-sm'>Edit Feedback</Link>
+                <Link to={"/editfeedback/" + id} className='flex items-center justify-center bg-strong-blue px13 w-[7.438rem] h-10 font-bold text-white rounded-xl py-2 hover:bg-hover-blue md:text-sm'>Edit Feedback</Link>
             </div>
             <div className='bg-white mb-6 p-6 rounded-xl md:flex md:flex-row-reverse md:justify-between'>
                 <button className='hidden absolute items-center gap-1 md:flex md:relative'>
@@ -59,17 +59,17 @@ function SelectedFeedback() {
                 </button>
                 <div className='md:flex md:flex-row-reverse md:gap-10'>
                     <div>
-                        <h2 className='px-3 tracking-[-0.18px] font-bold text-blue mb-2 md:text-lg'>{post ? post.title : null}</h2>
-                        <p className='text-grey px-3 font-normal mb-2 md:text-base'>{post ? post.description : null}</p>
-                        <div className='items-center justify-center bg-grey-white py-1 rounded-xl px-3 inline-block mb-4'>
+                        <h2 className='tracking-[-0.18px] px13 font-bold text-blue mb-2 md:text-lg'>{post ? post.title : null}</h2>
+                        <p className='text-grey px13 font-normal mb-[0.625rem] md:text-base'>{post ? post.description : null}</p>
+                        <div className='flex items-center justify-center bg-grey-white rounded-xl w-[6.938rem] h-[1.875rem] mb-4'>
                             <p className='text-strong-blue font-semibold'>{post ? getCategoryNameById(post.category) : null}</p>
                         </div>
                     </div>
                     <div className='flex justify-between'>
                         <div className='flex justify-between'>
-                        <button onClick={() => handleUpvote(post)} className={post ? post.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-2 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : null}>
-                                <img className='w-2 h-1' src={post ? post.upvotes.users.includes(user) ? whitearrowup : arrowup : null} alt='arrowup' />
-                                <p className={post ? post.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold' : null}>{post ? post.upvotes.totalUpvotes : 0}</p>
+                        <button onClick={() => handleUpvote(post)} className={post ? post.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 w-[4.313rem] h-[2rem] rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 w-[4.313rem] h-[2rem] rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : null}>
+                                <img className='w-2 h-1 ml-4' src={post ? post.upvotes.users.includes(user) ? whitearrowup : arrowup : null} alt='arrowup' />
+                                <p className={post ? post.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold ml-[0.625rem]' : 'px13 tracking-[-0.18px] text-blue font-bold ml-[0.625rem]' : null}>{post ? post.upvotes.totalUpvotes : 0}</p>
                             </button>
                         </div>
                         <button className='flex items-center gap-1 md:hidden md:absolute'>

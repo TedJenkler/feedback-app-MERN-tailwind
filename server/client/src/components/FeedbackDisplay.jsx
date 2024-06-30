@@ -79,19 +79,19 @@ function FeedbackDisplay() {
             <div>
               <p className='px13 font-bold tracking-[-0.18px] text-blue mb-2 md:text-lg'>{value.title}</p>
               <p className='text-grey px13 font-normal mb-2 md:text-base'>{value.description}</p>
-              <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
+              <div className='flex items-center justify-center bg-grey-white w-[6.938rem] h-[1.875rem] rounded-xl text-sm mb-4'>
                 <p className='text-strong-blue px13 font-semibold'>{getCategoryNameById(value.category)}</p>
               </div>
             </div>
             <div className='flex justify-between'>
               <div className='flex justify-between'>
-                <button onClick={() => handleUpvote(value)} className={value.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 py-2 px-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
+                <button onClick={() => handleUpvote(value)} className={value.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 w-[4.313rem] h-[2rem] pl-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white pl-4 text-blue items-center gap-2 w-[4.313rem] h-[2rem] rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
                   <img className='w-2 h-1' src={value.upvotes.users.includes(user) ? whitearrowup : arrowup} alt='arrowup' />
-                  <p className={value.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold'}>{value.upvotes.totalUpvotes}</p>
+                  <p className={value.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold ml-2' : 'px13 tracking-[-0.18px] text-blue font-bold ml-2'}>{value.upvotes.totalUpvotes}</p>
                 </button>
               </div>
-              <button className='flex items-center gap-1 md:hidden'>
-                <img className='h-4 w-5' src={comment} alt='comments' />
+              <button className='flex items-center gap-2 md:hidden'>
+                <img className='h-4 w-[1.125rem]' src={comment} alt='comments' />
                 <p className='px13 tracking-[-0.18px] md:text-base font-bold'>{value.comments.length}</p>
               </button>
             </div>

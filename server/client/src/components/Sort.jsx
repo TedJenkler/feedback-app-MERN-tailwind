@@ -1,48 +1,51 @@
-import React, { useEffect, useState } from 'react'; // Importing React and necessary hooks
-import { useDispatch, useSelector } from 'react-redux'; // Importing useDispatch and useSelector hooks from react-redux
-import { sort } from '../features/state/stateSlice'; // Importing sort action from stateSlice
-import { Link } from 'react-router-dom'; // Importing Link component from react-router-dom
-import lightbulb from "../assets/lightbulb.png"; // Importing image asset
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { sort } from '../features/state/stateSlice';
+import { Link } from 'react-router-dom';
+import SortSelect from './SortSelect';
+import lightbulb from "../assets/lightbulb.png";
 
 function Sort() {
-    const [sortBy, setSortBy] = useState("Most Upvotes"); // State for sorting option
-    const state = useSelector((state) => state.state.data.productRequests); // Getting product requests data from Redux store
-    const dispatch = useDispatch(); // Getting dispatch function from Redux
+    const [sortBy, setSortBy] = useState("Most Upvotes");
+    const dispatch = useDispatch();
 
-    // Counting the number of suggestions
-    const suggestionCount = state.reduce((acc, currentValue) => {
+    const productRequests = useSelector(state => state.state.data.productRequests);
+
+    const suggestionCount = productRequests.reduce((acc, currentValue) => {
         if (currentValue.status === "suggestion") {
             return acc + 1;
         }
         return acc;
     }, 0);
 
-    // Triggering sorting action when sortBy state changes
     useEffect(() => {
         dispatch(sort(sortBy));
-    }, [sortBy]);
+    }, [sortBy, dispatch]);
+
+    const options = [
+        { value: "Most Upvotes", label: "Most Upvotes" },
+        { value: "Least Upvotes", label: "Least Upvotes" },
+        { value: "Most Comments", label: "Most Comments" },
+        { value: "Least Comments", label: "Least Comments" },
+    ];
 
     return (
-        // Sort component UI
-        <div className='sort flex justify-between h-14 items-center text-white px-6 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-20 xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
+        <div className='flex justify-between h-14 items-center text-white px-6 py-2 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-20 xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
             <div className='flex items-center'>
                 <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
-                    <img src={lightbulb} alt='lightbulb' /> {/* Displaying lightbulb image */}
-                    <p className='text-lg tracking-[-0.25px] font-bold text-white xl:whitespace-nowrap md:mr-10'>{suggestionCount} Suggestions</p> {/* Displaying suggestion count */}
+                    <img src={lightbulb} alt='lightbulb' />
+                    <p className='text-lg tracking-[-0.25px] font-bold text-white xl:whitespace-nowrap md:mr-10'>{suggestionCount} Suggestions</p>
                 </div>
-                <div className='hover:opacity-75'>
-                    <label className='px13 text-white2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>
-                    {/* Dropdown to select sorting option */}
-                    <select className='sort bg-dark-blue px13 text-white2 font-bold w-32 mr-4 md:text-sm' onChange={(e) => {setSortBy(e.target.value)}}>
-                        <option className='hover:text-purple' value="Most Upvotes"> Most Upvotes</option>
-                        <option className='hover:text-purple' value="Least Upvotes"> Least Upvotes</option>
-                        <option className='hover:text-purple' value="Most Comments"> Most Comments</option>
-                        <option className='hover:text-purple' value="Least Comments"> Least Comments</option>
-                    </select>
+                <div className='flex hover:opacity-75'>
+                    <label className='px-13 text-white2 mr-2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>
+                    <SortSelect
+                        value={sortBy}
+                        onChange={setSortBy}
+                        options={options}
+                    />
                 </div>
             </div>
-            {/* Link to add feedback */}
-            <Link to="/addfeedback" className='px13 bg-purple rounded-xl px-4 py-2 font-bold whitespace-nowrap hover:bg-hover-purple md:text-sm'>+ Add Feedback</Link>
+            <Link to="/addfeedback" className='flex items-center justify-center bg-purple px13 rounded-xl h-10 w-[8.375rem] font-bold whitespace-nowrap hover:bg-hover-purple md:text-sm'>+ Add Feedback</Link>
         </div>
     );
 }
