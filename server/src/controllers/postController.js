@@ -41,7 +41,7 @@ exports.addPost = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        const checkCategory = await Category.findOne({ name: category });
+        const checkCategory = await Category.findById(category);
         if(!checkCategory) {
             return res.status(404).json({ message: 'Category not found' });
         }

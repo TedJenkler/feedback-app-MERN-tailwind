@@ -131,7 +131,20 @@ export const deletePost = createAsyncThunk(
   async ({ id }, { rejectWithValue }) => {
     try {
       const response = await axios.delete(`http://localhost:2000/post/delete/${id}`)
+      return response.data;
     }catch(error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const addPost = createAsyncThunk(
+  'post/add',
+  async ( formData , { rejectWithValue }) => {
+    try {
+      const response = await axios.post('http://localhost:2000/post/add', formData);
+      return response.data;
+    }catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
@@ -289,8 +302,19 @@ const socialSlice = createSlice({
       .addCase(deletePost.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      });
-      
+      })
+      .addCase(addPost.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(addPost.fulfilled, (state) => {
+        state.status = 'succeeded';
+        state.error = null;
+      })
+      .addCase(addPost.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
   }
 });
 
