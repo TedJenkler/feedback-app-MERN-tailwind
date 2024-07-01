@@ -38,28 +38,30 @@ function CommentMap({ id }) {
     return (
         <div>
             {postComments.length === 0 && <p>No comments found.</p>}
-            {postComments.map(comment => {
+            {postComments.map((comment, index) => {
                 const user = users.find(item => item._id === comment.user);
 
                 if (!user) return null;
 
                 return (
-                    <div key={comment._id} className='mb-4'>
-                        <div className='flex items-center space-x-4'>
-                            <img className='rounded-full h-10 w-10' src={user.image} alt={`${user.firstname} ${user.lastname}`} />
-                            <div>
-                                <p className='font-bold'>{`${user.firstname} ${user.lastname}`}</p>
-                                <p>@{user.username}</p>
+                    <div key={comment._id} className={`mb-6 ${postComments.length - 1 === index ? "" : "border-b border-border-grey/25"} pb-6`}>
+                        <div className='flex justify-between'>
+                            <div className='flex gap-4'>
+                                <img className='rounded-full h-10 w-10' src={"../src" + user.img} alt={`${user.firstname} ${user.lastname}`} />
+                                <div className=''>
+                                    <p className='font-bold text-blue px13 tracking-[-0.18px] capitalize'>{`${user.firstname} ${user.lastname}`}</p>
+                                    <p className='font-normal text-grey px13 capitalize'>@{user.username}</p>
+                                </div>
                             </div>
                             <button
                                 onClick={() => handleToggleReply(comment._id)}
-                                className='text-blue-500 font-semibold hover:underline'
+                                className='text-strong-blue px13 font-semibold hover:underline'
                             >
                                 {replyingTo === comment._id ? 'Cancel' : 'Reply'}
                             </button>
                         </div>
-                        <div className='mt-2'>
-                            <p>{comment.content}</p>
+                        <div className='pt-4'>
+                            <p className='px13 leading-[auto] text-grey'>{comment.content}</p>
                         </div>
                         {replyingTo === comment._id && (
                             <div className='mt-2'>

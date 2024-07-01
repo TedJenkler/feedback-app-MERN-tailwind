@@ -29,6 +29,7 @@ export default {
         'hover-grey': '#656EA3',
         'hover-red': '#E98888',
         'white2': '#F2F4FE',
+        'border-grey': '#979797'
       },
     },
   },

@@ -55,10 +55,15 @@ exports.addReply = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
+        const replyUser = await User.findById(parentDocument.user);
+        if(!replyUser) {
+            res.status(404).json({ message: 'User not found' });
+        }
+
         const newReply = new Reply({
             content,
             user: userToUpdate._id,
-            replyTo: { replyType, id }
+            replyTo: { replyType, id, user: replyUser.username }
         });
 
         await newReply.save();
