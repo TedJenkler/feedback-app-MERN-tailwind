@@ -15,6 +15,7 @@ function AddComment({ postId }) {
 
     const handlePostComment = (e) => {
         e.preventDefault();
+        if (commentContent.trim() === '') return;
         dispatch(addComment({ content: commentContent, user: username, postId }));
         setCommentContent('');
     };
@@ -23,20 +24,21 @@ function AddComment({ postId }) {
 
     return (
         <div className='bg-white p-6 rounded-xl md:px-8'>
-            <h1 className='text-lg tracking-[-0.25px] font-bold text-blue mb-6'>Add Comment</h1>
+            <h1 className='text-lg font-bold text-blue mb-6'>Add Comment</h1>
             <form onSubmit={handlePostComment}>
                 <textarea
                     placeholder='Type your comment here'
                     value={commentContent}
                     onChange={handleInputChange}
                     maxLength={maxCharacters}
-                    className='bg-grey-white2 px13 leading-[auto] w-full h-20 mb-4 text-grey p-4 rounded-[5px] px-4 focus:outline-strong-blue md:px15'
+                    className='bg-grey-white2 px-4 py-4 rounded-[5px] w-full h-20 mb-4 text-grey focus:outline-strong-blue md:px-15 md:py-4'
                 ></textarea>
                 <div className='flex items-center justify-between'>
-                    <p className='px13 text-grey font-normal md:px15'>{remainingCharacters} Characters left</p>
+                    <p className='text-grey font-normal px-13 md:px-15'>{remainingCharacters} Characters left</p>
                     <button
                         type="submit"
-                        className='flex items-center justify-center px13 font-bold bg-purple text-white h-10 w-[7.438rem] rounded-[10px] hover:bg-hover-purple md:text-sm md:h-[2.75rem] md:w-[8.875rem]'
+                        className='flex items-center justify-center px-13 font-bold bg-purple text-white h-10 rounded-[10px] w-[7.438rem] hover:bg-hover-purple md:text-sm md:h-[2.75rem] md:w-[8.875rem]'
+                        disabled={commentContent.trim() === ''}
                     >
                         Post Comment
                     </button>

@@ -34,6 +34,10 @@ const AddNewFeedback = () => {
             ...formData,
             [name]: value
         });
+        setErrors({
+            ...errors,
+            [name]: false
+        });
     };
 
     const handleSubmit = (e) => {
@@ -72,7 +76,7 @@ const AddNewFeedback = () => {
                         type='text'
                         value={formData.title}
                         onChange={handleInputChange}
-                        className={errors.title ? 'w-full px13 bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px15' : 'w-full px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl md:px15'}
+                        className={`w-full px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue rounded-xl ${errors.title ? 'border-2 border-red' : ''}`}
                         placeholder='Add a title'
                     />
                     {errors.title && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
@@ -90,7 +94,7 @@ const AddNewFeedback = () => {
                         name='description'
                         value={formData.description}
                         onChange={handleInputChange}
-                        className={errors.description ? 'w-full px13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px15' : 'w-full px-13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl md:px15'}
+                        className={`w-full px13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl ${errors.description ? 'border-2 border-red' : ''}`}
                         placeholder='Add details'
                     ></textarea>
                     {errors.description && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
