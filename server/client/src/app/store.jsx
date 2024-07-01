@@ -4,9 +4,9 @@ import userSlice from "../features/user/userSlice";
 import socialSlice from "../features/social/socialSlice";
 
 export const store = configureStore({
-    reducer: {
-        state: stateSlice,
-        user: userSlice,
-        social: socialSlice
-    },
-})
+  reducer: {
+    state: stateSlice,
+    user: userSlice,
+    social: socialSlice
+  }
+});

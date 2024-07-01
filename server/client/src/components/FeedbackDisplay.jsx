@@ -67,14 +67,13 @@ function FeedbackDisplay() {
   };
 
   return (
-    <main className='bg-grey-white min-h-screen py-8 pb-28 xl:pr-0 xl:pt-6'>
+    <main className='bg-grey-white min-h-screen py-8 pb-28 md:pt-6 xl:pr-0 xl:pt-6'>
       {filteredAndSortedRequests.map((value) => (
         <div key={value._id} onClick={() => {navigate("/feedback/" + value._id)}} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mx-0 xl:ml-8'>
           <button className='hidden absolute items-center gap-1 md:flex md:relative'>
             <img className='h-4 w-5' src={comment} alt='comments' />
             <p>{value.comments.length}</p>
           </button>
-          {console.log(value)}
           <div className='md:flex md:flex-row-reverse md:gap-10'>
             <div>
               <p className='px13 font-bold tracking-[-0.18px] text-blue mb-2 md:text-lg'>{value.title}</p>
@@ -87,7 +86,7 @@ function FeedbackDisplay() {
               <div className='flex justify-between'>
                 <button onClick={() => handleUpvote(value)} className={value.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 w-[4.313rem] h-[2rem] pl-4 rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white pl-4 text-blue items-center gap-2 w-[4.313rem] h-[2rem] rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue'}>
                   <img className='w-2 h-1' src={value.upvotes.users.includes(user) ? whitearrowup : arrowup} alt='arrowup' />
-                  <p className={value.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold ml-2' : 'px13 tracking-[-0.18px] text-blue font-bold ml-2'}>{value.upvotes.totalUpvotes}</p>
+                  <p className={value.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold ml-2 md:ml-0' : 'px13 tracking-[-0.18px] text-blue font-bold ml-2 md:ml-0'}>{value.upvotes.totalUpvotes}</p>
                 </button>
               </div>
               <button className='flex items-center gap-2 md:hidden'>

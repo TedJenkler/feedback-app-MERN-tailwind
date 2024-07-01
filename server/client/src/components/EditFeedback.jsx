@@ -80,7 +80,7 @@ const EditFeedback = () => {
     return (
         <main className='bg-grey-white2 p-6 h-full pt-[2.125rem] pb-20 md:px-28 md:py-14 xl:px-96 xl:pt-24 xl:pb-44'>
             <div>
-                <img className='absolute left-12 top-20 md:left-40 md:top-28 md:w-14 md:h-14 xl:left-96 xl:ml-10 xl:top-36' src={editicon} alt='editicon' />
+                <img className='absolute left-12 top-20 md:left-40 md:top-24 md:w-14 md:h-14 xl:left-96 xl:ml-10 xl:top-36' src={editicon} alt='editicon' />
                 <Link to="/feedback-app-tailwind-vite/" className='flex items-center gap-2 mb-[2.125rem]'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                     <p className='text-grey px13 font-bold md:text-sm hover:text-black'>Go Back</p>
@@ -96,7 +96,7 @@ const EditFeedback = () => {
                             type='text'
                             value={formData.title}
                             onChange={handleInputChange}
-                            className={errorTitle ? 'w-full px13 text-blue bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px-15' : 'w-full text-blue px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl md:px-15'}
+                            className={errorTitle ? 'w-full px13 text-blue bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px15' : 'w-full text-blue px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl md:px15'}
                             placeholder='Add a title'
                         />
                         {errorTitle && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
@@ -119,15 +119,17 @@ const EditFeedback = () => {
                             name='description'
                             value={formData.description}
                             onChange={handleInputChange}
-                            className={errorDetail ? 'w-full px13 text-blue bg-grey-white2 h-32 p-4 focus:outline-strong-blue border-2 border-red rounded-xl md:px-15' : 'w-full px13 text-blue bg-grey-white2 h-32 p-4 focus:outline-strong-blue rounded-xl md:px-15'}
+                            className={errorDetail ? 'w-full px13 text-blue bg-grey-white2 h-32 p-4 focus:outline-strong-blue border-2 border-red rounded-xl md:px15' : 'w-full px13 text-blue bg-grey-white2 h-32 p-4 focus:outline-strong-blue rounded-xl md:px15'}
                             placeholder='Add details'
                         ></textarea>
-                        {errorDetail && <p className='text-red px-13 md:text-sm'>Can’t be empty</p>}
+                        {errorDetail && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
                     </div>
                     <div className='flex flex-col md:flex-row-reverse md:justify-between md:gap-4 md:items-center'>
-                        <button type="button" onClick={handleSaveChanges} className='flex justify-center items-center px13 bg-purple text-center text-white mb-4 w-full h-10 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 hover:bg-hover-purple md:text-sm'>Save Changes</button>
-                        <Link to="/feedback-app-tailwind-vite/" className='flex justify-center items-center px13 bg-blue mb-4 text-white w-full h-10 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey md:text-sm'>Cancel</Link>
-                        <button type="button" onClick={handleDelete} className='flex justify-center items-center px13 bg-red text-white w-full h-10 rounded-xl text-center text-sm font-bold md:mr-28 md:py-2 md:mb-0 md:px-5 hover:bg-hover-red md:text-sm'>Delete</button>
+                        <div className='flex flex-row-reverse gap-4'>
+                            <button type="button" onClick={handleSaveChanges} className='flex justify-center items-center px13 bg-purple text-center text-white mb-4 w-full h-10 rounded-xl font-bold text-sm md:mb-0 hover:bg-hover-purple md:text-sm md:max-w-[9rem] md:min-w-[9rem] min-h-[2.75rem]'>Save Changes</button>
+                            <Link to="/feedback-app-tailwind-vite/" className='flex justify-center items-center px13 bg-blue mb-4 text-white w-full h-10 rounded-xl text-center text-sm font-bold md:mb-0 hover:bg-hover-grey md:text-sm md:max-w-[5.813rem] md:min-w-[5.813rem] min-h-[2.75rem]'>Cancel</Link>
+                        </div>
+                        <button type="button" onClick={handleDelete} className='flex justify-center items-center px13 bg-red text-white w-full h-10 rounded-xl text-center text-sm font-bold md:mb-0 hover:bg-hover-red md:text-sm md:max-w-[5.813rem] min-h-[2.75rem]'>Delete</button>
                     </div>
                 </div>
             </div>

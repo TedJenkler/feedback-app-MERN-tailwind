@@ -61,7 +61,7 @@ function CommentMap({ id }) {
                             </button>
                         </div>
                         <div className='pt-4'>
-                            <p className='px13 leading-[auto] text-grey'>{comment.content}</p>
+                            <p className='px13 leading-[auto] text-grey md:ml-14'>{comment.content}</p>
                         </div>
                         {replyingTo === comment._id && (
                             <div className='mt-2'>

@@ -59,7 +59,7 @@ function ReplyReplyMap({ replies }) {
                             </button>
                         </div>
                         <div className='mt-2'>
-                            <p className='px13 leading-[auto] text-grey'><span className='px13 leading-[auto] text-purple font-bold'>@{reply.replyTo.user}</span> {reply.content}</p>
+                            <p className='px13 leading-[auto] text-grey md:ml-14'><span className='px13 leading-[auto] text-purple font-bold'>@{reply.replyTo.user}</span> {reply.content}</p>
                         </div>
                         {replyingTo === reply._id && (
                             <div className='mt-2'>

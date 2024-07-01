@@ -8,75 +8,68 @@ import commentIcon from "../assets/comment.png";
 import orange from "../assets/orange.png";
 import purple from "../assets/purple.png";
 import blue from "../assets/blue.png";
-import { upvote } from '../features/state/stateSlice';
+import { upvoteToggle, getAllPosts } from '../features/social/socialSlice';
 import whitearrowup from "../assets/whitearrowup.png";
 
 function DesktopRoadmap() {
-  // Selecting product requests and upvotes from Redux state
-  const productRequests = useSelector((state) => state.state.data.productRequests);
-  const upvotes = useSelector((state) => state.state.isUpvoted);
-
-  // Redux dispatch
+  const posts = useSelector((state) => state.social.posts);
+  const categories = useSelector((state) => state.social.categories);
+  const upvotes = useSelector((state) => state.social.upvotes);
   const dispatch = useDispatch();
+  const user = localStorage.getItem('user');
+  const username = localStorage.getItem('username');
 
-  // State to manage active upvote
-  const [activeUpvote, setActiveUpvote] = useState();
-
-  // Effect to dispatch upvote action when activeUpvote changes
   useEffect(() => {
-    if (activeUpvote) {
-      dispatch(upvote({ id: activeUpvote }));
-    }
-  }, [activeUpvote, dispatch]);
+    dispatch(getAllPosts());
+  }, [dispatch]);
 
-  // Handle upvote button click
   const handleUpvoteClick = (e, id) => {
     e.preventDefault();
-    e.stopPropagation(); // Prevent event propagation
-    setActiveUpvote(id); // Set the active upvote
+    e.stopPropagation();
+    const feedback = posts.find(post => post._id === id);
+    if (!feedback) return;
+
+    const isUpvoted = feedback.upvotes.users.includes(user);
+    dispatch(upvoteToggle({ toggle: !isUpvoted, id, username })).then(() => {
+      dispatch(getAllPosts());
+    });
+  };
+
+  const getCategoryLabel = (categoryId) => {
+    const category = categories.find(cat => cat._id === categoryId);
+    return category ? category.name : "General";
   };
 
   return (
     <main className='bg-grey-white2 px-10 pt-14 pb-24'>
-      {/* Navigation */}
       <nav className='flex justify-between bg-blue text-white p-6 items-center rounded-xl mb-8 xl:mx-40'>
         <div>
-          {/* Link to go back */}
-          <Link className='mb-1 flex items-center gap-2' to="/feedback-app-tailwind-vite/">
+          <Link className='mb-1 flex items-center gap-2' to="/">
             <img src={whiteArrow} alt='back btn' />
             <p className='text-sm font-bold hover:underline'>Go Back</p>
           </Link>
-          {/* Roadmap title */}
           <h1 className='text-lg font-bold md:text-2xl tracking-[-0.33px]'>Roadmap</h1>
         </div>
-        {/* Link to add feedback */}
         <Link to="/addfeedback" className='bg-purple text-sm font-bold text-white rounded-xl py-2 px-4 hover:bg-hover-purple'>+ Add Feedback</Link>
       </nav>
 
       <div className='flex gap-3 xl:mx-40 xl:gap-8'>
-        {/* Render Planned Requests */}
         <div className='w-1/3'>
-          <h2 className='text-blue text-sm font-bold mb-1 tracking-[-0.19px]'>Planned ({productRequests.filter(request => request.status === "planned").length})</h2>
+          <h2 className='text-blue text-sm font-bold mb-1 tracking-[-0.19px]'>Planned ({posts.filter(request => request.status === "planned").length})</h2>
           <p className='text-sm text-grey font-normal mb-6'>Ideas prioritized for research</p>
-          {/* Map through planned requests */}
-          {productRequests.filter(request => request.status === "planned").map((feedback) => (
-            <Link to={`/feedback/${feedback.id}`} key={uuidv4()}>
+          {posts.filter(request => request.status === "planned").map((feedback) => (
+            <Link to={`/feedback/${feedback._id}`} key={uuidv4()}>
               <div className='flex flex-col bg-white mb-6 p-6 rounded-xl border-t-8 border-orange h-72 justify-between items-start'>
-                {/* Display status */}
                 <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={orange} alt="orange oval" /><p className='px13 text-grey'>Planned</p></div>
-                {/* Display feedback title */}
                 <h2 className='font-bold text-blue mb-2 hover:text-strong-blue cursor-pointer px13 tracking-[-0.18px]'>{feedback.title}</h2>
-                {/* Display feedback description */}
                 <p className='text-grey px13 font-normal mb-2'>{feedback.description}</p>
-                {/* Display category */}
                 <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
-                  <p className='text-strong-blue font-semibold px13'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
+                  <p className='text-strong-blue font-semibold px13'>{getCategoryLabel(feedback.category)}</p>
                 </div>
-                {/* Upvote and comment buttons */}
-                <div onClick={(e) => handleUpvoteClick(e, feedback.id)} className='flex justify-between w-full'>
-                  <button className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
-                    <img className='w-2 h-1' src={upvotes.includes(feedback.id) ? whitearrowup : arrowUp} alt='arrowup' />
-                    <p className={upvotes.includes(feedback.id) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold' }>{feedback.upvotes}</p>
+                <div onClick={(e) => handleUpvoteClick(e, feedback._id)} className='flex justify-between w-full'>
+                  <button className={feedback.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
+                    <img className='w-2 h-1' src={feedback.upvotes.users.includes(user) ? whitearrowup : arrowUp} alt='arrowup' />
+                    <p className={feedback.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold'}>{feedback.upvotes.totalUpvotes}</p>
                   </button>
                   <button className='flex items-center gap-1'>
                     <img className='h-4 w-5' src={commentIcon} alt='comments' />
@@ -88,29 +81,22 @@ function DesktopRoadmap() {
           ))}
         </div>
 
-        {/* Render In Progress Requests */}
         <div className='w-1/3'>
-          <h2 className='text-blue text-sm tracking-[-0.19px] font-bold mb-1'>In Progress ({productRequests.filter(request => request.status === "in-progress").length})</h2>
+          <h2 className='text-blue text-sm tracking-[-0.19px] font-bold mb-1'>In Progress ({posts.filter(request => request.status === "in-progress").length})</h2>
           <p className='text-sm text-grey font-normal mb-6'>Ideas being actively worked on</p>
-          {/* Map through in-progress requests */}
-          {productRequests.filter(request => request.status === "in-progress").map((feedback) => (
-            <Link to={`/feedback/${feedback.id}`} key={uuidv4()}>
+          {posts.filter(request => request.status === "in-progress").map((feedback) => (
+            <Link to={`/feedback/${feedback._id}`} key={uuidv4()}>
               <div className='flex flex-col bg-white mb-6 p-6 rounded-xl border-t-8 border-purple h-72 justify-between items-start'>
-                {/* Display status */}
                 <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={purple} alt="purple oval" /><p className='px13'>Progress</p></div>
-                {/* Display feedback title */}
                 <h2 className='px13 tracking-[-0.18px] font-bold text-blue mb-2 hover:text-strong-blue cursor-pointer'>{feedback.title}</h2>
-                {/* Display feedback description */}
                 <p className='text-grey px13 font-normal mb-2'>{feedback.description}</p>
-                {/* Display category */}
                 <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
-                  <p className='px13 text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
+                  <p className='px13 text-strong-blue font-semibold'>{getCategoryLabel(feedback.category)}</p>
                 </div>
-                {/* Upvote and comment buttons */}
-                <div onClick={(e) => handleUpvoteClick(e, feedback.id)} className='flex justify-between w-full'>
-                  <button className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
-                    <img className='w-2 h-1' src={upvotes.includes(feedback.id) ? whitearrowup : arrowUp} alt='arrowup' />
-                    <p className={upvotes.includes(feedback.id) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold' }>{feedback.upvotes}</p>
+                <div onClick={(e) => handleUpvoteClick(e, feedback._id)} className='flex justify-between w-full'>
+                  <button className={feedback.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
+                    <img className='w-2 h-1' src={feedback.upvotes.users.includes(user) ? whitearrowup : arrowUp} alt='arrowup' />
+                    <p className={feedback.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold'}>{feedback.upvotes.totalUpvotes}</p>
                   </button>
                   <button className='flex items-center gap-1'>
                     <img className='h-4 w-5' src={commentIcon} alt='comments' />
@@ -122,29 +108,22 @@ function DesktopRoadmap() {
           ))}
         </div>
 
-        {/* Render Live Requests */}
         <div className='w-1/3'>
-          <h2 className='text-blue text-sm tracking-[-0.19px] font-bold mb-1'>Live ({productRequests.filter(request => request.status === "live").length})</h2>
+          <h2 className='text-blue text-sm tracking-[-0.19px] font-bold mb-1'>Live ({posts.filter(request => request.status === "live").length})</h2>
           <p className='text-sm text-grey font-normal mb-6'>Ideas currently implemented</p>
-          {/* Map through live requests */}
-          {productRequests.filter(request => request.status === "live").map((feedback) => (
-            <Link to={`/feedback/${feedback.id}`} key={uuidv4()}>
+          {posts.filter(request => request.status === "live").map((feedback) => (
+            <Link to={`/feedback/${feedback._id}`} key={uuidv4()}>
               <div className='flex flex-col  items-start bg-white mb-6 p-6 rounded-xl border-t-8 border-light-blue h-72 justify-between'>
-                {/* Display status */}
                 <div className='flex items-center gap-2 mb-4'><img className='h-2 w-2' src={blue} alt="blue oval" /><p>Live</p></div>
-                {/* Display feedback title */}
                 <h2 className='px13 tracking-[-0.18px] font-bold text-blue mb-2 hover:text-strong-blue cursor-pointer'>{feedback.title}</h2>
-                {/* Display feedback description */}
                 <p className='text-grey px13 font-normal mb-2'>{feedback.description}</p>
-                {/* Display category */}
                 <div className='items-center justify-center bg-grey-white py-1 px-4 rounded-xl text-sm inline-block mb-4'>
-                  <p className='px13 text-strong-blue font-semibold'>{feedback.category[0].toLocaleUpperCase() + feedback.category.substr(1)}</p>
+                  <p className='px13 text-strong-blue font-semibold'>{getCategoryLabel(feedback.category)}</p>
                 </div>
-                {/* Upvote and comment buttons */}
-                <div onClick={(e) => handleUpvoteClick(e, feedback.id)} className='flex justify-between w-full'>
-                  <button className={upvotes.includes(feedback.id) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
-                    <img className='w-2 h-1' src={upvotes.includes(feedback.id) ? whitearrowup : arrowUp} alt='arrowup' />
-                    <p className={upvotes.includes(feedback.id) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold' }>{feedback.upvotes}</p>
+                <div onClick={(e) => handleUpvoteClick(e, feedback._id)} className='flex justify-between w-full'>
+                  <button className={feedback.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue' : 'flex bg-grey-white items-center gap-2 py-2 px-3 rounded-xl hover:bg-hover-blue'}>
+                    <img className='w-2 h-1' src={feedback.upvotes.users.includes(user) ? whitearrowup : arrowUp} alt='arrowup' />
+                    <p className={feedback.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold' : 'px13 tracking-[-0.18px] text-blue font-bold'}>{feedback.upvotes.totalUpvotes}</p>
                   </button>
                   <button className='flex items-center gap-1'>
                     <img className='h-4 w-5' src={commentIcon} alt='comments' />
@@ -161,4 +140,3 @@ function DesktopRoadmap() {
 }
 
 export default DesktopRoadmap;
-

@@ -30,7 +30,7 @@ function Sort() {
     ];
 
     return (
-        <div className='flex justify-between h-14 items-center text-white px-6 py-2 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-20 xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
+        <div className='flex justify-between h-14 items-center text-white px-6 py-2 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-[4.5rem] xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
             <div className='flex items-center'>
                 <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                     <img src={lightbulb} alt='lightbulb' />
@@ -45,7 +45,7 @@ function Sort() {
                     />
                 </div>
             </div>
-            <Link to="/addfeedback" className='flex items-center justify-center bg-purple px13 rounded-xl h-10 w-[8.375rem] font-bold whitespace-nowrap hover:bg-hover-purple md:text-sm'>+ Add Feedback</Link>
+            <Link to="/addfeedback" className='flex items-center justify-center bg-purple px13 rounded-xl h-10 w-[8.375rem] font-bold whitespace-nowrap hover:bg-hover-purple md:text-sm md:w-[9.875rem] md:h-[2.75rem]'>+ Add Feedback</Link>
         </div>
     );
 }

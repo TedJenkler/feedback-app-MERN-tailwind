@@ -30,13 +30,13 @@ function AddComment({ postId }) {
                     value={commentContent}
                     onChange={handleInputChange}
                     maxLength={maxCharacters}
-                    className='bg-grey-white2 px13 leading-[auto] w-full h-20 mb-4 text-grey p-4 rounded-[5px] px-4 focus:outline-strong-blue md:px-15'
+                    className='bg-grey-white2 px13 leading-[auto] w-full h-20 mb-4 text-grey p-4 rounded-[5px] px-4 focus:outline-strong-blue md:px15'
                 ></textarea>
                 <div className='flex items-center justify-between'>
-                    <p className='px13 text-grey font-normal md:px-15'>{remainingCharacters} Characters left</p>
+                    <p className='px13 text-grey font-normal md:px15'>{remainingCharacters} Characters left</p>
                     <button
                         type="submit"
-                        className='flex items-center justify-center px13 font-bold bg-purple text-white h-10 w-[7.438rem] rounded-[10px] hover:bg-hover-purple md:text-sm'
+                        className='flex items-center justify-center px13 font-bold bg-purple text-white h-10 w-[7.438rem] rounded-[10px] hover:bg-hover-purple md:text-sm md:h-[2.75rem] md:w-[8.875rem]'
                     >
                         Post Comment
                     </button>

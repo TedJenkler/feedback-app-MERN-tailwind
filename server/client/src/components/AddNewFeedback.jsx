@@ -72,7 +72,7 @@ const AddNewFeedback = () => {
                         type='text'
                         value={formData.title}
                         onChange={handleInputChange}
-                        className={errors.title ? 'w-full px13 bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px-15' : 'w-full px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl md:px-15'}
+                        className={errors.title ? 'w-full px13 bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px15' : 'w-full px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl md:px15'}
                         placeholder='Add a title'
                     />
                     {errors.title && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
@@ -90,14 +90,14 @@ const AddNewFeedback = () => {
                         name='description'
                         value={formData.description}
                         onChange={handleInputChange}
-                        className={errors.description ? 'w-full px13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px-15' : 'w-full px-13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl md:px-15'}
+                        className={errors.description ? 'w-full px13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px15' : 'w-full px-13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl md:px15'}
                         placeholder='Add details'
                     ></textarea>
                     {errors.description && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
                 </div>
                 <div className='flex flex-col md:flex-row-reverse md:gap-4 md:items-center'>
-                    <button type="submit" className='flex items-center justify-center px13 bg-purple text-center text-white mb-4 w-full h-10 rounded-xl font-bold text-sm md:py-2 md:mb-0 md:px-5 hover:bg-hover-purple md:text-sm'>Add Feedback</button>
-                    <Link to="/feedback-app-tailwind-vite/" className='flex items-center justify-center px13 bg-blue text-white w-full h-10 rounded-xl text-center text-sm font-bold md:py-2 md:mb-0 md:px-5 hover:bg-hover-grey md:text-sm'>Cancel</Link>
+                    <button type="submit" className='flex items-center justify-center px13 bg-purple text-center text-white mb-4 w-full h-10 rounded-xl font-bold text-sm md:w-[9rem] md:h-[2.75rem] md:mb-0 hover:bg-hover-purple md:text-sm'>Add Feedback</button>
+                    <Link to="/feedback-app-tailwind-vite/" className='flex items-center justify-center px13 bg-blue text-white w-full h-10 rounded-xl text-center text-sm font-bold md:mb-0 md:w-[5.813rem] md:h-[2.75rem] hover:bg-hover-grey md:text-sm'>Cancel</Link>
                 </div>
             </form>
         </main>

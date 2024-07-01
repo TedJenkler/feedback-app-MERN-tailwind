@@ -50,7 +50,7 @@ function SelectedFeedback() {
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                     <p className='text-grey px13 font-bold hover:text-black md:text-sm'>Go Back</p>
                 </button>
-                <Link to={"/editfeedback/" + id} className='flex items-center justify-center bg-strong-blue px13 w-[7.438rem] h-10 font-bold text-white rounded-xl py-2 hover:bg-hover-blue md:text-sm'>Edit Feedback</Link>
+                <Link to={"/editfeedback/" + id} className='flex items-center justify-center bg-strong-blue px13 w-[7.438rem] h-10 font-bold text-white rounded-xl hover:bg-hover-blue md:text-sm md:w-[8.875rem] md:h-[2.75rem]'>Edit Feedback</Link>
             </div>
             <div className='bg-white mb-6 p-6 rounded-xl md:flex md:flex-row-reverse md:justify-between'>
                 <button className='hidden absolute items-center gap-1 md:flex md:relative'>
@@ -68,8 +68,8 @@ function SelectedFeedback() {
                     <div className='flex justify-between'>
                         <div className='flex justify-between'>
                         <button onClick={() => handleUpvote(post)} className={post ? post.upvotes.users.includes(user) ? 'flex bg-strong-blue text-white items-center gap-2 w-[4.313rem] h-[2rem] rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : 'flex bg-grey-white text-blue items-center gap-2 w-[4.313rem] h-[2rem] rounded-xl md:flex-col md:h-12 md:w-10 md:p-2 hover:bg-hover-blue' : null}>
-                                <img className='w-2 h-1 ml-4' src={post ? post.upvotes.users.includes(user) ? whitearrowup : arrowup : null} alt='arrowup' />
-                                <p className={post ? post.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold ml-[0.625rem]' : 'px13 tracking-[-0.18px] text-blue font-bold ml-[0.625rem]' : null}>{post ? post.upvotes.totalUpvotes : 0}</p>
+                                <img className='w-2 h-1 ml-4 md:ml-0' src={post ? post.upvotes.users.includes(user) ? whitearrowup : arrowup : null} alt='arrowup' />
+                                <p className={post ? post.upvotes.users.includes(user) ? 'px13 tracking-[-0.18px] text-white font-bold ml-[0.625rem] md:ml-0' : 'px13 tracking-[-0.18px] text-blue font-bold ml-[0.625rem] md:ml-0' : null}>{post ? post.upvotes.totalUpvotes : 0}</p>
                             </button>
                         </div>
                         <button className='flex items-center gap-1 md:hidden md:absolute'>
