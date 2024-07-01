@@ -1,26 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategories } from '../features/social/socialSlice';
 
-const CategorySelect = ({ value, onChange, label = 'Category', description = 'Choose a category for your feedback' }) => {
-    const dispatch = useDispatch();
-    const categories = useSelector((state) => state.social.categories);
+const statusOptions = [
+    { value: 'planned', label: 'Planned' },
+    { value: 'in-progress', label: 'In-Progress' },
+    { value: 'live', label: 'Live' },
+];
 
+const StatusSelect = ({ value, onChange, label = 'Update Status', description = 'Change feature state' }) => {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef(null);
 
-    const handleInputChange = (categoryId) => {
-        onChange(categoryId);
+    const handleInputChange = (status) => {
+        onChange(status);
         setIsOpen(false);
     };
 
     const toggleSelect = () => {
         setIsOpen(!isOpen);
     };
-
-    useEffect(() => {
-        dispatch(getAllCategories());
-    }, [dispatch]);
 
     useEffect(() => {
         const closeSelect = (event) => {
@@ -36,7 +33,7 @@ const CategorySelect = ({ value, onChange, label = 'Category', description = 'Ch
 
     return (
         <div ref={containerRef} className='relative mb-6'>
-            <label htmlFor='category' className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>
+            <label htmlFor='status' className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>
                 {label}
             </label>
             <p className='px13 text-grey font-normal mb-4 md:text-sm'>
@@ -46,9 +43,7 @@ const CategorySelect = ({ value, onChange, label = 'Category', description = 'Ch
                 className='w-full px13 bg-grey-white2 h-12 px-4 flex items-center justify-between focus:outline-strong-blue rounded-xl md:px15 cursor-pointer'
                 onClick={toggleSelect}
             >
-                {value && (
-                    <span className='text-blue'>{categories.find((category) => category._id === value)?.name}</span>
-                )}
+                <span className='text-blue'>{statusOptions.find((option) => option.value === value)?.label || 'Select status'}</span>
                 <svg
                     xmlns='http://www.w3.org/2000/svg'
                     className={`h-5 w-5 ${isOpen ? 'transform rotate-180' : ''}`}
@@ -63,13 +58,13 @@ const CategorySelect = ({ value, onChange, label = 'Category', description = 'Ch
             </div>
             {isOpen && (
                 <div className='absolute mt-1 w-full bg-grey-white2 shadow-lg rounded-xl z-10'>
-                    {categories.map((category) => (
+                    {statusOptions.map((option) => (
                         <div
-                            key={category._id}
+                            key={option.value}
                             className='px13 text-blue py-2 cursor-pointer hover:bg-gray-100 text-center'
-                            onClick={() => handleInputChange(category._id)}
+                            onClick={() => handleInputChange(option.value)}
                         >
-                            {category.name}
+                            {option.label}
                         </div>
                     ))}
                 </div>
@@ -78,4 +73,4 @@ const CategorySelect = ({ value, onChange, label = 'Category', description = 'Ch
     );
 };
 
-export default CategorySelect;
+export default StatusSelect;

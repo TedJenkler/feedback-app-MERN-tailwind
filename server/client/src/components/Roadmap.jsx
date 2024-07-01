@@ -10,21 +10,21 @@ function Roadmap() {
     console.log(status)
 
     const plannedCount = status.reduce((acc, currentValue) => {
-        if (currentValue.status === "Planned") {
+        if (currentValue.status === "Planned" || currentValue.status === "planned") {
             return acc + 1;
         }
         return acc;
     }, 0);
 
     const inProgressCount = status.reduce((acc, currentValue) => {
-        if (currentValue.status === "In-progress") {
+        if (currentValue.status === "In-progress" || currentValue.status === "in-progress") {
             return acc + 1;
         }
         return acc;
     }, 0);
 
     const liveCount = status.reduce((acc, currentValue) => {
-        if (currentValue.status === "Live") {
+        if (currentValue.status === "Live" || currentValue.status === "live") {
             return acc + 1;
         }
         return acc;

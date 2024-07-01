@@ -117,7 +117,6 @@ export const editPost = createAsyncThunk(
   'post/edit',
   async ({ formData, id }, { rejectWithValue }) => {
     try {
-      console.log(formData, id)
       const response = await axios.put(`http://localhost:2000/post/update/${id}`, formData);
       return response.data;
     } catch (error) {

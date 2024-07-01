@@ -36,7 +36,7 @@ exports.getPostById = async (req, res) => {
 
 exports.addPost = async (req, res) => {
     try {
-        const { title, description, category, user } = req.body;
+        const { title, description, category, status, user } = req.body;
 
         const checkUser = await User.findOne({ username: user });
         if(!checkUser) {
@@ -55,7 +55,7 @@ exports.addPost = async (req, res) => {
             user: checkUser,
             upvotes: 0,
             date: new Date(),
-            status: "Planned"
+            status: 'planned'
         });
 
         await newPost.save();
