@@ -4,12 +4,15 @@ import { sort } from '../features/state/stateSlice';
 import { Link } from 'react-router-dom';
 import SortSelect from './SortSelect';
 import lightbulb from "../assets/lightbulb.png";
+import { getAllPosts } from '../features/social/socialSlice';
 
 function Sort() {
     const [sortBy, setSortBy] = useState("Most Upvotes");
     const dispatch = useDispatch();
+    const products = useSelector((state) => state.social.posts)
+    console.log(products)
 
-    const productRequests = useSelector(state => state.state.data.productRequests);
+    /* const productRequests = useSelector(state => state.state.data.productRequests);
 
     const suggestionCount = productRequests.reduce((acc, currentValue) => {
         if (currentValue.status === "suggestion") {
@@ -17,9 +20,10 @@ function Sort() {
         }
         return acc;
     }, 0);
-
+*/
     useEffect(() => {
         dispatch(sort(sortBy));
+        dispatch(getAllPosts());
     }, [sortBy, dispatch]);
 
     const options = [
@@ -34,7 +38,7 @@ function Sort() {
             <div className='flex items-center'>
                 <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                     <img src={lightbulb} alt='lightbulb' />
-                    <p className='text-lg tracking-[-0.25px] font-bold text-white xl:whitespace-nowrap md:mr-10'>{suggestionCount} Suggestions</p>
+                    <p className='text-lg tracking-[-0.25px] font-bold text-white xl:whitespace-nowrap md:mr-10'>{products ? products.length : null} Suggestions</p>
                 </div>
                 <div className='flex hover:opacity-75'>
                     <label className='px-13 text-white2 mr-2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>

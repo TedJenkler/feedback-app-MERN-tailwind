@@ -8,8 +8,8 @@ import Roadmap from './Roadmap';
 function Nav({ toggleMenu, setToggleMenu }) {
     return (
         <>
-            <nav className='hidden absolute md:flex md:h-[11.125rem] md:relative md:mx-10 md:mb-10 gap-[0.625rem] xl:flex xl:flex-col xl:pl-40 xl:pr-0 xl:pt-24 xl:gap-6 xl:mr-0'>
-                <div className='w-1/3 h-[11.125rem] bg-gradient-to-tr from-gradient-blue via-gradient-purple to-gradient-red pt-24 px-6 rounded-xl lg:w-1/3 lg:mr-2 xl:w-full xl:min-w-64 xl:p-6 xl:pt-16'>
+            <nav className='hidden absolute md:flex md:h-[11.125rem] md:relative md:mx-10 md:mb-10 gap-[0.625rem] xl:flex xl:flex-col xl:pr-0 xl:pt-24 xl:gap-6 xl:mr-0'>
+                <div className='w-1/3 h-[11.125rem] bg-gradient-to-tr from-gradient-blue via-gradient-purple to-gradient-red pt-24 px-6 rounded-xl lg:w-1/3 lg:mr-0 xl:w-full xl:min-w-64 xl:p-6 xl:pt-16'>
                     <p className='text-white tracking-[-0.25px] font-bold text-xl'>Frontend Mentor</p>
                     <p className='text-white font-medium text-base opacity-75 md:px15'>Feedback Board</p>
                 </div>
