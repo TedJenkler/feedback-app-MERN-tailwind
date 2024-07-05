@@ -16,7 +16,7 @@ function Nav({ toggleMenu, setToggleMenu }) {
                 <Filter />
                 <Roadmap />
             </nav>
-            <nav className='flex justify-between px-6 h-[4.5rem] items-center bg-gradient-to-tr from-gradient-blue via-gradient-purple to-gradient-red md:hidden md:absolute'>
+            <nav className='flex justify-between px-6 h-[4.5rem] items-center bg-gradient-to-tr from-gradient-blue via-gradient-purple to-gradient-red md:hidden md:absolute overflow-x-hidden'>
                 <div className='flex flex-col text-white'>
                     <p className='px15 font-bold tracking-[-0.19px]'>Frontend Mentor</p>
                     <p className='px13 font-medium opacity-75'>Feedback Board</p>

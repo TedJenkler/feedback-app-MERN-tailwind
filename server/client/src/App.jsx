@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <div className="md:pt-14 md:w-screen xl:gap-[2.08%] bg-grey-white xl:flex xl:w-screen overflow-scroll xl:h-screen xl:justify-center">
+    <div className="md:pt-14 w-screen xl:gap-[2.08%] bg-grey-white xl:flex xl:w-screen xl:h-screen xl:justify-center overflow-x-hidden">
       <div className="xl:w-[18.33%]">
         <Nav toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
       </div>
