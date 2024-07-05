@@ -35,6 +35,14 @@ function CommentMap({ id }) {
         setReplyContent('');
     };
 
+    const getUserImagePath = (imgPath) => {
+        if (process.env.NODE_ENV === 'development') {
+            return `../src${imgPath}`;
+        } else {
+            return imgPath;
+        }
+    };
+
     return (
         <div>
             {postComments.length === 0 && <p>No comments found.</p>}
@@ -47,7 +55,7 @@ function CommentMap({ id }) {
                     <div key={comment._id} className={`mb-6 ${postComments.length - 1 === index ? "" : "border-b border-border-grey/25"} pb-6`}>
                         <div className='flex justify-between'>
                             <div className='flex gap-4'>
-                                <img className='rounded-full h-10 w-10' src={"../src" + user.img} alt={`${user.firstname} ${user.lastname}`} />
+                                <img className='rounded-full h-10 w-10' src={getUserImagePath(user.img)} alt={`${user.firstname} ${user.lastname}`} />
                                 <div className=''>
                                     <p className='font-bold text-blue px13 tracking-[-0.18px] capitalize'>{`${user.firstname} ${user.lastname}`}</p>
                                     <p className='font-normal text-grey px13 capitalize'>@{user.username}</p>

@@ -41,6 +41,14 @@ function ReplyMap({ replies }) {
         setReplyContent('');
     };
 
+    const getUserImagePath = (imgPath) => {
+        if (process.env.NODE_ENV === 'development') {
+            return `../src${imgPath}`;
+        } else {
+            return imgPath;
+        }
+    };
+
     return (
         <div className='ml-8'>
             {commonReplies.map(reply => {
@@ -52,7 +60,7 @@ function ReplyMap({ replies }) {
                     <div key={reply._id} className='my-6'>
                         <div className='flex justify-between'>
                             <div className='flex gap-4'>
-                                <img className='rounded-full h-10 w-10' src={"../src" + user.img} alt={`${user.firstname} ${user.lastname}`} />
+                                <img className='rounded-full h-10 w-10' src={getUserImagePath(user.img)} alt={`${user.firstname} ${user.lastname}`} />
                                 <div className=''>
                                     <p className='font-bold text-blue px13 tracking-[-0.18px] capitalize'>{`${user.firstname} ${user.lastname}`}</p>
                                     <p className='font-normal text-grey px13 capitalize'>@{user.username}</p>
