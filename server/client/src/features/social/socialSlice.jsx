@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:2000';
+const API_BASE_URL = process.env.NODE_ENV === 'production' ? 'https://feedback-app-mern-tailwind.onrender.com' : 'http://localhost:2000';
 
 const handleAsyncError = (error) => {
   if (error.response) {
