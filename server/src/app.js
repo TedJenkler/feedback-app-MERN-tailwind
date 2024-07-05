@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require('path')
 const cors = require('cors');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
@@ -11,12 +12,14 @@ const commentRoutes = require('./routes/comment');
 const replyRoutes = require('./routes/reply');
 const { default: mongoose } = require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI;
+const staticPath = path.join(__dirname, '/client/dist');
 
 app.use(cors());
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(staticPath));
 
 mongoose.connect(MONGODB_URI, {
     useUnifiedTopology: true
