@@ -44,18 +44,20 @@ const SortSelect = ({ options, value, onChange }) => {
                     alt="Dropdown arrow"
                 />
             </div>
-            <div className={`absolute -left-[3.75rem] top-10 w-[15.938rem] bg-white shadow-lg transition-all rounded-b-[10px] duration-300 ease-in-out transform ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-                {options.map((option, index) => (
-                    <div
-                        key={index}
-                        className={`flex justify-between items-center h-12 text-base px-6 text-gray-700 cursor-pointer bg-white border-b ${index === options.length - 1 ? "rounded-b-[10px]" : ""} ${state === option.label ? "text-purple" : ""}`}
-                        onClick={() => handleOptionClick(option.value)}
-                    >
-                        {option.label}
-                        <img className={`w-[0.688rem] h-[0.469rem] ${state === option.label ? "" : "hidden"}`} src={check} alt='check' />
-                    </div>
-                ))}
-            </div>
+            {isOpen && (
+                <div className={`absolute -left-[3.75rem] top-10 w-[15.938rem] bg-white shadow-lg transition-all rounded-b-[10px] duration-300 ease-in-out transform ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+                    {options.map((option, index) => (
+                        <div
+                            key={index}
+                            className={`flex justify-between items-center h-12 text-base px-6 text-gray-700 cursor-pointer bg-white border-b ${index === options.length - 1 ? "rounded-b-[10px]" : ""} ${state === option.label ? "text-purple" : ""}`}
+                            onClick={() => handleOptionClick(option.value)}
+                        >
+                            {option.label}
+                            <img className={`w-[0.688rem] h-[0.469rem] ${state === option.label ? "" : "hidden"}`} src={check} alt='check' />
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

@@ -76,7 +76,7 @@ const AddNewFeedback = () => {
                         type='text'
                         value={formData.title}
                         onChange={handleInputChange}
-                        className={`w-full px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue rounded-xl ${errors.title ? 'border-2 border-red' : ''}`}
+                        className={`w-full h-12 input ${errors.title ? 'border-2 border-red' : ''}`}
                         placeholder='Add a title'
                     />
                     {errors.title && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
@@ -94,7 +94,7 @@ const AddNewFeedback = () => {
                         name='description'
                         value={formData.description}
                         onChange={handleInputChange}
-                        className={`w-full px13 bg-grey-white2 h-32 p-3 focus:outline-strong-blue rounded-xl ${errors.description ? 'border-2 border-red' : ''}`}
+                        className={`w-full input h-32 ${errors.description ? 'border-2 border-red' : ''}`}
                         placeholder='Add details'
                     ></textarea>
                     {errors.description && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}

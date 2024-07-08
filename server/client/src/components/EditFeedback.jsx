@@ -96,7 +96,7 @@ const EditFeedback = () => {
                             type='text'
                             value={formData.title}
                             onChange={handleInputChange}
-                            className={errorTitle ? 'w-full px13 text-blue bg-grey-white2 h-12 p-4 mb-1 focus:outline-strong-blue border-2 border-red rounded-[0.313rem] md:px15' : 'w-full text-blue px13 bg-grey-white2 h-12 p-4 focus:outline-strong-blue mb-1 rounded-xl md:px15'}
+                            className={errorTitle ? 'w-full input h-12 mb-1 border-2 border-red rounded-[0.313rem] md:px15' : 'w-full h-12 input mb-1 md:px15'}
                             placeholder='Add a title'
                         />
                         {errorTitle && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
@@ -119,7 +119,7 @@ const EditFeedback = () => {
                             name='description'
                             value={formData.description}
                             onChange={handleInputChange}
-                            className={errorDetail ? 'w-full px13 text-blue bg-grey-white2 h-32 p-4 focus:outline-strong-blue border-2 border-red rounded-xl md:px15' : 'w-full px13 text-blue bg-grey-white2 h-32 p-4 focus:outline-strong-blue rounded-xl md:px15'}
+                            className={errorDetail ? 'w-full input h-32 border-2 border-red' : 'w-full h-32 input'}
                             placeholder='Add details'
                         ></textarea>
                         {errorDetail && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}

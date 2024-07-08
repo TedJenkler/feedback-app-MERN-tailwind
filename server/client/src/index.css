@@ -11,6 +11,10 @@
         font-size: 0.813rem;
         line-height: auto;
     }
+    .input {
+        @apply px-6 py-3 px15 font-normal text-blue bg-grey-white2 outline outline-1 outline-none focus:outline-strong-blue rounded-[0.313rem];
+        line-height: auto;
+    }
 }
 
 @media (max-width: 375px) {
