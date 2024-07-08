@@ -40,7 +40,7 @@ function Sort() {
                     <img src={lightbulb} alt='lightbulb' />
                     <p className='text-lg tracking-[-0.25px] font-bold text-white xl:whitespace-nowrap md:mr-10'>{products ? products.length : null} Suggestions</p>
                 </div>
-                <div className='flex hover:opacity-75'>
+                <div className='flex'>
                     <label className='px-13 text-white2 mr-2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>
                     <SortSelect
                         value={sortBy}
