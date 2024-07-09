@@ -13,18 +13,19 @@ function App() {
   useEffect(() => {
     dispatch(getAllCategories());
     dispatch(getAllPosts());
+  }, [dispatch]);
 
+  useEffect(() => {
     const timer = setTimeout(() => {
       const alertShown = localStorage.getItem("alertShown");
       if (!alertShown) {
         alert("Hi! Welcome to my project created by Teodor Jenkler. The project is in its early stages, and at the moment, I haven't implemented full user authentication. Only the creator of a post can edit or delete it, so please refrain from altering posts that aren't yours. Have fun, and I would greatly appreciate any feedback, either on my LinkedIn profile (https://www.linkedin.com/in/tedjenklerwebdeveloper/) or the Frontend Mentor forum.");
         localStorage.setItem("alertShown", "true");
       }
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
-
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="md:pt-14 w-screen xl:gap-[2.08%] min-h-full bg-grey-white xl:flex xl:w-screen xl:h-screen xl:justify-center overflow-x-hidden">
