@@ -30,7 +30,7 @@ function MenuMobile({ toggleMenu }) {
     }, [toggleMenu]);
 
     return (
-        <div className={`absolute h-full bg-grey-white2 top-[4.5rem] w-[72.27%] right-0 z-50 transition-transform duration-700 ease-in-out transform ${isVisible ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`absolute h-full bg-grey-white2 top-[4.5rem] w-[72.27%] right-0 z-50 transition-transform duration-700 ease-in-out transform md:hidden ${isVisible ? 'translate-x-0' : 'translate-x-full'}`}>
             {isVisible && (
                 <>
                     <Filter />

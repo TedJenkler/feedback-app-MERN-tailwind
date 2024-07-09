@@ -9,7 +9,7 @@ function MobileRoadmap() {
 
     return (
         <main>
-            <nav className='flex justify-between bg-blue text-white h-[6.25rem] px-6 py-6 items-center'>
+            <nav className='xs:px-3 s:px-6 flex justify-between bg-blue text-white h-[6.25rem] px-6 py-6 items-center'>
                 <div>
                     <Link className='mb-1 flex items-center gap-2' to="/feedback-app-tailwind-vite/">
                         <img src={whitearrow} alt='back btn' />

@@ -74,7 +74,7 @@ function FeedbackDisplay() {
   return (
     <main className='bg-grey-white min-h-screen py-8 pb-28 md:pt-6 xl:pt-6 overflow-hidden w-screen"'>
       {filteredAndSortedRequests.map((value) => (
-        <div key={value._id} onClick={() => {navigate("/feedback/" + value._id)}} className='bg-white mx-6 mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mx-0 xl:ml-8'>
+        <div key={value._id} onClick={() => {navigate("/feedback/" + value._id)}} className='xs:mx-3 s:mx-6 bg-white mb-4 rounded-xl p-6 md:mx-10 md:flex md:flex-row-reverse md:justify-between md:px-8 md:py-7 xl:mx-0 xl:ml-8'>
           <button className='hidden absolute items-center gap-1 md:flex md:relative'>
             <img className='h-4 w-5' src={comment} alt='comments' />
             <p>{value.comments.length}</p>

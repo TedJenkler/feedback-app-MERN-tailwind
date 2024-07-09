@@ -9,6 +9,10 @@ export default {
       fontFamily: {
         sans: ['Jost', 'sans-serif'],
       },
+      screens: {
+        'xs': '320px',
+        's': '375px'
+      },
       colors: {
         'gradient-blue': '#28A7ED',
         'gradient-purple': '#A337F6',

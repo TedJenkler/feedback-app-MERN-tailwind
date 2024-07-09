@@ -78,9 +78,9 @@ const EditFeedback = () => {
     };
 
     return (
-        <main className='bg-grey-white2 p-6 h-full pt-[2.125rem] pb-20 md:px-28 md:py-14 xl:px-96 xl:pt-24 xl:pb-44'>
+        <main className='xs:px-3 s:px-6 bg-grey-white2 p-6 h-full pt-[2.125rem] pb-20 md:px-28 md:py-14 xl:px-96 xl:pt-24 xl:pb-44'>
             <div>
-                <img className='absolute left-12 top-20 md:left-40 md:top-24 md:w-14 md:h-14 xl:left-96 xl:ml-10 xl:top-36' src={editicon} alt='editicon' />
+                <img className='relative left-[24px] md:left-[40px] top-20 md:top-24 md:w-14 md:h-14 xl:left-96 xl:ml-10 xl:top-36' src={editicon} alt='editicon' />
                 <Link to="/feedback-app-tailwind-vite/" className='flex items-center gap-2 mb-[2.125rem]'>
                     <img className='w-1 h-2' src={arrowleft} alt='arrowback' />
                     <p className='text-grey px13 font-bold md:text-sm hover:text-black'>Go Back</p>
@@ -125,7 +125,7 @@ const EditFeedback = () => {
                         {errorDetail && <p className='text-red text-sm'>Can’t be empty</p>}
                     </div>
                     <div className='flex flex-col md:flex-row-reverse md:justify-between md:gap-4 md:items-center'>
-                        <div className='flex flex-row-reverse gap-4'>
+                        <div className='flex flex-col md:flex-row-reverse md:gap-4'>
                             <button type="button" onClick={handleSaveChanges} className='flex justify-center items-center px13 bg-purple text-center text-white mb-4 w-full h-10 rounded-xl font-bold text-sm md:mb-0 hover:bg-hover-purple md:text-sm md:max-w-[9rem] md:min-w-[9rem] min-h-[2.75rem]'>Save Changes</button>
                             <Link to="/feedback-app-tailwind-vite/" className='flex justify-center items-center px13 bg-blue mb-4 text-white w-full h-10 rounded-xl text-center text-sm font-bold md:mb-0 hover:bg-hover-grey md:text-sm md:max-w-[5.813rem] md:min-w-[5.813rem] min-h-[2.75rem]'>Cancel</Link>
                         </div>

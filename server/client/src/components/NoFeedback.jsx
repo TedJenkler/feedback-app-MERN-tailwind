@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function NoFeedback() {
     return (
-        <div className='flex flex-col bg-white px-6 py-[4.75rem] mx-6 rounded-xl items-center md:mx-10 md:py-28 xl:mr-0'>
+        <div className='xs:mx-3 s:mx-6 flex flex-col bg-white px-6 py-[4.75rem] rounded-xl items-center md:mx-10 md:py-28 xl:mr-0 overflow-hidden'>
             <img className='mb-10 md:w-[8.094rem] md:mb-[3.344rem]' src={empty} alt='empty' />
             <h1 className='mb-[0.875rem] text-blue font-bold tracking-[-0.25px] text-lg md:text-2xl md:tracking-[-0.33px]'>There is no feedback yet.</h1>
             <p className='mb-6 text-grey leading-[auto] px13 font-normal text-center md:mb-12 md:mx-32 md:text-base xl:mx-40 xl:text-base'>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>

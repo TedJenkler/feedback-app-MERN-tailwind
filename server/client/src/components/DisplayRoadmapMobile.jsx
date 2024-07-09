@@ -51,7 +51,7 @@ function DisplayRoadmapMobile({ selectedRoadmap }) {
   };
 
   return (
-    <main className='bg-grey-white2 min-h-screen p-6'>
+    <main className='xs:px-3 s:px-6 bg-grey-white2 min-h-screen p-6'>
       <h1 className='text-lg tracking-[-0.25px] text-blue font-bold mb-1'>
         {selectedRoadmap === "planned"
           ? `Planned (${roadmap.length})`

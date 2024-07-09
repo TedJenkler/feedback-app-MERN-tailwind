@@ -34,14 +34,14 @@ function Sort() {
     ];
 
     return (
-        <div className='flex justify-between h-14 items-center text-white px-6 py-2 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-[4.5rem] xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
+        <div className='xs:px-4 s:px-6 flex justify-between h-14 items-center text-white py-2 bg-dark-blue text-sm md:mx-10 md:rounded-xl md:h-[4.5rem] xl:mt-24 xl:mr-0 xl:ml-9 xl:h-16'>
             <div className='flex items-center'>
                 <div className='hidden absolute md:flex md:relative md:gap-2 md:items-center xl:mr-10'>
                     <img src={lightbulb} alt='lightbulb' />
                     <p className='text-lg tracking-[-0.25px] font-bold text-white xl:whitespace-nowrap md:mr-10'>{products ? products.length : null} Suggestions</p>
                 </div>
                 <div className='flex'>
-                    <label className='px-13 text-white2 mr-2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>
+                    <label className='xs:text-[0.625rem] s:px-13 text-white2 mr-2 font-normal whitespace-nowrap md:text-sm'>Sort by : </label>
                     <SortSelect
                         value={sortBy}
                         onChange={setSortBy}
@@ -49,7 +49,7 @@ function Sort() {
                     />
                 </div>
             </div>
-            <Link to="/addfeedback" className='flex items-center justify-center bg-purple px13 rounded-xl h-10 w-[8.375rem] font-bold whitespace-nowrap hover:bg-hover-purple md:text-sm md:w-[9.875rem] md:h-[2.75rem]'>+ Add Feedback</Link>
+            <Link to="/addfeedback" className='xs:text-[0.625rem] xs:w-[6.449rem] s:w-[8.375rem] s:px13 flex items-center justify-center bg-purple rounded-xl h-10 font-bold whitespace-nowrap hover:bg-hover-purple md:text-sm md:w-[9.875rem] md:h-[2.75rem]'>+ Add Feedback</Link>
         </div>
     );
 }
