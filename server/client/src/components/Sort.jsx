@@ -10,7 +10,6 @@ function Sort() {
     const [sortBy, setSortBy] = useState("Most Upvotes");
     const dispatch = useDispatch();
     const products = useSelector((state) => state.social.posts)
-    console.log(products)
 
     /* const productRequests = useSelector(state => state.state.data.productRequests);
 

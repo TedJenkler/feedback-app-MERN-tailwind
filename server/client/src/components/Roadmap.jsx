@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 function Roadmap() {
     const status = useSelector((state) => state.social.posts)
-    console.log(status)
 
     const plannedCount = status.reduce((acc, currentValue) => {
         if (currentValue.status === "Planned" || currentValue.status === "planned") {

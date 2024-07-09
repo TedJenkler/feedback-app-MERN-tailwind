@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'bgxl': process.env.NODE_ENV === 'production' ? "url('/assets/frontendmentor.png')" : "url('../src/assets/frontendmentor.png')",
+        'bgmd': process.env.NODE_ENV === 'production' ? "url('/assets/frontendmentortablet.png')" : "url('../src/assets/frontendmentortablet.png')",
+        'bgs': process.env.NODE_ENV === 'production' ? "url('/assets/frontendmentormobile.png')" : "url('../src/assets/frontendmentormobile.png')",
+      },
       fontFamily: {
         sans: ['Jost', 'sans-serif'],
       },

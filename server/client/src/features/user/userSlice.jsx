@@ -16,7 +16,13 @@ export const login = createAsyncThunk(
             localStorage.setItem('username', response.data.user.username);
             return response.data;
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            let errorMsg = 'An unknown error occurred';
+            if (error.response && error.response.data) {
+                errorMsg = error.response.data.message || JSON.stringify(error.response.data);
+            } else if (error.message) {
+                errorMsg = error.message;
+            }
+            return rejectWithValue(errorMsg);
         }
     }
 );
@@ -64,7 +70,7 @@ const userSlice = createSlice({
                 (action) => action.type.endsWith('/rejected'),
                 (state, action) => {
                     state.status = 'failed';
-                    state.error = action.error.message;
+                    state.error = action.payload || action.error.message;
                 }
             )
     }

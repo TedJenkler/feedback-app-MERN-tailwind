@@ -4,7 +4,7 @@ import App from './App.jsx';
 import './index.css';
 import store from './app/store';
 import { Provider } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RoadmapPage from './RoadmapPage.jsx';
 import AddNewFeedback from './components/AddNewFeedback.jsx';
 import EditFeedback from './components/EditFeedback.jsx';

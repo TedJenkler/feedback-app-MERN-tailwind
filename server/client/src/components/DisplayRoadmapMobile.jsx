@@ -29,8 +29,6 @@ function DisplayRoadmapMobile({ selectedRoadmap }) {
     setRoadmap(filteredRoadmap);
   }, [selectedRoadmap, posts]);
 
-  console.log(roadmap)
-
   const handleUpvote = (value, e) => {
     e.preventDefault();
     e.stopPropagation();
