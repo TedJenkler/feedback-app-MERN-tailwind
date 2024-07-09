@@ -96,10 +96,10 @@ const EditFeedback = () => {
                             type='text'
                             value={formData.title}
                             onChange={handleInputChange}
-                            className={errorTitle ? 'w-full input h-12 mb-1 border-2 border-red rounded-[0.313rem] md:px15' : 'w-full h-12 input mb-1 md:px15'}
+                            className={`w-full h-12 input ${errorTitle ? 'outline-red' : 'outline-transparent'}`}
                             placeholder='Add a title'
                         />
-                        {errorTitle && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
+                        {errorTitle && <p className='mt-1 text-red text-sm md:text-sm'>Can’t be empty</p>}
                     </div>
                     <CategorySelect
                         value={formData.category}
@@ -119,10 +119,10 @@ const EditFeedback = () => {
                             name='description'
                             value={formData.description}
                             onChange={handleInputChange}
-                            className={errorDetail ? 'w-full input h-32 border-2 border-red' : 'w-full h-32 input'}
+                            className={`w-full input h-32 ${errorDetail ? 'outline-red' : 'outline-transparent'}`}
                             placeholder='Add details'
                         ></textarea>
-                        {errorDetail && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
+                        {errorDetail && <p className='text-red text-sm'>Can’t be empty</p>}
                     </div>
                     <div className='flex flex-col md:flex-row-reverse md:justify-between md:gap-4 md:items-center'>
                         <div className='flex flex-row-reverse gap-4'>

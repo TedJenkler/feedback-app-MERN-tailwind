@@ -76,10 +76,10 @@ const AddNewFeedback = () => {
                         type='text'
                         value={formData.title}
                         onChange={handleInputChange}
-                        className={`w-full h-12 input ${errors.title ? 'border-2 border-red' : ''}`}
+                        className={`w-full h-12 input ${errors.title ? 'outline-red' : 'outline-transparent'}`}
                         placeholder='Add a title'
                     />
-                    {errors.title && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
+                    {errors.title && <p className='mt-1 text-red text-sm md:text-sm'>Can’t be empty</p>}
                 </div>
                 <CategorySelect
                     value={formData.category}
@@ -94,10 +94,10 @@ const AddNewFeedback = () => {
                         name='description'
                         value={formData.description}
                         onChange={handleInputChange}
-                        className={`w-full input h-32 ${errors.description ? 'border-2 border-red' : ''}`}
+                        className={`w-full input h-32 ${errors.description ? 'outline-red' : 'outline-transparent'}`}
                         placeholder='Add details'
                     ></textarea>
-                    {errors.description && <p className='text-red px13 md:text-sm'>Can’t be empty</p>}
+                    {errors.description && <p className='text-red text-sm'>Can’t be empty</p>}
                 </div>
                 <div className='flex flex-col md:flex-row-reverse md:gap-4 md:items-center'>
                     <button type="submit" className='flex items-center justify-center px13 bg-purple text-center text-white mb-4 w-full h-10 rounded-xl font-bold text-sm md:w-[9rem] md:h-[2.75rem] md:mb-0 hover:bg-hover-purple md:text-sm'>Add Feedback</button>
