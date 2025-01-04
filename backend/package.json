@@ -11,8 +11,7 @@
     "morgan": "^1.10.0"
   },
   "scripts": {
-    "server": "nodemon src/server.js",
-    "build": "npm install --prefix client && npm run build --prefix client && npm install"
+    "server": "nodemon ./app.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"

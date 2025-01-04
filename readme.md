@@ -1,58 +1,21 @@
-# Frontend Mentor - Product Feedback App Solution
+# Product Feedback App
 
-This is a solution to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution for a product feedback app, built using the MERN stack and styled with Tailwind CSS. The app allows users to manage feedback, upvote suggestions, and engage in discussions to improve product ideas and track progress.
 
 ## Table of Contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
+  - [Features](#features)
   - [Screenshot](#screenshot)
   - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [Features](#features)
+- [My Process](#my-process)
+  - [Built With](#built-with)
   - [Learnings](#learnings)
-  - [Continued development](#continued-development)
+  - [Continued Development](#continued-development)
   - [Resources](#resources)
 - [Author](#author)
 
 ## Overview
-
-### The challenge
-
-Users should be able to:
-
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Create, read, update, and delete product feedback requests
-- Receive form validations when trying to create/edit feedback requests
-- Sort suggestions by most/least upvotes and most/least comments
-- Filter suggestions by category
-- Add comments and replies to a product feedback request
-- Upvote product feedback requests
-- **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
-
-### Screenshot
-
-![Screenshot](./screenshot.png)
-
-### Links
-
-- GitHub Repository: [https://github.com/TedJenkler/feedback-app-MERN-tailwind](https://github.com/TedJenkler/feedback-app-MERN-tailwind)
-- Live Site: [https://feedback-app-mern-tailwind.onrender.com](https://feedback-app-mern-tailwind.onrender.com)
-
-## My process
-
-### Built with
-
-- Flexbox for layout design
-- Mobile-first workflow
-- [React](https://reactjs.org/) JavaScript library
-- [Tailwind CSS](https://tailwindcss.com/) for styling with utility-first CSS
-- [Vite](https://vitejs.dev/) frontend build tool for fast development
-- [Redux Toolkit](https://redux-toolkit.js.org/) for efficient state management
-- [Express.js](https://expressjs.com/) for backend API development
-- [MongoDB](https://www.mongodb.com/) for database storage
 
 ### Features
 
@@ -70,40 +33,57 @@ Users can:
 - **Filter and Sort:** Filter posts based on categories or other criteria, and sort posts by most upvotes, most comments, or other relevant metrics.
 - **Upvote:** Users can upvote posts to express agreement or support for particular ideas or feedback.
 
-These features enable users to actively participate in discussions, manage posts effectively, and track the progress of ideas through different stages. The app functions similarly to a social media platform, facilitating interaction and collaboration among users while organizing and categorizing feedback and ideas.
+These features create an engaging platform for discussions, feedback management, and tracking ideas from conception to completion.
+
+### Screenshot
+
+![Screenshot](./screenshot.png)
+
+### Links
+
+- GitHub Repository: [https://github.com/TedJenkler/feedback-app-MERN-tailwind](https://github.com/TedJenkler/feedback-app-MERN-tailwind)
+- Live Site: [https://feedback-app-mern-tailwind.onrender.com](https://feedback-app-mern-tailwind.onrender.com)
+
+## My Process
+
+### Built With
+
+- **React** for building user interfaces
+- **Tailwind CSS** for utility-first styling
+- **Redux Toolkit** for state management
+- **Node.js** and **Express.js** for backend API development
+- **MongoDB** for database storage
+- **Vite** as the frontend build tool
+- **Flexbox** for responsive design and layout
 
 ### Learnings
 
-During this project, I concentrated on enhancing my proficiency in several key areas:
+During this project, I focused on:
 
-- **Redux:** I leveraged Redux Toolkit for efficient state management in complex applications.
-- **Responsive Design:** Utilizing Flexbox, I implemented responsive design strategies to ensure optimal user experiences across devices.
-- **Form Handling and Validation:** I improved my skills in handling forms and implementing robust validation techniques to enhance data integrity.
-- **Node.js and Express.js:** I deepened my understanding of Node.js and Express.js, focusing on best practices for structuring Express applications.
-- **Animation:** I experimented with adding animations to the menu and select elements, enhancing user interaction and visual appeal.
-- **MongoDB:** I utilized MongoDB for backups and gained introductory experience in database management.
-- **Testing:** I began exploring testing methodologies but didn't implement them in this project.
+- **Redux Toolkit:** Managing complex state efficiently.
+- **Responsive Design:** Using Flexbox to ensure a consistent experience across different devices.
+- **Form Handling and Validation:** Strengthening data integrity through robust validation techniques.
+- **Node.js and Express.js:** Structuring scalable backend applications.
+- **MongoDB:** Gaining hands-on experience with database management.
+- **Animations:** Enhancing the user experience with smooth menu and element animations.
+- **Testing:** Beginning to explore testing methodologies, though not fully implemented in this project.
 
-These learnings have significantly contributed to my growth as a developer, equipping me with valuable skills applicable to future projects.
+### Continued Development
 
-### Continued development
+In the future, I aim to expand the app's functionality with:
 
-In future development, I plan to expand the app's functionality to include:
-
-- Implementing full authentication so only the owner of posts can edit/delete.
-- Creating a user dashboard where users can manage their profiles and feedback submissions.
-- Allowing users to browse and explore projects, and provide feedback on various features.
+- Full authentication to ensure only post owners can edit or delete their posts.
+- A user dashboard for managing profiles and feedback submissions.
+- Additional features for exploring projects and providing feedback across different areas.
 
 ### Resources
 
-Helpful resources I used during this project:
-
 - [Redux Toolkit Documentation](https://redux-toolkit.js.org/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - For styling with utility-first CSS
-- [React Router v6 Documentation](https://reactrouter.com/docs/en/v6/getting-started/introduction) - For navigation and routing in React applications
-- [Stack Overflow](https://stackoverflow.com/) - For community support and troubleshooting
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [React Router v6 Documentation](https://reactrouter.com/docs/en/v6/getting-started/introduction)
+- [Stack Overflow](https://stackoverflow.com/)
 
-### Author
+## Author
 
-- Frontend Mentor - [@TedJenkler](https://www.frontendmentor.io/profile/TedJenkler)
-- Linkedin - [Teodor Jenkler](https://www.linkedin.com/in/tedjenklerwebdeveloper/)
+- GitHub: [TedJenkler](https://github.com/TedJenkler)
+- LinkedIn: [Teodor Jenkler](https://www.linkedin.com/in/tedjenklerwebdeveloper/)

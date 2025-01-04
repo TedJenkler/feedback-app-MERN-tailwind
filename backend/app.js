@@ -3,7 +3,6 @@ const app = express();
 require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
-const path = require('path')
 const cors = require('cors');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
@@ -11,25 +10,21 @@ const postRoutes = require('./routes/post');
 const commentRoutes = require('./routes/comment');
 const replyRoutes = require('./routes/reply');
 const { default: mongoose } = require('mongoose');
-const MONGODB_URI = process.env.MONGODB_URI;
-const staticPath = path.join(__dirname, '/client/dist');
+const MONGODB_URI = process.env.MONGO_URI;
 
 app.use(cors());
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(staticPath));
 
-mongoose.connect(MONGODB_URI, {
-    useUnifiedTopology: true
-})
-.then(() => {
-    console.log('Connected to MongoDB')
-})
-.catch((error) => {
-    console.error('Error connecting to MongoDB:', error.message);
-});
+mongoose.connect(MONGODB_URI, {})
+    .then(() => {
+        console.log('Connected to MongoDB')
+    })
+    .catch((error) => {
+        console.error('Error connecting to MongoDB:', error.message);
+    });
 
 app.use('/users', userRoutes);
 app.use('/category', categoryRoutes);
@@ -42,11 +37,7 @@ app.use((error, req, res, next) => {
     res.status(500).json('Something is broken')
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(staticPath, 'index.html'));
-});
-
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`)
 });
