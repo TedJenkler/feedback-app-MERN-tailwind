@@ -1,0 +1,13 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 4">
+<circle id="Oval" cx="20" cy="20" r="20" fill="url(#paint0_radial_0_129)"/>
+<path id="Combined Shape" fill-rule="evenodd" clip-rule="evenodd" d="M20.5268 14.4656L23.2569 12L28 16.4426L25.4162 19.0493L20.5268 14.4656ZM11 28.713C11.6704 25.9211 13.539 18.7818 13.539 18.7818L19.5124 15.3671L24.4871 19.8979L20.6864 25.4371L11.2279 29L15.7117 24.8991C16.471 25.1749 17.5434 24.9255 18.1232 24.3063C18.8885 23.4931 18.8311 22.23 17.9944 21.4855C17.1577 20.7411 15.7951 20.7411 15.0298 21.5543C14.4597 22.1606 14.2633 23.2302 14.5891 23.9353L11 28.713Z" fill="white"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_129" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(41.56 -4.15462) rotate(129.411) scale(66.7263)">
+<stop stop-color="#E84D70"/>
+<stop offset="0.530886" stop-color="#A337F6"/>
+<stop offset="1" stop-color="#28A7ED"/>
+</radialGradient>
+</defs>
+</svg>
