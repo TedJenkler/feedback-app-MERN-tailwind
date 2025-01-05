@@ -1,6 +1,6 @@
-FROM node:18
+FROM node:16
 
-WORKDIR /backend
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -8,6 +8,4 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 5000
-
-CMD ["nodemon", "app.js"]
+CMD ["npm", "run", "dev"]

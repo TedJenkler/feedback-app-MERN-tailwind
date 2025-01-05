@@ -158,6 +158,7 @@ export const addPost = createAsyncThunk(
 const socialSlice = createSlice({
   name: 'social',
   initialState: {
+    auth: { loggedIn: false, user: undefined, token: undefined },
     posts: [],
     categories: [],
     comments: [],

@@ -15,14 +15,6 @@ import Register from './components/Register.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/feedback-app-tailwind-vite/",
     element: <App />,
   },
   {
