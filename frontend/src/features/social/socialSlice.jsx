@@ -1,10 +1,12 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+const API_BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://feedback-app-mern-tailwind.onrender.com'
+    : 'http://localhost:5000';
 
-const API_BASE_URL = process.env.NODE_ENV === 'production' ? 'https://feedback-app-mern-tailwind.onrender.com' : 'http://localhost:5000';
-
-const handleAsyncError = (error) => {
+const handleAsyncError = error => {
   if (error.response) {
     return error.response.data;
   }
@@ -51,7 +53,10 @@ export const upvoteToggle = createAsyncThunk(
   'post/upvote',
   async ({ toggle, id, username }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${API_BASE_URL}/post/upvote/${id}`, { toggle, username });
+      const response = await axios.put(`${API_BASE_URL}/post/upvote/${id}`, {
+        toggle,
+        username,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(handleAsyncError(error));
@@ -99,7 +104,11 @@ export const replyUser = createAsyncThunk(
   'reply/addReply',
   async ({ id, content, user, replyType }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/reply/add/${id}`, { content, user, replyType });
+      const response = await axios.post(`${API_BASE_URL}/reply/add/${id}`, {
+        content,
+        user,
+        replyType,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(handleAsyncError(error));
@@ -111,7 +120,11 @@ export const addComment = createAsyncThunk(
   'comment/addComment',
   async ({ content, user, postId }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/comment/add/`, { content, user, postId });
+      const response = await axios.post(`${API_BASE_URL}/comment/add/`, {
+        content,
+        user,
+        postId,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(handleAsyncError(error));
@@ -123,7 +136,10 @@ export const editPost = createAsyncThunk(
   'post/edit',
   async ({ formData, id }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${API_BASE_URL}/post/update/${id}`, formData);
+      const response = await axios.put(
+        `${API_BASE_URL}/post/update/${id}`,
+        formData
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(handleAsyncError(error));
@@ -166,20 +182,20 @@ const socialSlice = createSlice({
     users: [],
     selectedPost: [],
     status: 'idle',
-    error: null
+    error: null,
   },
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addMatcher(
-        (action) => action.type.endsWith('/pending'),
-        (state) => {
+        action => action.type.endsWith('/pending'),
+        state => {
           state.status = 'loading';
           state.error = null;
         }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/fulfilled'),
+        action => action.type.endsWith('/fulfilled'),
         (state, action) => {
           state.status = 'succeeded';
           if (action.type === getAllPosts.fulfilled.type) {
@@ -199,13 +215,13 @@ const socialSlice = createSlice({
         }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/rejected'),
+        action => action.type.endsWith('/rejected'),
         (state, action) => {
           state.status = 'failed';
           state.error = action.error.message;
         }
       );
-  }
+  },
 });
 
 export default socialSlice.reducer;

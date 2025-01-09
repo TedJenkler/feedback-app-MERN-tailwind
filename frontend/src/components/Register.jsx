@@ -7,7 +7,7 @@ import review from '../assets/review.png';
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.user);
+  const userData = useSelector(state => state.user);
 
   useEffect(() => {
     if (userData.activeUser !== null) {
@@ -20,7 +20,7 @@ const Register = () => {
     lastname: '',
     email: '',
     username: '',
-    password: ''
+    password: '',
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -28,22 +28,22 @@ const Register = () => {
     lastname: false,
     email: false,
     username: false,
-    password: false
+    password: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setRegisterForm({
       ...registerForm,
-      [name]: value
+      [name]: value,
     });
     setFormErrors({
       ...formErrors,
-      [name]: false
+      [name]: false,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     const newFormErrors = {
@@ -51,7 +51,7 @@ const Register = () => {
       lastname: !registerForm.lastname,
       email: !registerForm.email,
       username: !registerForm.username,
-      password: !registerForm.password
+      password: !registerForm.password,
     };
 
     setFormErrors(newFormErrors);
@@ -67,108 +67,143 @@ const Register = () => {
       lastname: '',
       email: '',
       username: '',
-      password: ''
+      password: '',
     });
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-white2 bg-bgs md:bg-bgmd xl:bg-bgxl bg-center z-10 bg-no-repeat">
-      <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
-      <div className="relative max-w-md w-[87.2%] p-6 bg-white rounded-lg shadow-md brightness-100 z-10">
-        <img className="mx-auto h-10 w-auto" src={review} alt="Feedback App" />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <div className='relative z-10 flex min-h-screen items-center justify-center bg-white2 bg-bgs bg-center bg-no-repeat md:bg-bgmd xl:bg-bgxl'>
+      <div className='absolute inset-0 z-0 bg-black opacity-50'></div>
+      <div className='relative z-10 w-[87.2%] max-w-md rounded-lg bg-white p-6 shadow-md brightness-100'>
+        <img className='mx-auto h-10 w-auto' src={review} alt='Feedback App' />
+        <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
           Register a new account
         </h2>
-        <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
+        <form className='mt-8 space-y-4' onSubmit={handleSubmit}>
           <div className=''>
-            <label htmlFor="firstname" className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>
+            <label
+              htmlFor='firstname'
+              className='px13 mb-1 font-bold tracking-[-0.18px] text-blue md:text-sm'
+            >
               First Name
             </label>
             <input
               onChange={handleChange}
               value={registerForm.firstname}
-              id="firstname"
-              name="firstname"
-              type="text"
-              className={`w-full h-12 input ${formErrors.firstname ? 'outline-red' : 'outline-transparent'}`}
-              placeholder="John"
+              id='firstname'
+              name='firstname'
+              type='text'
+              className={`input h-12 w-full ${formErrors.firstname ? 'outline-red' : 'outline-transparent'}`}
+              placeholder='John'
             />
-            {formErrors.firstname && <p className='mt-1 text-red text-sm md:text-sm'>First name is required</p>}
+            {formErrors.firstname && (
+              <p className='mt-1 text-sm text-red md:text-sm'>
+                First name is required
+              </p>
+            )}
           </div>
           <div className=''>
-            <label htmlFor="lastname" className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>
+            <label
+              htmlFor='lastname'
+              className='px13 mb-1 font-bold tracking-[-0.18px] text-blue md:text-sm'
+            >
               Last Name
             </label>
             <input
               onChange={handleChange}
               value={registerForm.lastname}
-              id="lastname"
-              name="lastname"
-              type="text"
-              className={`w-full h-12 input ${formErrors.lastname ? 'outline-red' : 'outline-transparent'}`}
-              placeholder="Doe"
+              id='lastname'
+              name='lastname'
+              type='text'
+              className={`input h-12 w-full ${formErrors.lastname ? 'outline-red' : 'outline-transparent'}`}
+              placeholder='Doe'
             />
-            {formErrors.lastname && <p className='mt-1 text-red text-sm md:text-sm'>Last name is required</p>}
+            {formErrors.lastname && (
+              <p className='mt-1 text-sm text-red md:text-sm'>
+                Last name is required
+              </p>
+            )}
           </div>
           <div className=''>
-            <label htmlFor="email" className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>
+            <label
+              htmlFor='email'
+              className='px13 mb-1 font-bold tracking-[-0.18px] text-blue md:text-sm'
+            >
               Email
             </label>
             <input
               onChange={handleChange}
               value={registerForm.email}
-              id="email"
-              name="email"
-              type="email"
-              className={`w-full h-12 input ${formErrors.email ? 'outline-red' : 'outline-transparent'}`}
-              placeholder="john@example.com"
+              id='email'
+              name='email'
+              type='email'
+              className={`input h-12 w-full ${formErrors.email ? 'outline-red' : 'outline-transparent'}`}
+              placeholder='john@example.com'
             />
-            {formErrors.email && <p className='mt-1 text-red text-sm md:text-sm'>Email is required</p>}
+            {formErrors.email && (
+              <p className='mt-1 text-sm text-red md:text-sm'>
+                Email is required
+              </p>
+            )}
           </div>
           <div className=''>
-            <label htmlFor="username" className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>
+            <label
+              htmlFor='username'
+              className='px13 mb-1 font-bold tracking-[-0.18px] text-blue md:text-sm'
+            >
               Username
             </label>
             <input
               onChange={handleChange}
               value={registerForm.username}
-              id="username"
-              name="username"
-              type="text"
-              className={`w-full h-12 input ${formErrors.username ? 'outline-red' : 'outline-transparent'}`}
-              placeholder="johnd"
+              id='username'
+              name='username'
+              type='text'
+              className={`input h-12 w-full ${formErrors.username ? 'outline-red' : 'outline-transparent'}`}
+              placeholder='johnd'
             />
-            {formErrors.username && <p className='mt-1 text-red text-sm md:text-sm'>Username is required</p>}
+            {formErrors.username && (
+              <p className='mt-1 text-sm text-red md:text-sm'>
+                Username is required
+              </p>
+            )}
           </div>
           <div className=''>
-            <label htmlFor="password" className='px13 tracking-[-0.18px] text-blue font-bold mb-1 md:text-sm'>
+            <label
+              htmlFor='password'
+              className='px13 mb-1 font-bold tracking-[-0.18px] text-blue md:text-sm'
+            >
               Password
             </label>
             <input
               onChange={handleChange}
               value={registerForm.password}
-              id="password"
-              name="password"
-              type="password"
-              className={`w-full h-12 input ${formErrors.password ? 'outline-red' : 'outline-transparent'}`}
-              placeholder="johndoe123"
+              id='password'
+              name='password'
+              type='password'
+              className={`input h-12 w-full ${formErrors.password ? 'outline-red' : 'outline-transparent'}`}
+              placeholder='johndoe123'
             />
-            {formErrors.password && <p className='mt-1 text-red text-sm md:text-sm'>Password is required</p>}
+            {formErrors.password && (
+              <p className='mt-1 text-sm text-red md:text-sm'>
+                Password is required
+              </p>
+            )}
           </div>
           <div>
             <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+              type='submit'
+              className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700'
             >
               Register
             </button>
           </div>
         </form>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className='mt-2 text-center text-sm text-gray-600'>
           Already a member?{' '}
           <Link
-            to="/"
-            className="font-medium text-indigo-600 hover:text-indigo-500"
+            to='/'
+            className='font-medium text-indigo-600 hover:text-indigo-500'
           >
             Login
           </Link>

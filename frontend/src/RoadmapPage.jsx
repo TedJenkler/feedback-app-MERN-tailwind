@@ -5,14 +5,14 @@ import DesktopRoadmap from './components/DesktopRoadmap';
 function RoadmapPage() {
   return (
     <>
-      <div className='md:hidden md:absolute'>
+      <div className='md:absolute md:hidden'>
         <MobileRoadmap />
       </div>
-      <div className='hidden absolute md:flex md:flex-col md:relative'>
+      <div className='absolute hidden md:relative md:flex md:flex-col'>
         <DesktopRoadmap />
       </div>
     </>
-  )
+  );
 }
 
 export default RoadmapPage;

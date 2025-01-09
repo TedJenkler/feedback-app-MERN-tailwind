@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 @layer utilities {
-    .px15 {
-        font-size: 0.938rem;
-        line-height: auto;
-    }
-    .px13 {
-        font-size: 0.813rem;
-        line-height: auto;
-    }
-    .input {
-        @apply px-6 py-3 px15 font-normal text-blue bg-grey-white2 outline outline-1 focus:outline-strong-blue rounded-[0.313rem];
-        line-height: auto;
-    }
+  .px15 {
+    font-size: 0.938rem;
+    line-height: auto;
+  }
+  .px13 {
+    font-size: 0.813rem;
+    line-height: auto;
+  }
+  .input {
+    @apply px15 rounded-[0.313rem] bg-grey-white2 px-6 py-3 font-normal text-blue outline outline-1 focus:outline-strong-blue;
+    line-height: auto;
+  }
 }
 
 @media (max-width: 375px) {
-    .sort {
-        padding: 0px 0.625rem 0 0.625rem;
-        margin: 0;
-    }
-  };
+  .sort {
+    padding: 0px 0.625rem 0 0.625rem;
+    margin: 0;
+  }
+}

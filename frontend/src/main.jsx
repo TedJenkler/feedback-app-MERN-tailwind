@@ -14,23 +14,23 @@ import Register from './components/Register.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
   },
   {
-    path: "/roadmap",
+    path: '/roadmap',
     element: <RoadmapPage />,
   },
   {
-    path: "/addfeedback",
+    path: '/addfeedback',
     element: <AddNewFeedback />,
   },
   {
-    path: "/editfeedback/:id",
-    element: <EditFeedback/>,
+    path: '/editfeedback/:id',
+    element: <EditFeedback />,
   },
   {
-    path: "/feedback/:id",
+    path: '/feedback/:id',
     element: <SelectedFeedback />,
   },
 ]);
@@ -40,5 +40,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
