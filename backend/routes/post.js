@@ -11,4 +11,4 @@ router.delete('/delete', postController.deleteAll);
 
 router.put('/upvote/:id', postController.upvotePostById);
 
-module.exports = router
+module.exports = router;

@@ -10,4 +10,4 @@ router.put('/update/:id', categoryController.updateCategoryById);
 router.delete('/delete/:id', categoryController.deleteCategoryById);
 router.delete('/deleteAll', categoryController.deleteAllCategories);
 
-module.exports = router
+module.exports = router;
